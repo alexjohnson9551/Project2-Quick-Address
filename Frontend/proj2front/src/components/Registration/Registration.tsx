@@ -1,16 +1,8 @@
 
 import React, { useState } from 'react';
+import axios from 'axios';
 import { Button } from 'react-bootstrap';
 import './RegistrationStyle.css'
-
-
-const Registration = (props: any) => (
-  <div>
-    Registration Component
-    <br />
-    <Button onClick={() => props.nextPageHandler("Login")}>Back to Login</Button>
-  </div>
-);
 
 const RegPage = (props: any) => {
   const propsClick = props.onclick;
@@ -46,16 +38,56 @@ const RegPage = (props: any) => {
     console.log(userEmail);
   }
 
-  function funn()
+  function sendToDB()
   {
+    //Gonna have axios in here and the body should be an obj
+    //that has all the user properties
     console.log(userFirstname);
     console.log(userLastname);
     console.log(userName);
     console.log(userPass);
     console.log(userEmail);
+
+    let toSend = {
+      firstname: userFirstname,
+      lastname: userLastname,
+      username: userName,
+      password: userPass,
+      email: userEmail,
+      method: "POST"
+    };
+
+    let json = JSON.stringify(toSend);
+
+    console.log("POST WITH AXIOS!Sending:" + json);
+
+    axios.post(
+      'http://localhost:8080/Project2/LoginServlet',
+      json,
+      
+      {withCredentials: true,},).then(  //Do I need withCredentials since this is a registration page
+          res => {
+
+            console.log("DATA:"+res);
+            
+            console.log("DATA0:"+res.data)
+            
+        })
+        .catch((err) => {
+          console.log({err});
+          alert(err.response);
+        });
+
+        props.nextPageHandler("Login")
   }
+
+  function funn(){
+    alert("onClick needs to be changed to sendToDB() once back-end is setup")
+    props.nextPageHandler("Login")
+  }
+
   return (
-    <div className="container custom">
+    <div className="container custom fade-in">
       <div className="d-flex justify-content-center align-items-center h-50">
 
         <div className="card text-black">
@@ -65,34 +97,38 @@ const RegPage = (props: any) => {
 
               <form className="">
 
-                <div className="">
-                  <input type="text" id="" className="form-control" value={userFirstname} onChange={firstnameChangeHandler}/>
-                  <label className="form-label">First Name</label>
+                <div className="inputStyle">
+                  <label>First Name</label>
+                  <input type="text" id="" className="test" value={userFirstname} onChange={firstnameChangeHandler}/>
+                  
                 </div>
 
-                <div className="">
-                  <input type="text" id="" className="form-control" value={userLastname} onChange={lastnameChangeHandler}/>
-                  <label className="form-label">Last Name</label>
+                <div className="inputStyle">
+                  <label>Last Name</label>
+                  <input type="text" id="" className="test" value={userLastname} onChange={lastnameChangeHandler}/>
+                  
                 </div>
 
-                <div className="">
-                  <input type="text" id="" className="form-control" value={userName} onChange={userNameChangeHandler}/>
-                  <label className="form-label">Username</label>
+                <div className="inputStyle">
+                  <label className="">Username</label>
+                  <input type="text" id="" className="test" value={userName} onChange={userNameChangeHandler}/>
+                  
                 </div>
 
-                <div className="">
-                  <input type="password" id="" className="form-control" value={userPass} onChange={passChangeHandler}/>
-                  <label className="form-label">Password</label>
+                <div className="inputStyle">
+                  <label className="">Password</label>
+                  <input type="password" id="" className="test" value={userPass} onChange={passChangeHandler}/>
+                  
                 </div>
 
-                <div className="">
-                  <input type="email" id="" className="form-control" value={userEmail} onChange={emailChangeHandler}/>
-                  <label className="form-label">Email</label>
+                <div className="inputStyle">
+                  <label className="">Email</label>
+                  <input type="email" id="" className="test" value={userEmail} onChange={emailChangeHandler}/>
                 </div>
 
-                <div className="d-flex justify-content-center">
+                <div className="d-flex justify-content-center buttons">
                   <Button onClick={() => props.nextPageHandler("Login")}>Back to Login</Button>
-                  <Button className="btnStyle" onClick={() => funn()} >Create Account</Button>
+                  <Button className="btnStyle" onClick={() => funn()}>Create Account</Button>
                 </div>
 
               </form>
