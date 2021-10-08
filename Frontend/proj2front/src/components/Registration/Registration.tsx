@@ -1,6 +1,14 @@
-import React, {useState} from "react";
-import "../Pages/Style.scss"
 
+import React from 'react';
+import { Button } from 'react-bootstrap';
+
+const Registration = (props: any) => (
+  <div>
+    Registration Component
+    <br/>
+    <Button onClick={() => props.nextPageHandler("Login")}>Back to Login</Button>
+  </div>
+);
 
 const RegPage = (props:any) => {
     const propsClick = props.onclick;
