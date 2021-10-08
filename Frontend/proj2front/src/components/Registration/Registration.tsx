@@ -13,8 +13,8 @@ const Registration = (props: any) => (
 const RegPage = (props:any) => {
     const propsClick = props.onclick;
     const nextPage = props.nextPage;
-    const [userName, setUserName]=useState("");
-    const [userPass, setUserPass]=useState("");
+    // const [userName, setUserName]=useState("");
+    // const [userPass, setUserPass]=useState("");
     return (
         <div className="MHome">
             <div className="content">
@@ -90,7 +90,7 @@ const RegPage = (props:any) => {
                                         </div> */}
 
                                         <div className="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                                            <button type="button" className="btn btn-primary btn-lg">Register</button>
+                                            <Button onClick={() => props.nextPageHandler("Login")}>Back to Login</Button>
                                         </div>
 
                                         </form>
