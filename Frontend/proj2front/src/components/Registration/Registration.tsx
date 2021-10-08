@@ -1,122 +1,108 @@
 
-import React from 'react';
-import { Button } from 'react-bootstrap'; 
+import React, { useState } from 'react';
+import { Button } from 'react-bootstrap';
+import './RegistrationStyle.css'
+
 
 const Registration = (props: any) => (
   <div>
     Registration Component
-    <br/>
+    <br />
     <Button onClick={() => props.nextPageHandler("Login")}>Back to Login</Button>
   </div>
 );
 
-const RegPage = (props:any) => {
-    const propsClick = props.onclick;
-    const nextPage = props.nextPage;
-    // const [userName, setUserName]=useState("");
-    // const [userPass, setUserPass]=useState("");
-    return (
-        <div className="MHome">
-            <div className="content">
-        <div className="limiter" id="limiter-home3">
-            <div className="container-home3 ">
-                <div className="wrap-home3 ">
-                    <div>
-                        
+const RegPage = (props: any) => {
+  const propsClick = props.onclick;
+  const nextPage = props.nextPage;
+  const [userFirstname, setUserFirstname] = useState("");
+  const [userLastname, setUserLastname] = useState("");
+  const [userName, setUserName] = useState("");
+  const [userPass, setUserPass] = useState("");
+  const [userEmail, setUserEmail] = useState("");
 
-                    <section className="">
-                        <div className="container h-100">
-                            <div className="row d-flex justify-content-center align-items-center h-100">
-                            <div className="col-lg-12 col-xl-11">
-                                <div className="card text-black">
-                                <div className="card-body p-md-5">
-                                    <div className="row justify-content-center">
-                                    <div className="">
+  let firstnameChangeHandler = (e:any) => {
+    setUserFirstname(e.target.value);
+    console.log(userFirstname);
+  }
 
-                                        <p className="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Sign up</p>
+  let lastnameChangeHandler = (e:any) => {
+    setUserLastname(e.target.value);
+    console.log(userLastname);
+  }
 
-                                        <form className="mx-1 mx-md-4">
+  let passChangeHandler = (e:any) => {
+    setUserPass(e.target.value);
+    console.log(userPass);
+  }
 
-                                        <div className="d-flex flex-row align-items-center mb-4">
-                                            <i className="fas fa-user fa-lg me-3 fa-fw"></i>
-                                            <div className="form-outline flex-fill mb-0">
-                                            <input type="text" id="form3Example1c" className="form-control" />
-                                            <label className="form-label" >First Name</label>
-                                            </div>
-                                        </div>
+  let userNameChangeHandler = (e:any) => {
+    setUserName(e.target.value);
+    console.log(userName);
+  }
+  
+  let emailChangeHandler = (e:any) => {
+    setUserEmail(e.target.value);
+    console.log(userEmail);
+  }
 
-                                        <div className="d-flex flex-row align-items-center mb-4">
-                                            <i className="fas fa-envelope fa-lg me-3 fa-fw"></i>
-                                            <div className="form-outline flex-fill mb-0">
-                                            <input type="email" id="form3Example3c" className="form-control" />
-                                            <label className="form-label">Last Name</label>
-                                            </div>
-                                        </div>
+  function funn()
+  {
+    console.log(userFirstname);
+    console.log(userLastname);
+    console.log(userName);
+    console.log(userPass);
+    console.log(userEmail);
+  }
+  return (
+    <div className="container custom">
+      <div className="d-flex justify-content-center align-items-center h-50">
 
-                                        <div className="d-flex flex-row align-items-center mb-4">
-                                            <i className="fas fa-lock fa-lg me-3 fa-fw"></i>
-                                            <div className="form-outline flex-fill mb-0">
-                                            <input type="password" id="form3Example4c" className="form-control" />
-                                            <label className="form-label" >Username</label>
-                                            </div>
-                                        </div>
-                                        
-                                        <div className="d-flex flex-row align-items-center mb-4">
-                                            <i className="fas fa-key fa-lg me-3 fa-fw"></i>
-                                            <div className="form-outline flex-fill mb-0">
-                                            <input type="password" id="form3Example4cd" className="form-control" />
-                                            <label className="form-label" >Password</label>
-                                            </div>
-                                        </div>
+        <div className="card text-black">
+          <div className="card-body">
+            <div className="justify-content-center">
+              <p className="text-center h1">Sign up</p>
 
-                                        <div className="d-flex flex-row align-items-center mb-4">
-                                            <i className="fas fa-key fa-lg me-3 fa-fw"></i>
-                                            <div className="form-outline flex-fill mb-0">
-                                            <input type="password" id="form3Example4cd" className="form-control" />
-                                            <label className="form-label" >Email</label>
-                                            </div>
-                                        </div>
+              <form className="">
 
-                                        {/* <div className="form-check d-flex justify-content-center mb-5">
-                                            <input
-                                            className="form-check-input me-2"
-                                            type="checkbox"
-                                            value=""
-                                            id="form2Example3c"
-                                            />
-                                            <label className="form-check-label">
-                                            I agree all statements in <a href="#!"></a>
-                                            </label>
-                                        </div> */}
-
-                                        <div className="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                                            <Button onClick={() => props.nextPageHandler("Login")}>Back to Login</Button>
-                                        </div>
-
-                                        </form>
-
-                                    </div>
-                                    <div className="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
-
-                                        {/* <img src="https://mdbootstrap.com/img/Photos/new-templates/bootstrap-registration/draw1.png" className="img-fluid" alt="Sample image"/> */}
-
-                                    </div>
-                                    </div>
-                                </div>
-                                </div>
-                            </div>
-                            </div>
-                        </div>
-                    </section>
-
-
-                    </div>
+                <div className="">
+                  <input type="text" id="" className="form-control" value={userFirstname} onChange={firstnameChangeHandler}/>
+                  <label className="form-label">First Name</label>
                 </div>
+
+                <div className="">
+                  <input type="text" id="" className="form-control" value={userLastname} onChange={lastnameChangeHandler}/>
+                  <label className="form-label">Last Name</label>
+                </div>
+
+                <div className="">
+                  <input type="text" id="" className="form-control" value={userName} onChange={userNameChangeHandler}/>
+                  <label className="form-label">Username</label>
+                </div>
+
+                <div className="">
+                  <input type="password" id="" className="form-control" value={userPass} onChange={passChangeHandler}/>
+                  <label className="form-label">Password</label>
+                </div>
+
+                <div className="">
+                  <input type="email" id="" className="form-control" value={userEmail} onChange={emailChangeHandler}/>
+                  <label className="form-label">Email</label>
+                </div>
+
+                <div className="d-flex justify-content-center">
+                  <Button onClick={() => props.nextPageHandler("Login")}>Back to Login</Button>
+                  <Button className="btnStyle" onClick={() => funn()} >Create Account</Button>
+                </div>
+
+              </form>
             </div>
+          </div>
         </div>
+
+      </div>
     </div>
-        </div>
-    )
+  )
 }
 
 export default RegPage;
