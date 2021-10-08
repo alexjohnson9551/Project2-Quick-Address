@@ -1,8 +1,99 @@
 .custom {
-    margin-top: 100px;
+    margin-top: 200px;
     max-width: 50%;
+}
+
+.card {
+    height: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+    width: 400px;
+    background-color: rgba(133, 144, 142, 0.5) !important;
+    border: none !important;
+    box-shadow: 0 30px 40px rgba(0, 0, 0, .8);
+    font-weight: bold;
+}
+
+.card p {
+    color: black;
+}
+
+.inputStyle {
+    margin-top: 20px;
+    width: auto;
+}
+
+.test {
+    float: right;
+    margin-right: 40px;
+}
+
+.buttons {
+    margin-top: 30px;
 }
 
 .btnStyle {
     margin-left: 20px;
 }
+
+
+/* This can be used anywhere by copying the code below and using .fade-in on any div */
+
+
+/* VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV CSS ELEMENTS TO FADE IN THE CARD VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV*/
+
+.fade-in {
+    animation: fadeIn 5s;
+    -webkit-animation: fadeIn 5s;
+    -moz-animation: fadeIn 5s;
+    -o-animation: fadeIn 5s;
+    -ms-animation: fadeIn 5s;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@-moz-keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@-webkit-keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@-o-keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@-ms-keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+
+/* ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ CSS ELEMENTS TO FADE IN THE CARD ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^*/
