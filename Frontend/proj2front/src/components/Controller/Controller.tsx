@@ -1,12 +1,13 @@
 import React, { useState, useCallback } from 'react';
+import Home from '../Home/Home';
 import Login from '../Login/Login'
 import Registration from '../Registration/Registration';
 
 const Controller = (props: any) => {
   const [page, setPage] = useState("Login");
-  const [userInfo, setUserInfo] = useState({
-    uname: ""
-  });
+
+  //temporary, this should be changed
+  const [username, setUsername] = useState("");
 
   let nextPageHandler = useCallback(
     (x: string) => {
@@ -16,7 +17,8 @@ const Controller = (props: any) => {
 
   let pageList = [
     "Login",
-    "Registration"
+    "Registration",
+    "Home"
   ];
 
   let toDisplay;
@@ -25,9 +27,9 @@ const Controller = (props: any) => {
     toDisplay =
       <div>
         <Login
+          username={username}
+          setUsername={setUsername}
           nextPageHandler={nextPageHandler}
-          userInfo={userInfo}
-          setUserInfo={setUserInfo}
         ></Login>
       </div>
   } else if (page == "Registration") {
@@ -35,9 +37,15 @@ const Controller = (props: any) => {
       <div>
         <Registration
           nextPageHandler={nextPageHandler}
-          userInfo={userInfo}
-          setUserInfo={setUserInfo}
         ></Registration>
+      </div>
+  } else if (page == "Home") {
+    toDisplay =
+      <div>
+        <Home
+          nextPageHandler={nextPageHandler}
+          username={username}
+        ></Home>
       </div>
   }
 
