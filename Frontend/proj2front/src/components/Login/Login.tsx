@@ -3,7 +3,6 @@ import Button from "react-bootstrap/Button";
 import Container from 'react-bootstrap/Container';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useState } from "react-transition-group/node_modules/@types/react";
-import './Login.module.scss';
 
 const Login = (props: any) => {
 

@@ -1,5 +1,4 @@
 import React, { useState, useCallback } from 'react';
-import styles from './Controller.module.scss';
 import Login from '../Login/Login'
 import Registration from '../Registration/Registration';
 
@@ -43,7 +42,7 @@ const Controller = (props: any) => {
   }
 
   return (
-    <div className={styles.Controller} data-testid="Controller">
+    <div>
       {toDisplay}
     </div>
   );
