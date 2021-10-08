@@ -1,6 +1,7 @@
 import React, { useState, useCallback } from 'react';
 import Home from '../Home/Home';
 import Login from '../Login/Login'
+import MapContainer from '../Map/ShowMap';
 import Navigation from '../Navigation/Navigation';
 import Registration from '../Registration/Registration';
 
@@ -53,6 +54,7 @@ const Controller = (props: any) => {
   } else if (page == "Home") {
     navButs = [{dest: "Registration", title: "Registration"},
           {dest: "Home", title: "Home"},
+          {dest: "Map", title: "Map"},
           {dest: "Home", title: "Home Alternate Title"},
           {dest: "Logout", title: "Logout"}];
     toDisplay =
@@ -66,6 +68,22 @@ const Controller = (props: any) => {
           nextPageHandler={nextPageHandler}
           username={username}
         ></Home>
+      </div>
+  } else if (page == "Map") {
+    navButs = [{dest: "Registration", title: "Registration"},
+          {dest: "Home", title: "Home"},
+          {dest: "Map", title: "Map"},
+          {dest: "Home", title: "Home Alternate Title"},
+          {dest: "Logout", title: "Logout"}];
+    toDisplay =
+      <div>
+        <Navigation
+          navButs={navButs} 
+          nextPageHandler={nextPageHandler}   
+        >
+        </Navigation>
+        <MapContainer
+        ></MapContainer>
       </div>
   }
 
