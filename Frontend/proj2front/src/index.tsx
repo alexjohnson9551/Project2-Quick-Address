@@ -8,7 +8,7 @@ import Controller from './components/Controller/Controller';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Controller />
+    <App />
   </React.StrictMode>,
   document.getElementById('root')
 );
