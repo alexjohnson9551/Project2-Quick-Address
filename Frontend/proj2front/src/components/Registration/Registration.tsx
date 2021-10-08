@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { Button } from 'react-bootstrap';
 import './RegistrationStyle.css'
 
+
 const Registration = (props: any) => (
   <div>
     Registration Component
