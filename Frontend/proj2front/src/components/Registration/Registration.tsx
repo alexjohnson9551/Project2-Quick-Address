@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Button } from 'react-bootstrap'; 
 
@@ -89,7 +90,7 @@ const RegPage = (props:any) => {
                                         </div> */}
 
                                         <div className="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                                            <button type="button" className="btn btn-primary btn-lg">Register</button>
+                                            <Button onClick={() => props.nextPageHandler("Login")}>Back to Login</Button>
                                         </div>
 
                                         </form>
