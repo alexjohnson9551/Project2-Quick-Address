@@ -1,8 +1,7 @@
 import React from 'react';
-import styles from './MyComponent.module.scss';
 
 const MyComponent = () => (
-  <div className={styles.MyComponent} data-testid="MyComponent">
+  <div>
     MyComponent Component
   </div>
 );
