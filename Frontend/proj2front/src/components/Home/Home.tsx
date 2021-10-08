@@ -1,12 +1,14 @@
 import React from 'react';
 import { Button } from 'react-bootstrap';
+import NavbarToggle from 'react-bootstrap/esm/NavbarToggle';
+import Navigation from '../Navigation/Navigation';
 
 
 const Home = (props: any) => {
 
 
   const logout = () => {
-    props.nextPageHandler("Login");
+    props.nextPageHandler("Logout");
   }
 
   return (<div>
