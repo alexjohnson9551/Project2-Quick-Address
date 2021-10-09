@@ -37,7 +37,6 @@ public class User implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
-
 	@Column(name="Username", unique=true, nullable=false, length = 50)
 	private String username;
 	
@@ -56,74 +55,5 @@ public class User implements Serializable{
 	@Enumerated(value = EnumType.STRING)
 	@Column(name="Role", unique = false, nullable = false, columnDefinition = "varchar(25) default 'USER'")
 	private eRole role;
-
-	public String getUsername() {
-		return username;
-	}
-
-	public void setUsername(String username) {
-		this.username = username;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	public String getFirstName() {
-		return firstName;
-	}
-
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-
-	public String getLastName() {
-		return lastName;
-	}
-
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	@PrePersist
-	public void prePersist() {
-	    if(role == null) //We set default value in case if the value is not set yet.
-	    	role = eRole.USER;
-	}
-	
-	public eRole getRole() {
-		return role;
-	}
-
-	public void setRole(eRole role) {
-		this.role = role;
-	}
-	
-	@Override
-	public String toString() {
-		return "User [id=" + id + ", username=" + username + ", password=" + password + ", firstName=" + firstName
-				+ ", lastName=" + lastName + ", email=" + email + ", role=" + role + "]";
-	}
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
-	
 	
 }
