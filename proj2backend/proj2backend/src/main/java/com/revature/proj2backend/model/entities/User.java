@@ -10,16 +10,24 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.PrePersist;
 
 import org.hibernate.annotations.*;
 
 import com.revature.proj2backend.entities.enums.eRole;
 
+import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
+
 @Cacheable
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @Entity
-@Table(name="User")
+@Data
+@NoArgsConstructor
+@RequiredArgsConstructor
 public class User implements Serializable{
 
 	private static final long serialVersionUID = 1L;
@@ -28,6 +36,7 @@ public class User implements Serializable{
 	@Column(name="id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+
 
 	@Column(name="Username", unique=true, nullable=false, length = 50)
 	private String username;
@@ -47,29 +56,6 @@ public class User implements Serializable{
 	@Enumerated(value = EnumType.STRING)
 	@Column(name="Role", unique = false, nullable = false, columnDefinition = "varchar(25) default 'USER'")
 	private eRole role;
-	
-	public User() {
-	}
-
-	public User(Integer id, String username, String password, String firstName, String lastName, String email,
-			eRole role) {
-		super();
-		this.id = id;
-		this.username = username;
-		this.password = password;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.email = email;
-		this.role = role;
-	}
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
 
 	public String getUsername() {
 		return username;
@@ -111,6 +97,12 @@ public class User implements Serializable{
 		this.email = email;
 	}
 
+	@PrePersist
+	public void prePersist() {
+	    if(role == null) //We set default value in case if the value is not set yet.
+	    	role = eRole.USER;
+	}
+	
 	public eRole getRole() {
 		return role;
 	}
@@ -118,11 +110,20 @@ public class User implements Serializable{
 	public void setRole(eRole role) {
 		this.role = role;
 	}
-
+	
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", username=" + username + ", password=" + password + ", firstName=" + firstName
 				+ ", lastName=" + lastName + ", email=" + email + ", role=" + role + "]";
 	}
 
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+	
+	
 }
