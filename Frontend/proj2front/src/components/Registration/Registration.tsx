@@ -49,20 +49,24 @@ const RegPage = (props: any) => {
     console.log(userEmail);
 
     let toSend = {
+      method: "POST",
+      headers: {"Access-Control-Allow-Origin": "*"},
       firstname: userFirstname,
       lastname: userLastname,
       username: userName,
       password: userPass,
-      email: userEmail,
-      method: "POST"
+      email: userEmail
+     
     };
 
     let json = JSON.stringify(toSend);
+    //var cors = require('cors');
+    
 
     console.log("POST WITH AXIOS!Sending:" + json);
 
     axios.post(
-      'http://localhost:8080/Project2/LoginServlet',
+      'http://localhost:8080/test/url/user',
       json,
       
       {withCredentials: true,},).then(  //Do I need withCredentials since this is a registration page
@@ -75,7 +79,7 @@ const RegPage = (props: any) => {
         })
         .catch((err) => {
           console.log({err});
-          alert(err.response);
+          alert("Error: " + err.response);
         });
 
         props.nextPageHandler("Login")
@@ -128,7 +132,7 @@ const RegPage = (props: any) => {
 
                 <div className="d-flex justify-content-center buttons">
                   <Button onClick={() => props.nextPageHandler("Login")}>Back to Login</Button>
-                  <Button className="btnStyle" onClick={() => funn()}>Create Account</Button>
+                  <Button className="btnStyle" onClick={() => sendToDB()}>Create Account</Button>
                 </div>
 
               </form>
