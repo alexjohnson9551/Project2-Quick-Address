@@ -17,6 +17,8 @@ const Login = (props: any) => {
     console.log("Tried logging in! Username = " + props.username + ", Password = " + password);
     const successful = true;
     if (successful) {
+      props.setLoggedIn(true);
+      alert("Logged in.");
       props.nextPageHandler("Home");
     } else {
       alert("Incorrect username or password!");
@@ -62,9 +64,6 @@ const Login = (props: any) => {
 
           </div></div></div></div>
   </Container>
-
-
-
   );
 };
 
