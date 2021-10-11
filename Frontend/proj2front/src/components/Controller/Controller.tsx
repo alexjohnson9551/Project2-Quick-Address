@@ -3,22 +3,18 @@ import AddressFromCode from '../AddressFromCode/AddressFromCode';
 import Home from '../Home/Home';
 import Login from '../Login/Login'
 import MapContainer from '../Map/ShowMap';
-import Navigation from '../Navigation/Navigation';
+import {LoggedInNav, LoggedOutNav} from '../Navigation/NavSetup';
 import Registration from '../Registration/Registration';
 
 const Controller = (props: any) => {
   const [page, setPage] = useState("Login");
-
-  //temporary, this should be changed
-  const [username, setUsername] = useState("");
-
   const [loggedIn, setLoggedIn] = useState(false);
+  const [username, setUsername] = useState("");
 
   let nextPageHandler = useCallback(
     (x: string) => {
-      if (x == "Logout") {
+      if (x === "Logout") {
         logout();
-        setPage("Login")
       } else {
         setPage(x);
       }
@@ -28,82 +24,49 @@ const Controller = (props: any) => {
   const logout = () => {
     setLoggedIn(false);
     alert("Logged out.");
+    setPage("Login");
   };
 
-  let toDisplay;
-  let loggedInNavButs = [{ dest: "Home", title: "Home" },
-  { dest: "Map", title: "Enter New Address" },
-  { dest: "Decode", title: "View Address from Code" },
-  { dest: "Logout", title: "Logout" }];
-
-  let loggedOutNavButs = [
-    { dest: "Decode", title: "View Address from Code" },
-    { dest: "Registration", title: "Sign Up" },
-    { dest: "Login", title: "Login" }];
-
-  if (page == "Login") {
+  let toDisplay = null;
+  let Nav = loggedIn ? 
+  <LoggedInNav nextPageHandler={nextPageHandler}/>:
+  <LoggedOutNav nextPageHandler={nextPageHandler}/>
+  
+  if (page === "Login") {
     toDisplay =
       <div>
-        <Navigation
-          navButs={loggedOutNavButs}
-          nextPageHandler={nextPageHandler}
-        >
-        </Navigation>
+        {Nav}
         <Login
           username={username}
           setUsername={setUsername}
           nextPageHandler={nextPageHandler}
           loggedIn={loggedIn}
           setLoggedIn={setLoggedIn}
-        ></Login>
+        />
       </div>
-  } else if (page == "Registration") {
+  } else if (page === "Registration") {
     toDisplay =
       <div>
-        <Navigation
-          navButs={loggedOutNavButs}
-          nextPageHandler={nextPageHandler}
-        >
-        </Navigation>
-        <Registration
-          nextPageHandler={nextPageHandler}
-        ></Registration>
+        {Nav}
+        <Registration nextPageHandler={nextPageHandler}/>
       </div>
-  } else if (page == "Home") {
+  } else if (page === "Home") {
     toDisplay =
       <div>
-        <Navigation
-          navButs={loggedInNavButs}
-          nextPageHandler={nextPageHandler}
-        >
-        </Navigation>
-        <Home
-          nextPageHandler={nextPageHandler}
-          username={username}
-        ></Home>
+        {Nav}
+        <Home nextPageHandler={nextPageHandler} username={username}/>
       </div>
-  } else if (page == "Map") {
+  } else if (page === "Map") {
     toDisplay =
       <div>
-        <Navigation
-          navButs={loggedInNavButs}
-          nextPageHandler={nextPageHandler}
-        >
-        </Navigation>
-        <MapContainer
-        ></MapContainer>
+        {Nav}
+        <MapContainer/>
       </div>
-  } else if (page == "Decode") {
-    let navButs = loggedIn ? loggedInNavButs : loggedOutNavButs;
+  } else if (page === "Decode") {
     toDisplay =
       <div>
-        <Navigation
-          navButs={navButs}
-          nextPageHandler={nextPageHandler}
-        >
-        </Navigation>
-        <AddressFromCode
-        ></AddressFromCode>
+        {Nav}
+        <AddressFromCode/>
       </div>
   }
 

@@ -9,18 +9,18 @@ const Navigation = (props: any) => {
     props.nextPageHandler(x);
   };
 
-  const navButs = props.navButs;
-  console.log(navButs);
-  const navButComps = navButs.map((but: {dest: string, title: string}) =>
+  const navButtons = props.NavButtons;
+  console.log(navButtons);
+  const navButtonComps = navButtons.map((but: {dest: string, title: string}) =>
     <Nav.Link onClick={() => navigate(but.dest)}>{but.title}</Nav.Link>
   );
 
-  return (<Navbar sticky="top" bg="dark" variant="dark" expand="lg">
+  return (<Navbar sticky="top" bg="light" variant="light" expand="lg">
     <Container>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="justify-content-end" style={{ width: "100%" }}>
-          {navButComps}
+          {navButtonComps}
         </Nav>
       </Navbar.Collapse>
     </Container>
