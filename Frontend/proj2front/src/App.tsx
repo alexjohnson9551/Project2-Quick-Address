@@ -4,11 +4,11 @@ import Button from 'react-bootstrap/Button';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import Controller from './components/Controller/Controller';
-
+import MyGoogleMap from './components/Map/MyGoogleMaps';
 function App() {
   return (
-    <div className="App">
-      <Controller/>
+    <div className="main-wrapper">
+        <MyGoogleMap />
     </div>
   );
 }
