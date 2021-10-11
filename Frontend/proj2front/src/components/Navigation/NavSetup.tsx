@@ -1,18 +1,18 @@
 import React from "react";
 import Navigation from "./Navigation";
 
-const LoggedInNav = (nextPageHandler: any) => {
+const LoggedInNav = (props: any) => {
     let loggedInNavButtons = [{ dest: "Home", title: "Home" },
   { dest: "Map", title: "Enter New Address" },
   { dest: "Decode", title: "View Address from Code" },
   { dest: "Logout", title: "Logout" }];
   return (<Navigation
     NavButtons={loggedInNavButtons}
-    nextPageHandler={nextPageHandler}/>
+    nextPageHandler={props.nextPageHandler}/>
   )
 }
 
-const LoggedOutNav = (nextPageHandler: any) => {
+const LoggedOutNav = (props: any) => {
     let loggedOutNavButtons = [
       { dest: "Decode", title: "View Address from Code" },
       { dest: "Registration", title: "Sign Up" },
@@ -20,7 +20,7 @@ const LoggedOutNav = (nextPageHandler: any) => {
     return (
   <Navigation
   NavButtons={loggedOutNavButtons}
-  nextPageHandler={nextPageHandler}/>
+  nextPageHandler={props.nextPageHandler}/>
     )
 }
 

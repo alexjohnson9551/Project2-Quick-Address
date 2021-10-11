@@ -5,13 +5,14 @@ import { Button } from 'react-bootstrap';
 import './RegistrationStyle.css'
 
 const RegPage = (props: any) => {
-  const propsClick = props.onclick;
-  const nextPage = props.nextPage;
+  //const propsClick = props.onclick;
+  //const nextPage = props.nextPage;
   const [userFirstname, setUserFirstname] = useState("");
   const [userLastname, setUserLastname] = useState("");
   const [userName, setUserName] = useState("");
   const [userPass, setUserPass] = useState("");
   const [userEmail, setUserEmail] = useState("");
+  const nextPageHandler = props.nextPageHandler;
 
   let firstnameChangeHandler = (e:any) => {
     setUserFirstname(e.target.value);
@@ -82,12 +83,12 @@ const RegPage = (props: any) => {
           alert("Error: " + err.response);
         });
 
-        props.nextPageHandler("Login")
+        nextPageHandler("Login")
   }
 
   function funn(){
     alert("onClick needs to be changed to sendToDB() once back-end is setup")
-    props.nextPageHandler("Login")
+    nextPageHandler("Login")
   }
 
   return (
@@ -131,7 +132,7 @@ const RegPage = (props: any) => {
                 </div>
 
                 <div className="d-flex justify-content-center buttons">
-                  <Button onClick={() => props.nextPageHandler("Login")}>Back to Login</Button>
+                  <Button onClick={() => nextPageHandler("Login")}>Back to Login</Button>
                   <Button className="btnStyle" onClick={() => sendToDB()}>Create Account</Button>
                 </div>
 

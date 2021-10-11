@@ -5,14 +5,11 @@ import styles from './Navigation.module.scss';
 
 const Navigation = (props: any) => {
 
-  const navigate = (x: string) => {
-    props.nextPageHandler(x);
-  };
 
   const navButtons = props.NavButtons;
   console.log(navButtons);
-  const navButtonComps = navButtons.map((but: {dest: string, title: string}) =>
-    <Nav.Link onClick={() => navigate(but.dest)}>{but.title}</Nav.Link>
+  const navButtonComps = navButtons.map((button: {dest: string, title: string}) =>
+    <Nav.Link onClick={() => props.nextPageHandler(button.dest)}>{button.title}</Nav.Link>
   );
 
   return (<Navbar sticky="top" bg="light" variant="light" expand="lg">
