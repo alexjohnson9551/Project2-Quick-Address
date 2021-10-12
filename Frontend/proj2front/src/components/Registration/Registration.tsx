@@ -51,6 +51,21 @@ const RegPage = (props: any) => {
       email: userEmail
     };
 
+    if(userFirstname === '' || userLastname === '' || userName === '' || userPass === '' || userEmail === ''){
+      alert("Please fill out all parts of the form!");
+      return;
+    }
+
+    if(!userEmail.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i)) {
+      alert("Invalid Email format!");
+      return;
+    }
+
+    if(userPass.length < 4 || userName.length < 4) {
+      alert("Username and/ord Password is too short, needs to be more than 4 characters!")
+      return;
+    }
+
     let json = JSON.stringify(toSend);
     
 
