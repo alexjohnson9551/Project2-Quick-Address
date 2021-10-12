@@ -1,18 +1,19 @@
-package registration;
+package com.revature.proj2backend.registration;
 
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import models.Users;
+import com.revature.proj2backend.model.entities.Users;
 
 @Service //same as component
 public class UserService {
+	
+	@Autowired
+	private UserRepository userRepository;
 
-	private final UserRepository userRepository;
-
-	 @Autowired
+	 
 	 public UserService(UserRepository userRepository) {
 	   this.userRepository = userRepository;
 	 }
@@ -21,21 +22,21 @@ public class UserService {
 	   return userRepository.findAll();
 	 }
 	
-	 public void addNewUser(Users user) {
+	 public String addNewUser(Users user) {
 	   Optional<Users> userByUsername = userRepository.findUserByUsername(user.getUsername());
 	   Optional<Users> userByEmail = userRepository.findUserByEmail(user.getEmail());
 	   
 	   if(userByUsername.isPresent()) {
-	     throw new IllegalStateException("Username is taken");
+	     return "Username is Registered";
 	   }else if(userByEmail.isPresent()) {
-	     throw new IllegalStateException("Email is taken");
+	     return "Email is Registered";
 	   }
 	   
 	   userRepository.save(user);
-	   System.out.println(user);
+	   return "User Added";
 	 }
 	
-	 public void deleteStudent(Long userId) {
+	 public void deleteUser(Long userId) {
 	   boolean exists = userRepository.existsById(userId);
 	   if (!exists)
 	   {

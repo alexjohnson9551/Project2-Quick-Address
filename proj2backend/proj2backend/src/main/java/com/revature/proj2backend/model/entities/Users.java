@@ -1,4 +1,4 @@
-package models;
+package com.revature.proj2backend.model.entities;
 
 
 import java.io.Serializable;
@@ -22,22 +22,7 @@ import org.hibernate.annotations.*;
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @Entity
 @Table(name="Users")
-@NamedQueries(
-	    {
-	        @NamedQuery(
-	        name = "viewAllUsers", 
-	        query = "FROM Users s"),
-	        @NamedQuery(
-	        name = "findUserByID",
-	        query = "FROM Users s WHERE s.id = :id"),
-	        @NamedQuery(
-	        name = "findUsersByRole", 
-	        query = "FROM Users s WHERE s.UserRole = :UserRole"),
-	        @NamedQuery(
-	        name = "findUserByUsername", 
-	        query = "FROM Users s WHERE s.Username = :Username"),
-	    }
-	)
+
 public class Users{
 
 
@@ -49,7 +34,7 @@ public class Users{
 	private Integer UserID;
 	
 	@Column(name="Username", unique=true, nullable=false, length = 50)
-	private String Username;
+	private String username;
 	
 	@Column(name="Password", unique = false, nullable = false, length = 50)
 	private String Password;
@@ -61,7 +46,7 @@ public class Users{
 	private String LastName;
 	
 	@Column(name="Email", unique = true, nullable = false, length = 150)
-	private String Email;
+	private String email;
 
 	//@Enumerated(EnumType.STRING)
 //	@Enumerated(value = EnumType.STRING)
@@ -72,21 +57,14 @@ public class Users{
 	public Users() {
 	}
 	
-	public Users(Integer UserID, String Username, String Password) {
-		this.UserID = UserID;
-		this.Username = Username;
-		this.Password = Password;
-	}
-
-
 	public Users(Integer UserID, String Username, String Password, String FirstName, String LastName, String Email) {  //removed USER_ROLES UserRole
 		super();
 		this.UserID = UserID;
-		this.Username = Username;
+		this.username = Username;
 		this.Password = Password;
 		this.FirstName = FirstName;
 		this.LastName = LastName;
-		this.Email = Email;
+		this.email = Email;
 //		this.UserRole = UserRole;
 	}
 
@@ -99,11 +77,11 @@ public class Users{
 	}
 
 	public String getUsername() {
-		return Username;
+		return username;
 	}
 
 	public void setUsername(String Username) {
-		this.Username = Username;
+		this.username = Username;
 	}
 
 	public String getPassword() {
@@ -130,11 +108,11 @@ public class Users{
 	}
 	
 	public String getEmail() {
-		return Email;
+		return email;
 	}
 
 	public void setEmail(String Email) {
-		this.Email = Email;
+		this.email = Email;
 	}
 
 //	public USER_ROLES getUSER_ROLE() {
@@ -147,8 +125,8 @@ public class Users{
 
 	@Override
 	public String toString() {
-		return "User [id=" + UserID + ", uname=" + Username + ", pass=" + Password + ", fname="
-				+ FirstName + ", lname=" + LastName + ", email=" + Email + "]";
+		return "User [id=" + UserID + ", uname=" + username + ", pass=" + Password + ", fname="
+				+ FirstName + ", lname=" + LastName + ", email=" + email + "]";
 	}
 	
 }

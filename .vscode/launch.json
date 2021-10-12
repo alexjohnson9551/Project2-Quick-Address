@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-Proj2backendApplication<proj2backend>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.revature.proj2backend.Proj2backendApplication",
+            "projectName": "proj2backend",
+            "args": ""
+        }
+    ]
+}
