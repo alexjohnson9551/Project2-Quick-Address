@@ -8,11 +8,12 @@ import Controller from './components/Controller/Controller';
 import Login from './components/Login/Login';
 import Registration from './components/Registration/Registration.lazy';
 import MapContainer from './components/Map/ShowMap';
+import MyGoogleMap from './components/Map/MyGoogleMaps';
 
 function App() {
   return (
-    <div className="App">
-      <Controller/>
+    <div className="main-wrapper">
+        <MyGoogleMap />
     </div>
   );
 }

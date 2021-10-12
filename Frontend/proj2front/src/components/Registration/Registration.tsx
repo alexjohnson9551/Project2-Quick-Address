@@ -6,13 +6,14 @@ import './RegistrationStyle.css'
 import { Link } from 'react-router-dom';
 
 const RegPage = (props: any) => {
-  const propsClick = props.onclick;
-  const nextPage = props.nextPage;
+  //const propsClick = props.onclick;
+  //const nextPage = props.nextPage;
   const [userFirstname, setUserFirstname] = useState("");
   const [userLastname, setUserLastname] = useState("");
   const [userName, setUserName] = useState("");
   const [userPass, setUserPass] = useState("");
   const [userEmail, setUserEmail] = useState("");
+  const nextPageHandler = props.nextPageHandler;
 
   //Deprecated as of now...
   let firstnameChangeHandler = (e:any) => {
@@ -74,6 +75,7 @@ const RegPage = (props: any) => {
           console.log({err});
           alert("Error: " + err.response);
         });
+
         //Something to do with routing...
         //props.history.push('/map');
         
@@ -120,7 +122,7 @@ const RegPage = (props: any) => {
                 </div>
 
                 <div className="d-flex justify-content-center buttons">
-                  <Button onClick={() => props.nextPageHandler("Login")}>Back to Login</Button>
+                  <Button onClick={() => nextPageHandler("Login")}>Back to Login</Button>
                   <Button className="btnStyle" onClick={() => sendToDB()}>Create Account</Button>
                 </div>
 
