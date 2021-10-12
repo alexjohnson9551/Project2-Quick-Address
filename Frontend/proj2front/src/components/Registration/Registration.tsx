@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { Button } from 'react-bootstrap';
 import './RegistrationStyle.css'
+import { Link } from 'react-router-dom';
 
 const RegPage = (props: any) => {
   const propsClick = props.onclick;
@@ -13,6 +14,7 @@ const RegPage = (props: any) => {
   const [userPass, setUserPass] = useState("");
   const [userEmail, setUserEmail] = useState("");
 
+  //Deprecated as of now...
   let firstnameChangeHandler = (e:any) => {
     setUserFirstname(e.target.value);
     console.log(userFirstname);
@@ -40,54 +42,41 @@ const RegPage = (props: any) => {
 
   function sendToDB()
   {
-    //Gonna have axios in here and the body should be an obj
-    //that has all the user properties
-    console.log(userFirstname);
-    console.log(userLastname);
-    console.log(userName);
-    console.log(userPass);
-    console.log(userEmail);
-
     let toSend = {
-      method: "POST",
-      headers: {"Access-Control-Allow-Origin": "*"},
-      firstname: userFirstname,
-      lastname: userLastname,
+      firstName: userFirstname,
+      lastName: userLastname,
       username: userName,
       password: userPass,
       email: userEmail
-     
     };
 
     let json = JSON.stringify(toSend);
-    //var cors = require('cors');
     
 
-    console.log("POST WITH AXIOS!Sending:" + json);
+    console.log("POST WITH AXIOS! Sending: " + json);
 
     axios.post(
-      'http://localhost:8080/test/url/user',
+      'http://localhost:8080/test/url/users',
       json,
       
-      {withCredentials: true,},).then(  //Do I need withCredentials since this is a registration page
+      {headers: {'Content-Type': "application/json"}}).then(  //Do I need withCredentials since this is a registration page
           res => {
-
-            console.log("DATA:"+res);
             
-            console.log("DATA0:"+res.data)
-            
+            if(res.data == 'Username is Registered' || res.data == 'Email is Registered')
+            {
+              alert(res.data);
+              //Need to clear the form here
+            }
+            else
+              props.nextPageHandler("Login")
         })
         .catch((err) => {
           console.log({err});
           alert("Error: " + err.response);
         });
-
-        props.nextPageHandler("Login")
-  }
-
-  function funn(){
-    alert("onClick needs to be changed to sendToDB() once back-end is setup")
-    props.nextPageHandler("Login")
+        //Something to do with routing...
+        //props.history.push('/map');
+        
   }
 
   return (
@@ -103,31 +92,31 @@ const RegPage = (props: any) => {
 
                 <div className="inputStyle">
                   <label>First Name</label>
-                  <input type="text" id="" className="test" value={userFirstname} onChange={firstnameChangeHandler}/>
+                  <input type="text" id="" className="test" value={userFirstname} onChange={(e:any) => {setUserFirstname(e.target.value)}}/>
                   
                 </div>
 
                 <div className="inputStyle">
                   <label>Last Name</label>
-                  <input type="text" id="" className="test" value={userLastname} onChange={lastnameChangeHandler}/>
+                  <input type="text" id="" className="test" value={userLastname} onChange={(e:any) => {setUserLastname(e.target.value)}}/>
                   
                 </div>
 
                 <div className="inputStyle">
                   <label className="">Username</label>
-                  <input type="text" id="" className="test" value={userName} onChange={userNameChangeHandler}/>
+                  <input type="text" id="" className="test" value={userName} onChange={(e:any) => {setUserName(e.target.value)}}/>
                   
                 </div>
 
                 <div className="inputStyle">
                   <label className="">Password</label>
-                  <input type="password" id="" className="test" value={userPass} onChange={passChangeHandler}/>
+                  <input type="password" id="" className="test" value={userPass} onChange={(e:any) => {setUserPass(e.target.value)}}/>
                   
                 </div>
 
                 <div className="inputStyle">
                   <label className="">Email</label>
-                  <input type="email" id="" className="test" value={userEmail} onChange={emailChangeHandler}/>
+                  <input type="email" id="" className="test" value={userEmail} onChange={(e:any) => {setUserEmail(e.target.value)}}/>
                 </div>
 
                 <div className="d-flex justify-content-center buttons">
