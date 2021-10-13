@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as CoolRouter, Switch, Route, BrowserRouter } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import logo from './logo.svg';
 import Button from 'react-bootstrap/Button';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -18,9 +18,9 @@ import Controller2 from './components/Controller2/Controller2';
 function App() {
   return (
     <div className="App">
-      <BrowserRouter>
+      <Router>
         <Controller2 />
-      </BrowserRouter>
+      </Router>
 
 
       {/* <BrowserRouter>
@@ -33,14 +33,14 @@ function App() {
 //Example of a simple router...currently not being used
 function Router() {
   return (
-    <CoolRouter>
+    <Router>
       <div className="CoolRouter">
         <Switch>
           <Route path="/" component={Registration}></Route>
           <Route path="/map" component={MapContainer}></Route>
         </Switch>
       </div>
-    </CoolRouter>
+    </Router>
   );
 }
 
