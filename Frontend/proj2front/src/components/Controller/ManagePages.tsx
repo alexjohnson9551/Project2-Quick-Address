@@ -53,14 +53,16 @@ const ManagePages : React.FC<ManagePagesProps> = (props:any) => {
         toDisplay =
         <div>
             {Nav}
-            <Registration nextPageHandler={props.nextPageHandler}/>
+            <Registration nextPageHandler={nextPageHandler}/>
         </div>
     } else if (page === "Home") {
         theHistory.push('home')
         toDisplay =
         <div>
             {Nav}
-            <Home nextPageHandler={props.nextPageHandler}/>
+            <Home 
+            nextPageHandler={nextPageHandler}
+            username={username}/>
         </div>
     } else if (page === "NewAddress") {
         theHistory.push('new_address')

@@ -70,8 +70,8 @@ const Login: React.FC<LoginProps> = (props:any)  => {
 
             </Form>
             <br />
-            {/* <Button size="sm" variant="outline-dark" onClick={() => {props.nextPageHandler("Registration"); history.push("Registration")}}> */}
-            <Button size="sm" variant="outline-dark" onClick={() => {props.nextPageHandler("Registration")}}>
+            <Button size="sm" variant="outline-dark" onClick={() => {props.nextPageHandler("Registration"); history.push("Registration")}}>
+            {/* <Button size="sm" variant="outline-dark" onClick={() => {props.nextPageHandler("Registration")}}> */}
               Sign Up
             </Button>
 

@@ -3,17 +3,19 @@ import { Button } from 'react-bootstrap';
 
 interface HomeProps{
   nextPageHandler: (nextPage:string) => void;
+  username: string;
 }
 
 const Home : React.FC<HomeProps> = (props: any) => {
 
   const nextPageHandler: (nextPage:string) => void = props.nextPageHandler;
+  const username = props.username;
 
   const logout = () => { nextPageHandler("Logout");}
 
   const toReturn = 
   <div>
-    <h1>Welcome {props.username}</h1>
+    <h1>Welcome {username}</h1>
     <p>
       Three sensible options for "home" page: <br/>
       1) this is the same as the page to view addresses they've entered <br/>

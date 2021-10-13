@@ -1,7 +1,23 @@
+import React from "react";
 import Login from "../Login/Login";
 import Home from "./Home";
 
-const LoginOrHome = (props: any) => {
+interface LoginOrHomeProps{
+    nextPageHandler: (nextPage:string) => void;
+    username:string;
+    setUsername:React.Dispatch<React.SetStateAction<string>>;
+    loggedIn:boolean;
+    setLoggedIn:React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const LoginOrHome : React.FC<LoginOrHomeProps> = (props: any) => {
+
+    let nextPageHandler:(nextPage:string) => void                  = props.nextPageHandler;
+    let username:string                                            = props.username;
+    let setUsername :React.Dispatch<React.SetStateAction<string>>  = props.setUsername;
+    let loggedIn:boolean                                           = props.loggedIn;
+    let setLoggedIn :React.Dispatch<React.SetStateAction<boolean>> = props.setLoggedIn;
+
 
     // this is not good programming but it's what I came up with right quick :^)
     // there is probably a better solution for this but I wanted the URLs to be the same in the router
@@ -11,17 +27,15 @@ const LoginOrHome = (props: any) => {
     let loh = props.loggedIn ?
 
         <Home
-            username={props.username}
-            nextPageHandler={props.nextPageHandler}
-            setLoggedIn={props.setLoggedIn} />
-
+            username={username}
+            nextPageHandler={nextPageHandler}/>
         :
         <Login
-            username={props.username}
-            setUsername={props.setUsername}
-            nextPageHandler={props.nextPageHandler}
-            loggedIn={props.loggedIn}
-            setLoggedIn={props.setLoggedIn}
+            username={username}
+            setUsername={setUsername}
+            nextPageHandler={nextPageHandler}
+            loggedIn={loggedIn}
+            setLoggedIn={setLoggedIn}
         />
     return loh;
 };
