@@ -3,9 +3,11 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { Button } from 'react-bootstrap';
 import './RegistrationStyle.css'
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 const RegPage = (props: any) => {
+  const history = useHistory();
+
   //const propsClick = props.onclick;
   //const nextPage = props.nextPage;
   const [userFirstname, setUserFirstname] = useState("");
@@ -137,7 +139,7 @@ const RegPage = (props: any) => {
                 </div>
 
                 <div className="d-flex justify-content-center buttons">
-                  <Button onClick={() => nextPageHandler("Login")}>Back to Login</Button>
+                  <Button onClick={() => {nextPageHandler("Login"); history.push("/")}}>Back to Login</Button>
                   <Button className="btnStyle" onClick={() => sendToDB()}>Create Account</Button>
                 </div>
 
