@@ -65,7 +65,7 @@ const ManagePages : React.FC<ManagePagesProps> = (props:any) => {
     } else if (page === "NewAddress") {
         theHistory.push('new_address')
         toDisplay =
-        <div>
+        <div className="main-wrapper">
             {Nav}
             <div className="main-wrapper">
                 <MyGoogleMap />

@@ -2,8 +2,9 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Container from 'react-bootstrap/Container';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Dispatch, SetStateAction, useState } from "react";
+import { Dispatch, FormEvent, SetStateAction, useState } from "react";
 import '../Registration/RegistrationStyle.css';
+import { useHistory } from "react-router";
 
 interface LoginProps {
   nextPageHandler: (nextPage:string) => void;
@@ -15,18 +16,22 @@ interface LoginProps {
 
 const Login: React.FC<LoginProps> = (props:any)  => {
 
+  const history = useHistory();
+
   const [password, setPassword] = useState("");
 
   const validateForm = () => {
     return props.username.length > 0 && password.length > 0;
   };
 
-  const tryLogin = () => {
+  const tryLogin = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     console.log("Tried logging in! Username = " + props.username + ", Password = " + password);
     const successful = true;
     if (successful) {
       props.setLoggedIn(true);
       props.nextPageHandler("Home");
+      //history.push("");
     } else {
       alert("Incorrect username or password!");
     }
@@ -40,7 +45,7 @@ const Login: React.FC<LoginProps> = (props:any)  => {
           <div className="justify-content-center">
             <p className="text-center h1">Welcome</p>
 
-            <Form onSubmit={() => tryLogin()}>
+            <Form onSubmit={(e) => tryLogin(e)}>
               <Form.Group controlId="username">
                 <Form.Label>Username</Form.Label>
                 <Form.Control
@@ -65,7 +70,8 @@ const Login: React.FC<LoginProps> = (props:any)  => {
 
             </Form>
             <br />
-            <Button size="sm" variant="outline-dark" onClick={() => props.nextPageHandler("Registration")}>
+            {/* <Button size="sm" variant="outline-dark" onClick={() => {props.nextPageHandler("Registration"); history.push("Registration")}}> */}
+            <Button size="sm" variant="outline-dark" onClick={() => {props.nextPageHandler("Registration")}}>
               Sign Up
             </Button>
 

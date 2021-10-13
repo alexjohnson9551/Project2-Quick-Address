@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { Button } from 'react-bootstrap';
 import './RegistrationStyle.css'
+import { Link, useHistory } from 'react-router-dom';
 //import { Link } from 'react-router-dom';
 
 interface RegPageProps{
@@ -12,6 +13,7 @@ interface RegPageProps{
 const RegPage:React.FC<RegPageProps> = (props: any) => {
 
   const nextPageHandler : (nextPage:string) => void = props.nextPageHandler;
+  const history = useHistory();
 
   //const propsClick = props.onclick;
   //const nextPage = props.nextPage;
@@ -73,7 +75,6 @@ const RegPage:React.FC<RegPageProps> = (props: any) => {
     }
 
     let json = JSON.stringify(toSend);
-    
 
     console.log("POST WITH AXIOS! Sending: " + json);
 
@@ -143,7 +144,8 @@ const RegPage:React.FC<RegPageProps> = (props: any) => {
                 </div>
 
                 <div className="d-flex justify-content-center buttons">
-                  <Button onClick={() => nextPageHandler("Login")}>Back to Login</Button>
+                  {/* <Button onClick={() => {nextPageHandler("Login"); history.push("/")}}>Back to Login</Button> */}
+                  <Button onClick={() => {nextPageHandler("Login")}}>Back to Login</Button>
                   <Button className="btnStyle" onClick={() => sendToDB()}>Create Account</Button>
                 </div>
 
