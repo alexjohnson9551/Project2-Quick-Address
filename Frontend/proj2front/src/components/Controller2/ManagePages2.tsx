@@ -32,20 +32,10 @@ const ManagePages2 = (props: any) => {
     <LoggedOutNav2 nextPageHandler={props.nextPageHandler}/>;
 
 
-
   return (<BrowserRouter>
     {Nav}
     <div>
       <Switch>
-        {/* <Route path="/Login">
-          <Login
-            username={username}
-            setUsername={setUsername}
-            nextPageHandler={props.nextPageHandler}
-            loggedIn={loggedIn}
-            setLoggedIn={setLoggedIn}
-          />
-        </Route> */}
         <Route path="/Map">
           <div className="main-wrapper">
             <MyGoogleMap />
@@ -57,24 +47,6 @@ const ManagePages2 = (props: any) => {
         <Route path="/View">
           <AddressFromCode />
         </Route>
-        <Route path="/Logout">
-          {/* this needs to be fixed, probably the empty url should lead to login or home depending on the user being logged in
-          whatever component that is called can figure this out, one of those willMount methods can check or some kind of
-          withAuth composition or something like that */}
-          <Login
-            username={username}
-            setUsername={setUsername}
-            nextPageHandler={props.nextPageHandler}
-            loggedIn={loggedIn}
-            setLoggedIn={setLoggedIn}
-          />
-        </Route>
-        {/* <Route path="/">
-          <Home 
-            username={username}
-            nextPageHandler={props.nextPageHandler}
-            setLoggedIn={setLoggedIn} />
-        </Route> */}
         <Route path="/">
           <LoginOrHome 
             username={username}

@@ -41,6 +41,9 @@ const App : React.FC<AppProps> = () => {
         <button onClick={clickHandler}>Switch Controller</button>
         {toDisplay}
       </Router>
+      {/* <Router>
+        <Controller />
+      </Router> */}
     </div>
   );
 }
