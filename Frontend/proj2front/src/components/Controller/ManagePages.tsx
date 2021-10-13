@@ -5,15 +5,25 @@ import {LoggedInNav, LoggedOutNav} from '../Navigation/NavSetup'
 import Home from '../Home/Home';
 import MapContainer from '../Map/ShowMap';
 import AddressFromCode from '../AddressFromCode/AddressFromCode';
+import MyGoogleMap from '../Map/MyGoogleMaps';
 
-const managePages = (props:any) => {
+interface ManagePagesProps{
+    page:string;
+    nextPageHandler: (nextPage:string) => void;
+    username:string;
+    setUsername:React.Dispatch<React.SetStateAction<string>>;
+    loggedIn:boolean;
+    setLoggedIn:React.Dispatch<React.SetStateAction<boolean>>;
+}
 
+const ManagePages : React.FC<ManagePagesProps> = (props:any) => {
+
+    let page = props.page;
     let nextPageHandler:any = props.nextPageHandler;
     let username:string = props.username;
     let setUsername = props.setUsername;
     let loggedIn:boolean = props.loggedIn;
     let setLoggedIn = props.setLoggedIn;
-    let page = props.page;
 
     let toDisplay = null;
 
@@ -43,22 +53,23 @@ const managePages = (props:any) => {
         toDisplay =
         <div>
             {Nav}
-            <Home nextPageHandler={props.nextPageHandler} username={username}/>
+            <Home nextPageHandler={props.nextPageHandler}/>
         </div>
-    } else if (page === "Map") {
+    } else if (page === "NewAddress") {
         toDisplay =
         <div>
             {Nav}
-            <MapContainer/>
+            <div className="main-wrapper">
+                <MyGoogleMap />
+            </div>
         </div>
-    } else if (page === "Decode") {
+    } else if (page === "ViewAddress") {
         toDisplay =
         <div>
             {Nav}
             <AddressFromCode/>
         </div>
     }else if (page === "Logout") {
-        
         setLoggedIn(false);
         page="Login";
         nextPageHandler("Login");
@@ -73,4 +84,5 @@ const managePages = (props:any) => {
     )
 }
 
-export default managePages;
+export type {ManagePagesProps};
+export default ManagePages;

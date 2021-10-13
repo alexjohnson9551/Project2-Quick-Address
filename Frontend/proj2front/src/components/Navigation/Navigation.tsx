@@ -3,10 +3,15 @@ import { Container, Nav, Navbar } from 'react-bootstrap';
 import styles from './Navigation.module.scss';
 // import 'bootstrap/js/dist/collapse.js';
 
-const Navigation = (props: any) => {
+interface NavigationProps {
+  nextPageHandler: (nextPage:string) => void;
+  navButtons: {dest: string; title: string;}[]
+} 
 
 
-  const navButtons = props.NavButtons;
+const Navigation : React.FC<NavigationProps> = (props: any) => {
+
+  const navButtons = props.navButtons;
   console.log(navButtons);
   const navButtonComps = navButtons.map((button: {dest: string, title: string}) =>
     <Nav.Link onClick={() => props.nextPageHandler(button.dest)}>{button.title}</Nav.Link>

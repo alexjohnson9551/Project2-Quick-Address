@@ -5,7 +5,15 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Dispatch, SetStateAction, useState } from "react";
 import '../Registration/RegistrationStyle.css';
 
-const Login = (props: any) => {
+interface LoginProps {
+  nextPageHandler: (nextPage:string) => void;
+  username:string;
+  setUsername:Dispatch<SetStateAction<string>>;
+  loggedIn:boolean;
+  setLoggedIn:Dispatch<SetStateAction<boolean>>;
+}
+
+const Login: React.FC<LoginProps> = (props:any)  => {
 
   const [password, setPassword] = useState("");
 
@@ -18,7 +26,6 @@ const Login = (props: any) => {
     const successful = true;
     if (successful) {
       props.setLoggedIn(true);
-      alert("Logged in.");
       props.nextPageHandler("Home");
     } else {
       alert("Incorrect username or password!");
@@ -67,4 +74,6 @@ const Login = (props: any) => {
   );
 };
 
+
+export type {LoginProps};
 export default Login;

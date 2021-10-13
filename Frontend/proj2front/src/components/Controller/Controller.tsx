@@ -1,7 +1,11 @@
 import React, { useState, useCallback } from 'react';
+import managePages from './ManagePages';
 import ManagePages from './ManagePages';
 
-const Controller = (props: any) => {
+interface ControllerProps {
+}
+
+const Controller : React.FC<ControllerProps> = (props: any) => {
   const [page, setPage] = useState("Login");
   const [loggedIn, setLoggedIn] = useState(false);
   const [username, setUsername] = useState("");
@@ -14,12 +18,13 @@ const Controller = (props: any) => {
     });
 
   let nextPageHandler = useCallback(
-    (x: string) => {
-      setPage(x);
+    (nextPage: string) => {
+      setPage(nextPage);
     }, [],
   );
 
-  let toDisplay = <ManagePages 
+  
+  let toDisplay = <ManagePages
     nextPageHandler = {nextPageHandler}
     username = {username}
     setUsername = {setUsername}
@@ -35,4 +40,5 @@ const Controller = (props: any) => {
   );
 }
 
+export type {ControllerProps};
 export default Controller;

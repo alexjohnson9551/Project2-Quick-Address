@@ -10,10 +10,13 @@ import Registration from './components/Registration/Registration.lazy';
 import MapContainer from './components/Map/ShowMap';
 import MyGoogleMap from './components/Map/MyGoogleMaps';
 
-function App() {
+interface AppProps{
+}
+
+const App : React.FC<AppProps> = () => {
   return (
-    <div className="main-wrapper">
-        <MyGoogleMap />
+    <div className="App">
+        <Controller />
     </div>
   );
 }
@@ -32,4 +35,5 @@ function Router() {
   );
 }
 
+export type {AppProps};
 export default App;

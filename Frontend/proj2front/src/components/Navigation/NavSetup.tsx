@@ -1,33 +1,49 @@
 import React from "react";
 import Navigation from "./Navigation";
 
-const LoggedInNav = (props: any) => {
-    let loggedInNavButtons = [{ dest: "Home", title: "Home" },
-  { dest: "Map", title: "Enter New Address" },
-  { dest: "Decode", title: "View Address from Code" },
-  { dest: "Logout", title: "Logout" }];
+interface NavSetupProps {
+  nextPageHandler: (nextPage:string) => void;
+}
+
+const LoggedInNav : React.FC<NavSetupProps> = (props: any) => {
+
+  const nextPageHandler: (nextPage:string) => void = props.nextPageHandler;
+
+  let loggedInNavButtons = [{ dest: "Home", title: "Home" },
+    { dest: "NewAddress", title: "Enter New Address" },
+    { dest: "ViewAddress", title: "View Address from Code" },
+    { dest: "Logout", title: "Logout" }
+  ];
+
   return (<Navigation
-    NavButtons={loggedInNavButtons}
-    nextPageHandler={props.nextPageHandler}/>
+    navButtons={loggedInNavButtons}
+    nextPageHandler={nextPageHandler}/>
   )
 }
 
-const LoggedOutNav = (props: any) => {
-    let loggedOutNavButtons = [
-      { dest: "Decode", title: "View Address from Code" },
-      { dest: "Registration", title: "Sign Up" },
-      { dest: "Login", title: "Login" }];
-    return (
-  <Navigation
-  NavButtons={loggedOutNavButtons}
-  nextPageHandler={props.nextPageHandler}/>
-    )
+const LoggedOutNav : React.FC<NavSetupProps> = (props: any) => {
+
+  const nextPageHandler: (nextPage:string) => void = props.nextPageHandler;
+
+  let loggedOutNavButtons = [
+    { dest: "ViewAddress", title: "View Address from Code" },
+    { dest: "Registration", title: "Sign Up" },
+    { dest: "Login", title: "Login" }
+  ];
+
+  return (
+    <Navigation
+    navButtons={loggedOutNavButtons}
+    nextPageHandler={nextPageHandler}/>
+  )
 }
 
 const navSetup = () => {
-    return(
-        <div></div>
-    )
+  return(
+      <div></div>
+  )
 }
+
 export default navSetup;
+export type {NavSetupProps};
 export { LoggedInNav, LoggedOutNav };

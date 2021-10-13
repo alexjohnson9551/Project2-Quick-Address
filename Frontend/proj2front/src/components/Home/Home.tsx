@@ -1,26 +1,33 @@
 import React from 'react';
 import { Button } from 'react-bootstrap';
-import NavbarToggle from 'react-bootstrap/esm/NavbarToggle';
-import Navigation from '../Navigation/Navigation';
 
+interface HomeProps{
+  nextPageHandler: (nextPage:string) => void;
+}
 
-const Home = (props: any) => {
+const Home : React.FC<HomeProps> = (props: any) => {
 
+  const nextPageHandler: (nextPage:string) => void = props.nextPageHandler;
 
-  const logout = () => {
-    props.nextPageHandler("Logout");
-  }
+  const logout = () => { nextPageHandler("Logout");}
 
-  return (<div>
+  const toReturn = 
+  <div>
     <h1>Welcome {props.username}</h1>
     <p>
-      Three sensible options for "home" page: 1) this is the same as the page to view addresses they've entered <br/>
-       2) this is the same as the page to enter a new address <br/> 
-       3) this is another page altogether, perhaps showing personal info, and probably big buttons to go to either of the above mentioned pages
-      </p>
-    <br/>
+      Three sensible options for "home" page: <br/>
+      1) this is the same as the page to view addresses they've entered <br/>
+      2) this is the same as the page to enter a new address <br/> 
+      3) this is another page altogether, perhaps showing personal info, and probably big buttons to go to either of the above mentioned pages<br/>
+    </p>
     <Button onClick={() => logout()}>Logout</Button>
-  </div>);
+  </div>
+
+  return (
+    <div>
+      {toReturn}
+    </div>
+  );
 
 };
 
