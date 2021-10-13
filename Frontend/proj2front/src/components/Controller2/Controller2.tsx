@@ -10,9 +10,9 @@ import {
   withRouter
 } from "react-router-dom";
 import Home from '../Home/Home';
-import Login from '../Login/Login';
+import Login from '../Login/Login2';
 import MyGoogleMap from '../Map/MyGoogleMaps';
-import Registration from '../Registration/Registration';
+import Registration from '../Registration/Registration2';
 import AddressFromCode from '../AddressFromCode/AddressFromCode';
 import { LoggedInNav2, LoggedOutNav2 } from '../Navigation/NavSetup2';
 import ManagePages2 from './ManagePages2';

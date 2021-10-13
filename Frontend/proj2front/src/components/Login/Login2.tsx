@@ -31,7 +31,7 @@ const Login: React.FC<LoginProps> = (props:any)  => {
     if (successful) {
       props.setLoggedIn(true);
       props.nextPageHandler("Home");
-      //history.push("");
+      history.push("");
     } else {
       alert("Incorrect username or password!");
     }
