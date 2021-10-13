@@ -37,9 +37,8 @@ const Controller2 = (props: any) => {
 
 
   let nextPageHandler = (x: string) => {
-    // if you use history.push here it only updates the url and does not route
-    // the fix is to directly implement this in the component that evokes the route change
-    // nobody knows why, famous open problem in computer science since 1874
+
+    // history.push(x);
 
     if (x == "Logout") {
       alert("Logged out.");

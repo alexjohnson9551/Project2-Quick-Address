@@ -63,7 +63,7 @@ const Login = (props: any) => {
 
             </Form>
             <br />
-            <Button size="sm" variant="outline-dark" onClick={() => {props.nextPageHandler("Registration"); history.push("Registration");}}>
+            <Button size="sm" variant="outline-dark" onClick={() => {props.nextPageHandler("Registration"); history.push("Registration")}}>
               Sign Up
             </Button>
 
