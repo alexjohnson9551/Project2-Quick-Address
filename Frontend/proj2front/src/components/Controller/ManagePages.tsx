@@ -1,10 +1,11 @@
 import React from 'react';
 import Login from '../Login/Login';
-import Registration from '../Registration/Registration.lazy';
+import RegPage from '../Registration/Registration';
 import {LoggedInNav, LoggedOutNav} from '../Navigation/NavSetup'
 import Home from '../Home/Home';
 import MapContainer from '../Map/ShowMap';
 import AddressFromCode from '../AddressFromCode/AddressFromCode';
+import MyGoogleMap from '../Map/MyGoogleMaps';
 
 const managePages = (props:any) => {
 
@@ -37,19 +38,19 @@ const managePages = (props:any) => {
         toDisplay =
         <div>
             {Nav}
-            <Registration />{/* nextPageHandler={props.nextPageHandler} */}
+            <RegPage nextPageHandler={nextPageHandler}/>
         </div>
     } else if (page === "Home") {
         toDisplay =
         <div>
             {Nav}
-            <Home nextPageHandler={props.nextPageHandler} username={username}/>
+            <Home nextPageHandler={nextPageHandler} username={username}/>
         </div>
     } else if (page === "Map") {
         toDisplay =
-        <div>
+        <div className="main-wrapper">
             {Nav}
-            <MapContainer/>
+            <MyGoogleMap/>
         </div>
     } else if (page === "Decode") {
         toDisplay =

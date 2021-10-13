@@ -1,5 +1,5 @@
 import React from 'react';
-import {BrowserRouter as CoolRouter, Switch, Route} from 'react-router-dom';
+import { BrowserRouter as CoolRouter, Switch, Route, BrowserRouter } from 'react-router-dom';
 import logo from './logo.svg';
 import Button from 'react-bootstrap/Button';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -9,11 +9,23 @@ import Login from './components/Login/Login';
 import Registration from './components/Registration/Registration.lazy';
 import MapContainer from './components/Map/ShowMap';
 import MyGoogleMap from './components/Map/MyGoogleMaps';
+import Controller2 from './components/Controller2/Controller2';
+
+
+// TO PREVENT ERRORS, IF YOU WANT TO KEEP USING CONTROLLER IT MUST BE INSIDE THE BROWSERROUTER!
+// ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 function App() {
   return (
-    <div className="main-wrapper">
-        <MyGoogleMap />
+    <div className="App">
+      <BrowserRouter>
+        <Controller2 />
+      </BrowserRouter>
+
+
+      {/* <BrowserRouter>
+        <Controller />
+      </BrowserRouter> */}
     </div>
   );
 }
@@ -24,8 +36,8 @@ function Router() {
     <CoolRouter>
       <div className="CoolRouter">
         <Switch>
-          <Route path ="/" component={Registration}></Route>
-          <Route path ="/map" component={MapContainer}></Route>
+          <Route path="/" component={Registration}></Route>
+          <Route path="/map" component={MapContainer}></Route>
         </Switch>
       </div>
     </CoolRouter>
