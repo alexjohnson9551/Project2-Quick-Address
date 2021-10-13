@@ -31,17 +31,17 @@ function App() {
 }
 
 //Example of a simple router...currently not being used
-function Router() {
-  return (
-    <Router>
-      <div className="CoolRouter">
-        <Switch>
-          <Route path="/" component={Registration}></Route>
-          <Route path="/map" component={MapContainer}></Route>
-        </Switch>
-      </div>
-    </Router>
-  );
-}
+// function Router() {
+//   return (
+//     <Router>
+//       <div className="CoolRouter">
+//         <Switch>
+//           <Route path="/" component={Registration}></Route>
+//           <Route path="/map" component={MapContainer}></Route>
+//         </Switch>
+//       </div>
+//     </Router>
+//   );
+// }
 
 export default App;
