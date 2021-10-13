@@ -23,9 +23,9 @@ function App() {
       </Router>
 
 
-      {/* <BrowserRouter>
+      {/* <Router>
         <Controller />
-      </BrowserRouter> */}
+      </Router> */}
     </div>
   );
 }
