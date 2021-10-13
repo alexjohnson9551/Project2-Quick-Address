@@ -1,14 +1,10 @@
 import React from 'react';
 import {BrowserRouter as CoolRouter, Switch, Route} from 'react-router-dom';
-import logo from './logo.svg';
-import Button from 'react-bootstrap/Button';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import Controller from './components/Controller/Controller';
-import Login from './components/Login/Login';
-import Registration from './components/Registration/Registration.lazy';
+import Registration from './components/Registration/Registration';
 import MapContainer from './components/Map/ShowMap';
-import MyGoogleMap from './components/Map/MyGoogleMaps';
 
 interface AppProps{
 }

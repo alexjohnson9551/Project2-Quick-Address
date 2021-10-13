@@ -3,8 +3,6 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import MapContainer from './components/Map/ShowMap';
-import Controller from './components/Controller/Controller';
 
 ReactDOM.render(
   <React.StrictMode>

@@ -1,21 +1,20 @@
 import React, { useState, useCallback } from 'react';
-import managePages from './ManagePages';
 import ManagePages from './ManagePages';
 
 interface ControllerProps {
 }
 
-const Controller : React.FC<ControllerProps> = (props: any) => {
+const Controller : React.FC<ControllerProps> = () => {
   const [page, setPage] = useState("Login");
   const [loggedIn, setLoggedIn] = useState(false);
   const [username, setUsername] = useState("");
-  const [user, setUser] = useState(
-    {
-      username: "",
-      firstName: "",
-      lastName: "",
-      email: ""
-    });
+  // const [user, setUser] = useState(
+  //   {
+  //     username: "",
+  //     firstName: "",
+  //     lastName: "",
+  //     email: ""
+  //   });
 
   let nextPageHandler = useCallback(
     (nextPage: string) => {

@@ -3,9 +3,16 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { Button } from 'react-bootstrap';
 import './RegistrationStyle.css'
-import { Link } from 'react-router-dom';
+//import { Link } from 'react-router-dom';
 
-const RegPage = (props: any) => {
+interface RegPageProps{
+  nextPageHandler: (nextPage:string) => void;
+}
+
+const RegPage:React.FC<RegPageProps> = (props: any) => {
+
+  const nextPageHandler : (nextPage:string) => void = props.nextPageHandler;
+
   //const propsClick = props.onclick;
   //const nextPage = props.nextPage;
   const [userFirstname, setUserFirstname] = useState("");
@@ -13,33 +20,32 @@ const RegPage = (props: any) => {
   const [userName, setUserName] = useState("");
   const [userPass, setUserPass] = useState("");
   const [userEmail, setUserEmail] = useState("");
-  const nextPageHandler = props.nextPageHandler;
 
-  //Deprecated as of now...
-  let firstnameChangeHandler = (e:any) => {
-    setUserFirstname(e.target.value);
-    console.log(userFirstname);
-  }
+  // //Deprecated as of now...
+  // let firstnameChangeHandler = (e:any) => {
+  //   setUserFirstname(e.target.value);
+  //   console.log(userFirstname);
+  // }
 
-  let lastnameChangeHandler = (e:any) => {
-    setUserLastname(e.target.value);
-    console.log(userLastname);
-  }
+  // let lastnameChangeHandler = (e:any) => {
+  //   setUserLastname(e.target.value);
+  //   console.log(userLastname);
+  // }
 
-  let passChangeHandler = (e:any) => {
-    setUserPass(e.target.value);
-    console.log(userPass);
-  }
+  // let passChangeHandler = (e:any) => {
+  //   setUserPass(e.target.value);
+  //   console.log(userPass);
+  // }
 
-  let userNameChangeHandler = (e:any) => {
-    setUserName(e.target.value);
-    console.log(userName);
-  }
+  // let userNameChangeHandler = (e:any) => {
+  //   setUserName(e.target.value);
+  //   console.log(userName);
+  // }
   
-  let emailChangeHandler = (e:any) => {
-    setUserEmail(e.target.value);
-    console.log(userEmail);
-  }
+  // let emailChangeHandler = (e:any) => {
+  //   setUserEmail(e.target.value);
+  //   console.log(userEmail);
+  // }
 
   function sendToDB()
   {
@@ -62,7 +68,7 @@ const RegPage = (props: any) => {
     }
 
     if(userPass.length < 4 || userName.length < 4) {
-      alert("Username and/ord Password is too short, needs to be more than 4 characters!")
+      alert("Username and/or Password is too short, needs to be more than 4 characters!")
       return;
     }
 
@@ -78,13 +84,13 @@ const RegPage = (props: any) => {
       {headers: {'Content-Type': "application/json"}}).then(  //Do I need withCredentials since this is a registration page
           res => {
             
-            if(res.data == 'Username is Registered' || res.data == 'Email is Registered')
+            if(res.data === 'Username is Registered' || res.data === 'Email is Registered')
             {
               alert(res.data);
               //Need to clear the form here
             }
             else
-              props.nextPageHandler("Login")
+              nextPageHandler("Login")
         })
         .catch((err) => {
           console.log({err});

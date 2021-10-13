@@ -1,9 +1,9 @@
 import React from 'react';
 import Login from '../Login/Login';
-import Registration from '../Registration/Registration.lazy';
+import Registration from '../Registration/Registration';
 import {LoggedInNav, LoggedOutNav} from '../Navigation/NavSetup'
 import Home from '../Home/Home';
-import MapContainer from '../Map/ShowMap';
+//import MapContainer from '../Map/ShowMap';
 import AddressFromCode from '../AddressFromCode/AddressFromCode';
 import MyGoogleMap from '../Map/MyGoogleMaps';
 
@@ -18,17 +18,17 @@ interface ManagePagesProps{
 
 const ManagePages : React.FC<ManagePagesProps> = (props:any) => {
 
-    let page = props.page;
-    let nextPageHandler:any = props.nextPageHandler;
-    let username:string = props.username;
-    let setUsername = props.setUsername;
-    let loggedIn:boolean = props.loggedIn;
-    let setLoggedIn = props.setLoggedIn;
+    let page:string                                                = props.page;
+    let nextPageHandler:(nextPage:string) => void                  = props.nextPageHandler;
+    let username:string                                            = props.username;
+    let setUsername :React.Dispatch<React.SetStateAction<string>>  = props.setUsername;
+    let loggedIn:boolean                                           = props.loggedIn;
+    let setLoggedIn :React.Dispatch<React.SetStateAction<boolean>> = props.setLoggedIn;
 
-    let toDisplay = null;
+    let toDisplay :JSX.Element = <div></div>;
 
     let Nav = props.loggedIn ? 
-    <LoggedInNav nextPageHandler={props.nextPageHandler}/>:
+    <LoggedInNav nextPageHandler={props.nextPageHandler}/> : 
     <LoggedOutNav nextPageHandler={props.nextPageHandler}/>
     
     if (page === "Login") {
@@ -47,7 +47,7 @@ const ManagePages : React.FC<ManagePagesProps> = (props:any) => {
         toDisplay =
         <div>
             {Nav}
-            <Registration />{/* nextPageHandler={props.nextPageHandler} */}
+            <Registration nextPageHandler={props.nextPageHandler}/>
         </div>
     } else if (page === "Home") {
         toDisplay =
@@ -74,7 +74,7 @@ const ManagePages : React.FC<ManagePagesProps> = (props:any) => {
         page="Login";
         nextPageHandler("Login");
         //alert("Logged out.");
-        toDisplay =null
+        toDisplay =<div></div>
     }
 
     return (
