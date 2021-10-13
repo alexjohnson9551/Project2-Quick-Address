@@ -6,6 +6,8 @@ import Home from '../Home/Home';
 //import MapContainer from '../Map/ShowMap';
 import AddressFromCode from '../AddressFromCode/AddressFromCode';
 import MyGoogleMap from '../Map/MyGoogleMaps';
+import { Redirect, Route, Switch } from 'react-router';
+import {useHistory} from 'react-router-dom';
 
 interface ManagePagesProps{
     page:string;
@@ -17,6 +19,8 @@ interface ManagePagesProps{
 }
 
 const ManagePages : React.FC<ManagePagesProps> = (props:any) => {
+
+    const theHistory = useHistory();
 
     let page:string                                                = props.page;
     let nextPageHandler:(nextPage:string) => void                  = props.nextPageHandler;
@@ -32,6 +36,7 @@ const ManagePages : React.FC<ManagePagesProps> = (props:any) => {
     <LoggedOutNav nextPageHandler={props.nextPageHandler}/>
     
     if (page === "Login") {
+        theHistory.push('login');
         toDisplay =
         <div>
             {Nav}
@@ -44,18 +49,21 @@ const ManagePages : React.FC<ManagePagesProps> = (props:any) => {
             />
         </div>
     } else if (page === "Registration") {
+        theHistory.push('register');
         toDisplay =
         <div>
             {Nav}
             <Registration nextPageHandler={props.nextPageHandler}/>
         </div>
     } else if (page === "Home") {
+        theHistory.push('home')
         toDisplay =
         <div>
             {Nav}
             <Home nextPageHandler={props.nextPageHandler}/>
         </div>
     } else if (page === "NewAddress") {
+        theHistory.push('new_address')
         toDisplay =
         <div>
             {Nav}
@@ -64,6 +72,7 @@ const ManagePages : React.FC<ManagePagesProps> = (props:any) => {
             </div>
         </div>
     } else if (page === "ViewAddress") {
+        theHistory.push('view_address')
         toDisplay =
         <div>
             {Nav}
@@ -79,7 +88,33 @@ const ManagePages : React.FC<ManagePagesProps> = (props:any) => {
 
     return (
         <div>
-        {toDisplay}
+            <Switch>
+                <Route exact path='/'>
+                    {toDisplay}
+                </Route>
+                <Route exact path='/view_address'>
+                    {toDisplay}
+                </Route>
+                <Route exact path='/new_address'>
+                    {toDisplay}
+                </Route>
+                <Route exact path='/register'>
+                    {toDisplay}
+                </Route>
+                <Route exact path='/login'>
+                    {toDisplay}
+                </Route>
+                <Route exact path='/home'>
+                    {toDisplay}
+                </Route>
+                <Route exact path='/'>
+                    {toDisplay}
+                </Route>
+                <Route path="/">
+                    <Redirect to="/"/>
+                </Route>
+            </Switch>
+        
         </div>
     )
 }
