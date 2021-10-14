@@ -1,0 +1,10 @@
+.column1 {
+    height: 80vh;
+    border-style: solid;
+    padding-bottom: 200px;;
+}
+
+.column2 {
+    float: left;
+    width: 50%;
+}
