@@ -29,7 +29,293 @@ const Home = (props: any) => {
         </div>
         <div className="col">
           <p>TEST</p>
-          PUT THE TABLE HERE WOOOOO
+          <table>
+            <thead>
+              <tr>
+                <td>
+                  Title
+                </td>
+                <td>
+                  address
+                </td>
+                <td>
+                  code
+                </td>
+                <td>
+                  copy
+                </td>
+                <td>
+                  delete
+                </td>
+                <td>
+                  notes
+                </td>
+              </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>
+                  the best place ever
+                </td>
+                <td>
+                  123 first street, newark, nj 55555
+                </td>
+                <td>
+                  fdsaf3qrf3a
+                </td>
+                <td>
+                  copy
+                </td>
+                <td>
+                  delete
+                </td>
+                <td>
+                  notes
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  the best place ever
+                </td>
+                <td>
+                  123 first street, newark, nj 55555
+                </td>
+                <td>
+                  fdsaf3qrf3a
+                </td>
+                <td>
+                  copy
+                </td>
+                <td>
+                  delete
+                </td>
+                <td>
+                  notes
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  the best place ever
+                </td>
+                <td>
+                  123 first street, newark, nj 55555
+                </td>
+                <td>
+                  fdsaf3qrf3a
+                </td>
+                <td>
+                  copy
+                </td>
+                <td>
+                  delete
+                </td>
+                <td>
+                  notes
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  the best place ever
+                </td>
+                <td>
+                  123 first street, newark, nj 55555
+                </td>
+                <td>
+                  fdsaf3qrf3a
+                </td>
+                <td>
+                  copy
+                </td>
+                <td>
+                  delete
+                </td>
+                <td>
+                  notes
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  the best place ever
+                </td>
+                <td>
+                  123 first street, newark, nj 55555
+                </td>
+                <td>
+                  fdsaf3qrf3a
+                </td>
+                <td>
+                  copy
+                </td>
+                <td>
+                  delete
+                </td>
+                <td>
+                  notes
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  the best place ever
+                </td>
+                <td>
+                  123 first street, newark, nj 55555
+                </td>
+                <td>
+                  fdsaf3qrf3a
+                </td>
+                <td>
+                  copy
+                </td>
+                <td>
+                  delete
+                </td>
+                <td>
+                  notes
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  the best place ever
+                </td>
+                <td>
+                  123 first street, newark, nj 55555
+                </td>
+                <td>
+                  fdsaf3qrf3a
+                </td>
+                <td>
+                  copy
+                </td>
+                <td>
+                  delete
+                </td>
+                <td>
+                  notes
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  the best place ever
+                </td>
+                <td>
+                  123 first street, newark, nj 55555
+                </td>
+                <td>
+                  fdsaf3qrf3a
+                </td>
+                <td>
+                  copy
+                </td>
+                <td>
+                  delete
+                </td>
+                <td>
+                  notes
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  the best place ever
+                </td>
+                <td>
+                  123 first street, newark, nj 55555
+                </td>
+                <td>
+                  fdsaf3qrf3a
+                </td>
+                <td>
+                  copy
+                </td>
+                <td>
+                  delete
+                </td>
+                <td>
+                  notes
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  the best place ever
+                </td>
+                <td>
+                  123 first street, newark, nj 55555
+                </td>
+                <td>
+                  fdsaf3qrf3a
+                </td>
+                <td>
+                  copy
+                </td>
+                <td>
+                  delete
+                </td>
+                <td>
+                  notes
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  the best place ever
+                </td>
+                <td>
+                  123 first street, newark, nj 55555
+                </td>
+                <td>
+                  fdsaf3qrf3a
+                </td>
+                <td>
+                  copy
+                </td>
+                <td>
+                  delete
+                </td>
+                <td>
+                  notes
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  the best place ever
+                </td>
+                <td>
+                  123 first street, newark, nj 55555
+                </td>
+                <td>
+                  fdsaf3qrf3a
+                </td>
+                <td>
+                  copy
+                </td>
+                <td>
+                  delete
+                </td>
+                <td>
+                  notes
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  the best place ever
+                </td>
+                <td>
+                  123 first street, newark, nj 55555
+                </td>
+                <td>
+                  fdsaf3qrf3a
+                </td>
+                <td>
+                  copy
+                </td>
+                <td>
+                  delete
+                </td>
+                <td>
+                  notes
+                </td>
+              </tr>
+            </tbody>
+
+          </table>
           
         </div>
         
