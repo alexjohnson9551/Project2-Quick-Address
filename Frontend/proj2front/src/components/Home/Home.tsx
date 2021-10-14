@@ -2,6 +2,7 @@ import React from 'react';
 import { Button } from 'react-bootstrap';
 import NavbarToggle from 'react-bootstrap/esm/NavbarToggle';
 import { useHistory } from 'react-router';
+import HomeTable from '../HomeTable/HomeTable.lazy';
 import MyGoogleMap from '../Map/MyGoogleMaps';
 import Navigation from '../Navigation/Navigation';
 import './homeStyle.css';
@@ -28,9 +29,7 @@ const Home = (props: any) => {
           <MyGoogleMap/>
         </div>
         <div className="col">
-          <p>TEST</p>
-          PUT THE TABLE HERE WOOOOO
-          
+        <HomeTable/>
         </div>
         
       </div>
