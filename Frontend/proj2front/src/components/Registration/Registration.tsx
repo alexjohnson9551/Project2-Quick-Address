@@ -73,22 +73,18 @@ const RegPage = (props: any) => {
 
     console.log("POST WITH AXIOS! Sending: " + json);
 
-    axios.post(
+    axios.post<string, {data: {successful: boolean, message: string}}>(
       'http://localhost:8080/register',
       json,
 
       { headers: { 'Content-Type': "application/json" } }).then(  //Do I need withCredentials since this is a registration page
         res => {
-
-          if (res.data == 'Username is Registered' || res.data == 'Email is Registered') {
-            alert(res.data);
-            //Need to clear the form here
-          }
-          else
-            alert("User Registration Successful!");
+          alert(res.data.message);
+          if(res.data.successful) {
             props.nextPageHandler("Login");
             history.push("Login");
-        })
+        }
+      })
       .catch((err) => {
         console.log({ err });
         alert("Error: " + err.response);

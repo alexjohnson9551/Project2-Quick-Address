@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.revature.proj2backend.helpers.SuccFailMessage;
 import com.revature.proj2backend.model.entities.Users;
 
 @RestController
@@ -38,10 +40,9 @@ public class RegistrationController {
 	}
 	
 	@PostMapping(path = "/register")
-	public String registerNewUser(@RequestBody Users user)  //Axios POST comes here
+	public ResponseEntity<SuccFailMessage> registerNewUser(@RequestBody Users user)  //Axios POST comes here
 	{
-
-		return userService.addNewUser(user);
+		return ResponseEntity.ok(userService.addNewUser(user));
 	}
 	
 	
