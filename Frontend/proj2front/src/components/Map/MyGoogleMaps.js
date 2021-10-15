@@ -8,14 +8,14 @@ import styled from 'styled-components';
 import AutoComplete from './Autocomplete';
 import Marker from './Marker';
 
+
+
 const Wrapper = styled.main`
   width: 100%;
   height: 100%;
 `;
 
 class MyGoogleMap extends Component {
-
-
     state = {
         mapApiLoaded: false,
         mapInstance: null,
@@ -118,8 +118,13 @@ class MyGoogleMap extends Component {
         }
     }
 
-    addNewLocation() {
-        alert(`Location to add: ${this.state.address}, ${this.state.lat}, ${this.state.lng}`);
+    applesauce() {
+        let ploc = {
+            address: this.state.address,
+            lat: this.state.lat,
+            lng: this.state.lng
+        };
+        this.props.addNewLocation(ploc);
     }
 
     render() {
@@ -136,7 +141,7 @@ class MyGoogleMap extends Component {
                             <AutoComplete map={mapInstance} mapApi={mapApi} addplace={this.addPlace} />
                         </Col>
                         <Col xs={3} >
-                            <Button variant="success" onClick={() => this.addNewLocation()}>Add Location</Button>
+                            <Button variant="success" onClick={() => this.applesauce()}>Add Location</Button>
                         </Col>
                     </Row>
                 )}

@@ -19,7 +19,7 @@ import ManagePages2 from './ManagePages2';
 import { useHistory } from 'react-router';
 import createHistory from 'history/createBrowserHistory';
 import axios from 'axios';
-
+import User from '../../models/user';
 
 
 const Controller2 = (props: any) => {
@@ -36,6 +36,20 @@ const Controller2 = (props: any) => {
       email: ""
     });
 
+  let getLoggedInUser = () => {
+    //something is broken... :(
+    let isLoggedIn = false;
+    axios.get<string, { data: User }>('http://localhost:8080/getloggedinuser').then(
+      (res) => { 
+        console.log(res.data); 
+        return res.data; 
+      }
+    ).catch((err) => {
+      console.log({ err });
+      alert("Error: " + err.response);
+    });
+    return null;
+  }
 
   let nextPageHandler = (x: string) => {
 
@@ -66,6 +80,7 @@ const Controller2 = (props: any) => {
     loggedIn={loggedIn}
     setLoggedIn={setLoggedIn}
     page={page}
+    getLoggedInUser={getLoggedInUser}
   />;
 
   return (

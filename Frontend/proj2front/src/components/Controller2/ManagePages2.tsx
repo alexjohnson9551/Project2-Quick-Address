@@ -31,7 +31,6 @@ const ManagePages2 = (props: any) => {
     <LoggedInNav2 nextPageHandler={props.nextPageHandler}/> :
     <LoggedOutNav2 nextPageHandler={props.nextPageHandler}/>;
 
-
   return (<BrowserRouter>
     {Nav}
     <div>
@@ -53,7 +52,8 @@ const ManagePages2 = (props: any) => {
             setUsername={setUsername}
             nextPageHandler={props.nextPageHandler}
             loggedIn={loggedIn}
-            setLoggedIn={setLoggedIn} />
+            setLoggedIn={setLoggedIn}
+            getLoggedInUser={props.getLoggedInUser} />
         </Route>
       </Switch>
     </div>

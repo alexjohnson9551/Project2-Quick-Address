@@ -13,6 +13,7 @@ import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.springframework.lang.Nullable;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
@@ -23,7 +24,7 @@ import lombok.RequiredArgsConstructor;
 @Entity
 @Data
 @NoArgsConstructor
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class Address implements Serializable{
 
 	private static final long serialVersionUID = 1L;
@@ -31,10 +32,18 @@ public class Address implements Serializable{
 	@Id
 	@Column(name="id")
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@NonNull private Integer id;
-	@NonNull private String state;
-	@NonNull private String city;
-	@NonNull private String street;
-	@NonNull private Integer number;
-	@Nullable private String appartmentNumber;
+	private Integer id;
+	
+	@Column(name="Address", length=100)
+	private String address;
+	
+	@Column(name="Title", length=100)
+	private String title;
+	
+	@Column(name="Lat")
+	private Double lat;
+	
+	@Column(name="Lng")
+	private Double lng;
+
 }
