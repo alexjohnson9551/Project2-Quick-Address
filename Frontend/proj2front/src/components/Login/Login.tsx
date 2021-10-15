@@ -5,6 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Dispatch, FormEvent, SetStateAction, useState } from "react";
 import '../Registration/RegistrationStyle.css';
 import { useHistory } from "react-router";
+import axios from "axios";
 
 const Login = (props: any) => {
 
@@ -19,21 +20,35 @@ const Login = (props: any) => {
   const tryLogin = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log("Tried logging in! Username = " + props.username + ", Password = " + password);
-    const successful = true;
-    if (successful) {
-      props.setLoggedIn(true);
-      alert("Logged in.");
-      props.nextPageHandler("Home");
-      history.push("");
-    } else {
-      alert("Incorrect username or password!");
-    }
+    let toSend = {
+      username: props.username,
+      password: password
+    };
+
+    let jsonToSend = JSON.stringify(toSend);
+
+    axios.post<string, {data: {successful: boolean, message: string}}>(
+      'http://localhost:8080/login',
+      jsonToSend,
+      { headers: { 'Content-Type': "application/json" } }).then(
+        (res) => {
+          alert(res.data.message);
+          if (res.data.successful) {
+            props.setLoggedIn(true);
+            props.nextPageHandler("Home");
+            history.push("");
+          }
+        })
+      .catch((err) => {
+        console.log({ err });
+        alert("Error: " + err.response);
+      });
   }
 
   return (<Container className="form-container custom fade-in">
     <div className="d-flex justify-content-center align-items-center h-50">
 
-      <div className="card text-black">
+      <div className="card text-black" id="logincard">
         <div className="card-body">
           <div className="justify-content-center">
             <p className="text-center h1">Welcome</p>
@@ -63,7 +78,7 @@ const Login = (props: any) => {
 
             </Form>
             <br />
-            <Button size="sm" variant="outline-dark" onClick={() => {props.nextPageHandler("Registration"); history.push("Registration")}}>
+            <Button size="sm" variant="outline-dark" onClick={() => { props.nextPageHandler("Registration"); history.push("Registration") }}>
               Sign Up
             </Button>
 

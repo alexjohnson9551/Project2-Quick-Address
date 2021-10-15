@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
+import { Form } from 'react-bootstrap';
 import styled from 'styled-components';
+import './MapStyle.css';
 
-const Wrapper = styled.div`
-  position: relative;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  padding: 20px;
-  text-align:center;
-`;
+// const Wrapper = styled.div`
+//   position: relative;
+//   align-items: center;
+//   justify-content: center;
+//   width: 100%;
+//   padding: 10px;
+//   text-align:center;
+// `;
 
 class AutoComplete extends Component {
     constructor(props) {
@@ -56,17 +58,15 @@ class AutoComplete extends Component {
 
     render() {
         return (
-            <Wrapper>
-                <input
-                    className="search-input"
-                    ref={(ref) => {
-                        this.searchInput = ref;
-                    }}
-                    type="text"
-                    onFocus={this.clearSearchBox}
-                    placeholder="Enter a location"
-                />
-            </Wrapper>
+            <Form.Control
+                className="search-input address-search"
+                ref={(ref) => {
+                    this.searchInput = ref;
+                }}
+                type="text"
+                onFocus={this.clearSearchBox}
+                placeholder="Enter a location"
+            />
         );
     }
 }

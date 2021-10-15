@@ -34,7 +34,6 @@ const Home = (props: any) => {
         
       </div>
     </div>
-    <div><Button onClick={() => logout()}>Logout</Button></div>
   </div>);
   
   
