@@ -17,6 +17,10 @@ public class UserService {
 	 public UserService(UserRepository userRepository) {
 	   this.userRepository = userRepository;
 	 }
+	 
+	 public Optional<Users> findUserByUsername(String username) {
+		 return userRepository.findUserByUsername(username);
+	 }
 	
 	 public List<Users> getUsers() {
 	   return userRepository.findAll();
@@ -27,9 +31,9 @@ public class UserService {
 	   Optional<Users> userByEmail = userRepository.findUserByEmail(user.getEmail());
 	   
 	   if(userByUsername.isPresent()) {
-	     return "Username is Registered";
+	     return "Username is Already Registered";
 	   }else if(userByEmail.isPresent()) {
-	     return "Email is Registered";
+	     return "Email is Already Registered";
 	   }
 	   
 	   userRepository.save(user);

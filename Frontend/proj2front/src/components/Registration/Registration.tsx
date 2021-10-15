@@ -43,7 +43,8 @@ const RegPage = (props: any) => {
     console.log(userEmail);
   }
 
-  function sendToDB() {
+  function sendToDB(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
     let toSend = {
       firstName: userFirstname,
       lastName: userLastname,
@@ -73,7 +74,7 @@ const RegPage = (props: any) => {
     console.log("POST WITH AXIOS! Sending: " + json);
 
     axios.post(
-      'http://localhost:8080/test/url/users',
+      'http://localhost:8080/register',
       json,
 
       { headers: { 'Content-Type': "application/json" } }).then(  //Do I need withCredentials since this is a registration page
@@ -85,7 +86,7 @@ const RegPage = (props: any) => {
           }
           else
             alert("User Registration Successful!");
-            props.nextPageHandler("Login")
+            props.nextPageHandler("Login");
             history.push("Login");
         })
       .catch((err) => {
@@ -102,12 +103,12 @@ const RegPage = (props: any) => {
     <div className="container custom fade-in">
       <div className="d-flex justify-content-center align-items-center h-50">
 
-        <div className="card text-black">
+        <div className="card text-black" id="regcard">
           <div className="card-body">
             <div className="justify-content-center">
               <p className="text-center h1">Sign up</p>
 
-              <form className="">
+              <form className="" onSubmit={(e) => sendToDB(e)}>
 
                 <div className="inputStyle">
                   <label>First Name</label>
@@ -140,7 +141,7 @@ const RegPage = (props: any) => {
 
                 <div className="d-flex justify-content-center buttons">
                   <Button onClick={() => { nextPageHandler("Login"); history.push("/") }}>Back to Login</Button>
-                  <Button className="btnStyle" onClick={() => sendToDB()}>Create Account</Button>
+                  <Button className="btnStyle">Create Account</Button>
                 </div>
 
               </form>

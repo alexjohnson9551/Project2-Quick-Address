@@ -3,7 +3,7 @@
     max-width: 50%;
 }
 
-.card {
+#regcard, #logincard {
     height: auto;
     margin-top: auto;
     margin-bottom: auto;

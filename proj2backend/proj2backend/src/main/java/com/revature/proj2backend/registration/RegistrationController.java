@@ -27,6 +27,7 @@ public class RegistrationController {
 		this.userService = userService;
 	}
 	
+	//we don't need this for registration I think
 	@GetMapping(path = "test/url/users")
 	public  List<Users> getUsers()  //
 	{
@@ -36,7 +37,7 @@ public class RegistrationController {
 		return (userService.getUsers());
 	}
 	
-	@PostMapping(path = "test/url/users")
+	@PostMapping(path = "/register")
 	public String registerNewUser(@RequestBody Users user)  //Axios POST comes here
 	{
 

@@ -18,6 +18,7 @@ import { LoggedInNav2, LoggedOutNav2 } from '../Navigation/NavSetup2';
 import ManagePages2 from './ManagePages2';
 import { useHistory } from 'react-router';
 import createHistory from 'history/createBrowserHistory';
+import axios from 'axios';
 
 
 
@@ -41,8 +42,17 @@ const Controller2 = (props: any) => {
     // history.push(x);
 
     if (x == "Logout") {
-      alert("Logged out.");
       setLoggedIn(false);
+      axios.post(
+        'http://localhost:8080/logout',
+        { headers: { 'Content-Type': "application/json" } }).then(
+          (res) => {
+            alert(res.data);
+          })
+        .catch((err) => {
+          console.log({ err });
+          alert("Error: " + err.response);
+        });
     }
 
     console.log("PAGE HANDLED: " + x);

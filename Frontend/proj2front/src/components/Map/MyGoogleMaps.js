@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import GoogleMapReact from 'google-map-react';
+import { Button, Card, Col, Form, Row } from "react-bootstrap";
 
 import styled from 'styled-components';
 
@@ -117,6 +118,10 @@ class MyGoogleMap extends Component {
         }
     }
 
+    addNewLocation() {
+        alert(`Location to add: ${this.state.address}, ${this.state.lat}, ${this.state.lng}`);
+    }
+
     render() {
         const {
             places, mapApiLoaded, mapInstance, mapApi,
@@ -126,9 +131,14 @@ class MyGoogleMap extends Component {
         return (
             <Wrapper>
                 {mapApiLoaded && (
-                    <div>
-                        <AutoComplete map={mapInstance} mapApi={mapApi} addplace={this.addPlace} />
-                    </div>
+                    <Row className="align-items-center"> 
+                        <Col>
+                            <AutoComplete map={mapInstance} mapApi={mapApi} addplace={this.addPlace} />
+                        </Col>
+                        <Col xs={3} >
+                            <Button variant="success" onClick={() => this.addNewLocation()}>Add Location</Button>
+                        </Col>
+                    </Row>
                 )}
                 <GoogleMapReact
                     center={this.state.center}
