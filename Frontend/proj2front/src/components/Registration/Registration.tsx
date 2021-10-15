@@ -141,7 +141,7 @@ const RegPage = (props: any) => {
 
                 <div className="d-flex justify-content-center buttons">
                   <Button onClick={() => { nextPageHandler("Login"); history.push("/") }}>Back to Login</Button>
-                  <Button className="btnStyle">Create Account</Button>
+                  <Button className="btnStyle" type="submit">Create Account</Button>
                 </div>
 
               </form>
