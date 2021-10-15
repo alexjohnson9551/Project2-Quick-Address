@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -44,7 +45,7 @@ public class UserController {
 				sfmb.successful(false);
 				sfmb.message("Incorrect password!");
 			} else {
-				HttpSession session = request.getSession(true);
+				HttpSession session = request.getSession();
 				session.setAttribute("loggedInUser", u);
 				sfmb.successful(true);
 				sfmb.message("Login successful.");
@@ -59,5 +60,27 @@ public class UserController {
 		return ResponseEntity.ok("Logged out.");
 	}
 	
+	@GetMapping(path = "/checksession")
+	public ResponseEntity<Boolean> checksession() {
+		Users u = (Users) request.getSession().getAttribute("loggedInUser");
+		if(u == null) {
+			return ResponseEntity.status(401).build();
+		} else {
+			return ResponseEntity.ok(true);
+		}
+	}
+	
+	@GetMapping(path = "/getloggedinuser")
+	public ResponseEntity<Users> getLoggedInUser(HttpServletRequest request) {
+		
+		System.out.println(request.getSession().toString());
+		
+		Users u = (Users) request.getSession().getAttribute("loggedInUser");
+		if(u == null) {
+			return ResponseEntity.status(401).build();
+		} else {
+			return ResponseEntity.ok(u);
+		}
+	}
 	
 }

@@ -41,13 +41,13 @@ public class Users{
 	private String username;
 	
 	@Column(name="Password", unique = false, nullable = false, length = 50)
-	private String Password;
+	private String password;
 	
 	@Column(name="FirstName", unique = false, nullable = false, length = 100)
-	private String FirstName;
+	private String firstName;
 	
 	@Column(name="LastName", unique = false, nullable = false, length = 100)
-	private String LastName;
+	private String lastName;
 	
 	@Column(name="Email", unique = true, nullable = false, length = 150)
 	private String email;

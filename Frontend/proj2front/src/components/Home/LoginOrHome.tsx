@@ -13,7 +13,8 @@ const LoginOrHome = (props: any) => {
         <Home
             username={props.username}
             nextPageHandler={props.nextPageHandler}
-            setLoggedIn={props.setLoggedIn} />
+            setLoggedIn={props.setLoggedIn}
+            getLoggedInUser={props.getLoggedInUser}/>
 
         :
         <Login
