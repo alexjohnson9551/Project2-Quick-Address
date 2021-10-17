@@ -2,8 +2,8 @@ package com.revature.proj2backend.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.revature.proj2backend.model.entities.Address;
+import com.revature.proj2backend.model.entities.Location;
 
-public interface AddressRepository extends JpaRepository<Address, Long> {
+public interface AddressRepository extends JpaRepository<Location, Integer> {
 
 }

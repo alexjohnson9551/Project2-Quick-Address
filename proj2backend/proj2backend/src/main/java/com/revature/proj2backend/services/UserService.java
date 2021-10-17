@@ -1,4 +1,4 @@
-package com.revature.proj2backend.registration;
+package com.revature.proj2backend.services;
 
 import java.util.List;
 import java.util.Optional;
@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.revature.proj2backend.helpers.SuccFailMessage;
 import com.revature.proj2backend.helpers.SuccFailMessage.SuccFailMessageBuilder;
 import com.revature.proj2backend.model.entities.Users;
+import com.revature.proj2backend.repositories.UserRepository;
 
 @Service // same as component
 public class UserService {

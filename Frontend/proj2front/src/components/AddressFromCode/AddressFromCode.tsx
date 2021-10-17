@@ -1,15 +1,48 @@
-import React from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useEffect, useState } from 'react'
+import { getAddress } from '../../remote/address-api/address.api'
+import MapContainer from '../Map/ShowMap'
+import Address from './../../models/location'
+const AddressFromCode = () => {
+  const [location, setLocation] = useState({ lat: 5, lng: 12 })
+  let windowPath = window.location.pathname
 
-const AddressFromCode = () => (
-  <div>
-    <p>
-      On this page the user can enter a code to view an address. <br />
-      The code will then be appended to the URL and the address + map location shown. <br />
-      Scanning a QR code will do the same, which is why we need the URL to store the code. <br />
-      Note that both logged in users and guests can view this page - only the navbar will differ. <br />
-      For example, try to access this page while logged out vs while logged in.
-    </p>
-  </div>
-);
+  let address: Address
+  let code: string = ''
+  const toDisplay = (
+    <>
+      <div className="container">
+        <div className="row">Code:{code}</div>
+        <div className="row">
+          <div>{code}</div>
+          <MapContainer lat={location.lat} lng={location.lng}></MapContainer>
+        </div>
+      </div>
+    </>
+  )
+  useEffect(() => {
+    ;(async () => {
+      try {
+        code = windowPath.substring(
+          windowPath.lastIndexOf('/') + 1,
+          windowPath.length,
+        )
+        console.log('Full window path:' + windowPath)
+        console.log('Code' + code)
+        address = await getAddress(code)
 
-export default AddressFromCode;
+        console.log('NEW ADDRESS:' + 'lat' + address.prelocation.lat)
+        setLocation({
+          lat: address.prelocation.lat,
+          lng: address.prelocation.lng,
+        })
+      } catch (error) {
+        console.log(error)
+      }
+    })()
+  }, [])
+
+  return <div>{toDisplay}</div>
+}
+
+export default AddressFromCode

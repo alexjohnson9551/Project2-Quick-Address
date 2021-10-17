@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
@@ -25,25 +26,19 @@ import lombok.RequiredArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Address implements Serializable{
+public class Location implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@Column(name="id")
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	
-	@Column(name="Address", length=100)
-	private String address;
-	
+
 	@Column(name="Title", length=100)
 	private String title;
 	
-	@Column(name="Lat")
-	private Double lat;
-	
-	@Column(name="Lng")
-	private Double lng;
+	@OneToOne
+	private Prelocation prelocation;
 
 }
