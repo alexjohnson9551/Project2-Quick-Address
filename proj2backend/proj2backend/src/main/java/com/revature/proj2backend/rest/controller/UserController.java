@@ -19,7 +19,7 @@ import com.revature.proj2backend.helpers.SuccFailMessage;
 import com.revature.proj2backend.helpers.SuccFailMessage.SuccFailMessageBuilder;
 import com.revature.proj2backend.model.entities.UnPw;
 import com.revature.proj2backend.model.entities.Users;
-import com.revature.proj2backend.registration.UserService;
+import com.revature.proj2backend.services.UserService;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")

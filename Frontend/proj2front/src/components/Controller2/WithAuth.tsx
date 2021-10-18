@@ -1,5 +1,6 @@
-const WithAuth = (showIfAuth: React.Component, showIfNotAuth: React.Component) => {
+const WithAuth = (
+  showIfAuth: React.Component,
+  showIfNotAuth: React.Component,
+) => {}
 
-}
-
-export default WithAuth;
+export default WithAuth
