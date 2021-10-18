@@ -3,16 +3,18 @@ import React, { useEffect, useState } from 'react'
 import { getAddress } from '../../remote/address-api/address.api'
 import MapContainer from '../Map/ShowMap'
 import Address from './../../models/location'
+import QRForCode from './QRForCode'
 const AddressFromCode = () => {
   const [location, setLocation] = useState({ lat: 5, lng: 12 })
+  const [code, setCode] = useState('')
   let windowPath = window.location.pathname
 
   let address: Address
-  let code: string = ''
+  //let code: string = ''
   const toDisplay = (
     <>
       <div className="container">
-        <div className="row">Code:{code}</div>
+        <div className="row"><QRForCode></QRForCode></div>
         <div className="row">
           <div>{code}</div>
           <MapContainer lat={location.lat} lng={location.lng}></MapContainer>
@@ -23,9 +25,11 @@ const AddressFromCode = () => {
   useEffect(() => {
     ;(async () => {
       try {
-        code = windowPath.substring(
-          windowPath.lastIndexOf('/') + 1,
-          windowPath.length,
+        setCode(
+          windowPath.substring(
+            windowPath.lastIndexOf('/') + 1,
+            windowPath.length,
+          ),
         )
         console.log('Full window path:' + windowPath)
         console.log('Code' + code)
