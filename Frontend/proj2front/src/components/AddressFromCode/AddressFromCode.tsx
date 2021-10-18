@@ -1,15 +1,65 @@
-import React from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+import axios from 'axios'
+import React, { useEffect, useState } from 'react'
+import { getAddress } from '../../remote/address-api/address.api'
+import MapContainer from '../Map/ShowMap'
+import Location from './../../models/location'
+import QRForCode from './QRForCode'
 
-const AddressFromCode = () => (
-  <div>
-    <p>
-      On this page the user can enter a code to view an address. <br />
-      The code will then be appended to the URL and the address + map location shown. <br />
-      Scanning a QR code will do the same, which is why we need the URL to store the code. <br />
-      Note that both logged in users and guests can view this page - only the navbar will differ. <br />
-      For example, try to access this page while logged out vs while logged in.
-    </p>
-  </div>
-);
 
-export default AddressFromCode;
+
+const AddressFromCode = () => {
+  const [location, setLocation] = useState({ lat: 5, lng: 12 })
+  const [code, setCode] = useState('')
+  let windowPath = window.location.pathname
+
+  let address: Location
+  //let code: string = ''
+  const toDisplay = (
+    <>
+      <div className="container">
+        <div className="row"><QRForCode></QRForCode></div>
+        <div className="row">
+          <div>{code}</div>
+          <MapContainer lat={location.lat} lng={location.lng}></MapContainer>
+        </div>
+      </div>
+    </>
+  )
+  useEffect(() => {
+    ;(async () => {
+      try {
+        let code1 = windowPath.substring(
+          windowPath.lastIndexOf('/')+1
+        )
+        setCode(
+          code1
+        )
+        console.log('Full window path = ' + windowPath)
+        console.log('Code = ' + code1)
+        // address = await getAddress(code1)
+        axios
+        .get<string, { data: Location }>(
+          'http://localhost:8080/address/' + code1,
+          { headers: { 'Content-Type': 'application/json' } },
+        )
+        .then((res) => {
+          setLocation({
+            lat: res.data.prelocation.lat,
+            lng: res.data.prelocation.lng,
+          })
+        })
+        .catch((err) => {
+          console.log({ err })
+          alert('Error: ' + err.response)
+        })
+      } catch (error) {
+        console.log(error)
+      }
+    })()
+  }, [])
+
+  return <div>{toDisplay}</div>
+}
+
+export default AddressFromCode
