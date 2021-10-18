@@ -1,6 +1,8 @@
 package com.revature.proj2backend.model.entities;
 
 
+import java.io.Serializable;
+
 import javax.persistence.Cacheable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -27,15 +29,15 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Users{
+public class Users implements Serializable{
 
 
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name="UserID")
+	@Column(name="userID")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer UserID;
+	private Integer userID;
 	
 	@Column(name="Username", unique=true, nullable=false, length = 50)
 	private String username;

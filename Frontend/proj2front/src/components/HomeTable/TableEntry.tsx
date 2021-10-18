@@ -37,7 +37,7 @@ const TableEntry = (props: {
                 <Form.Control
                   as="textarea"
                   rows={2}
-                  placeholder={props.loc.prelocation.address}
+                  placeholder={props.loc.address}
                   readOnly
                 ></Form.Control>
               </Col>

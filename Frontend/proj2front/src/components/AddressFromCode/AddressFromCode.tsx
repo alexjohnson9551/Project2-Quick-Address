@@ -1,15 +1,19 @@
 /* eslint-disable react-hooks/exhaustive-deps */
+import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { getAddress } from '../../remote/address-api/address.api'
 import MapContainer from '../Map/ShowMap'
 import Location from './../../models/location'
 import QRForCode from './QRForCode'
+
+
+
 const AddressFromCode = () => {
   const [location, setLocation] = useState({ lat: 5, lng: 12 })
   const [code, setCode] = useState('')
   let windowPath = window.location.pathname
 
-  let  address
+  let address
   //let code: string = ''
   const toDisplay = (
     <>
@@ -35,10 +39,10 @@ const AddressFromCode = () => {
         address = await getAddress(localCode)
 
         console.log('NEW ADDRESS:' + 'lat' + address)
-        console.log(address.prelocation.lat)
+        console.log(address.lat)
         setLocation({
-          lat: address.prelocation.lat,
-          lng: address.prelocation.lng,
+          lat: address.lat,
+          lng: address.lng,
         })
       } catch (error) {
         console.log(error)

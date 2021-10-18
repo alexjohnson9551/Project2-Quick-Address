@@ -1,6 +1,6 @@
 // electric boogaloo
 
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {
   BrowserRouter as Router,
   Switch,
@@ -25,6 +25,10 @@ const ManagePages2 = (props: any) => {
   let page = props.page
 
   let toDisplay = null
+
+  useEffect(() => {
+    props.updateLoggedIn();
+  }, []);
 
   let Nav = loggedIn ? (
     <LoggedInNav2 nextPageHandler={props.nextPageHandler} />
@@ -55,7 +59,7 @@ const ManagePages2 = (props: any) => {
               nextPageHandler={props.nextPageHandler}
               loggedIn={loggedIn}
               setLoggedIn={setLoggedIn}
-              getLoggedInUser={props.getLoggedInUser}
+              updateLoggedIn={props.updateLoggedIn}
             />
           </Route>
         </Switch>
@@ -64,4 +68,4 @@ const ManagePages2 = (props: any) => {
   )
 }
 
-export default ManagePages2
+export default ManagePages2;
