@@ -1,5 +1,5 @@
 export default interface PreLocation {
-    id:number,
+    id:number|null,
     address: string,
     lat: number,
     lng: number

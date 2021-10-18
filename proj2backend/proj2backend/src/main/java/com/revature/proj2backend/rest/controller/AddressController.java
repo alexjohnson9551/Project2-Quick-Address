@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.proj2backend.model.entities.Location;
@@ -21,8 +22,11 @@ public class AddressController {
 	public AddressService addressService;
 
 	@GetMapping(path="/address/{id}")
+	@ResponseBody
 	public ResponseEntity<Location> getAddress(@PathVariable Integer id){
+		System.out.println("I am called.");
 		Location address = addressService.getAddress(id);
+		System.out.println("Returning: " + address.toString());
 		return ResponseEntity.ok(address);
 	}
 	

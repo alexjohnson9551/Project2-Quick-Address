@@ -1,15 +1,19 @@
 /* eslint-disable react-hooks/exhaustive-deps */
+import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { getAddress } from '../../remote/address-api/address.api'
 import MapContainer from '../Map/ShowMap'
-import Address from './../../models/location'
+import Location from './../../models/location'
 import QRForCode from './QRForCode'
+
+
+
 const AddressFromCode = () => {
   const [location, setLocation] = useState({ lat: 5, lng: 12 })
   const [code, setCode] = useState('')
   let windowPath = window.location.pathname
 
-  let address: Address
+  let address: Location
   //let code: string = ''
   const toDisplay = (
     <>
@@ -25,20 +29,29 @@ const AddressFromCode = () => {
   useEffect(() => {
     ;(async () => {
       try {
-        setCode(
-          windowPath.substring(
-            windowPath.lastIndexOf('/') + 1,
-            windowPath.length,
-          ),
+        let code1 = windowPath.substring(
+          windowPath.lastIndexOf('/')+1
         )
-        console.log('Full window path:' + windowPath)
-        console.log('Code' + code)
-        address = await getAddress(code)
-
-        console.log('NEW ADDRESS:' + 'lat' + address.prelocation.lat)
-        setLocation({
-          lat: address.prelocation.lat,
-          lng: address.prelocation.lng,
+        setCode(
+          code1
+        )
+        console.log('Full window path = ' + windowPath)
+        console.log('Code = ' + code1)
+        // address = await getAddress(code1)
+        axios
+        .get<string, { data: Location }>(
+          'http://localhost:8080/address/' + code1,
+          { headers: { 'Content-Type': 'application/json' } },
+        )
+        .then((res) => {
+          setLocation({
+            lat: res.data.prelocation.lat,
+            lng: res.data.prelocation.lng,
+          })
+        })
+        .catch((err) => {
+          console.log({ err })
+          alert('Error: ' + err.response)
         })
       } catch (error) {
         console.log(error)
