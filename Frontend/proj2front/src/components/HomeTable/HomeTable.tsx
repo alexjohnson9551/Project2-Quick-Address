@@ -6,7 +6,7 @@ import TableEntry from './TableEntry';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { remove, update } from '../../slices/location.slice';
 import Location from '../../models/location';
-import PreLocation from '../../models/prelocation';
+import {PreLocation} from '../../models/prelocation';
 
 const HomeTable = () => {
   
