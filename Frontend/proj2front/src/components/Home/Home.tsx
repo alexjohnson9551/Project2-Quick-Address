@@ -10,7 +10,7 @@ import { useAppDispatch } from '../../hooks'
 import { add } from '../../slices/location.slice'
 import axios from 'axios'
 import Location from '../../models/location'
-import PreLocation from '../../models/prelocation'
+import {PreLocation} from '../../models/prelocation'
 import { idText } from 'typescript'
 
 const Home = (props: any) => {
