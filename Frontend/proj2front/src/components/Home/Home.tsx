@@ -11,6 +11,7 @@ import { add } from '../../slices/location.slice';
 import axios from 'axios';
 import Location from '../../models/location';
 import PreLocation from '../../models/prelocation';
+import { userInfo } from 'os';
 
 const Home = (props: any) => {
   const history = useHistory();
@@ -28,7 +29,7 @@ const Home = (props: any) => {
         (res) => {
           let loc: Location = {
             id: res.data,
-            userid: 0, //needs to be given the actual user id...
+            userid: props.user.UserID, //needs to be given the actual user id...
             title: "",
             prelocation: ploc
           };
@@ -42,9 +43,6 @@ const Home = (props: any) => {
 
   return (<div>
     <h1>Welcome {props.username}</h1>
-    <p>
-      The left side will contain the map to add addresses, the right side will contain a list of the user's addresses.
-    </p>
     <br />
     <div className="container">
       <div className="row">

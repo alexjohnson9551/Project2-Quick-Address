@@ -89,8 +89,8 @@ class MyGoogleMap extends Component {
         const geocoder = new mapApi.Geocoder;
 
         geocoder.geocode({ 'location': { lat: this.state.lat, lng: this.state.lng } }, (results, status) => {
-            console.log(results);
-            console.log(status);
+            // console.log(results);
+            // console.log(status);
             if (status === 'OK') {
                 if (results[0]) {
                     this.zoom = 17;

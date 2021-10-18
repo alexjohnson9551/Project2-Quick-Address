@@ -1,6 +1,8 @@
 package com.revature.proj2backend.model.entities;
 
 
+import java.io.Serializable;
+
 import javax.persistence.Cacheable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -27,7 +29,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Users{
+public class Users implements Serializable{
 
 
 	private static final long serialVersionUID = 1L;

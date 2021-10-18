@@ -36,40 +36,63 @@ const Controller2 = (props: any) => {
       email: ""
     });
 
-  let getLoggedInUser = () => {
-    //something is broken... :(
-    let isLoggedIn = false;
-    axios.get<string, { data: User }>('http://localhost:8080/getloggedinuser').then(
+  let updateLoggedIn = () => { 
+    axios.post<string, {data: any}>(
+      'http://localhost:8080/getloggedinuser',
+      "",
+      { headers: { 'Content-Type': "application/json" }, withCredentials: true}).then(
       (res) => { 
-        console.log(res.data); 
-        return res.data; 
+        // alert(JSON.stringify(res.data));
+        if(!loggedIn) {
+          // since updates will rerender (and call this function again), only updates if login is new
+          setLoggedIn(true);
+          setUser(res.data);
+          setUsername(res.data.username);
+          console.log("Changed loggedIn from false to true.");
+        }
       }
     ).catch((err) => {
-      console.log({ err });
-      alert("Error: " + err.response);
+      if (err.response.status == 401) {
+        console.log("caught 401");
+        if(loggedIn) {
+          doFrontLogout();
+        }
+      } else {
+        console.log(err);
+      }
     });
-    return null;
-  }
+  };
 
   let nextPageHandler = (x: string) => {
-
     // history.push(x);
-
     if (x == "Logout") {
-      setLoggedIn(false);
-      axios.post(
-        'http://localhost:8080/logout',
-        { headers: { 'Content-Type': "application/json" } }).then(
+      // this is now handled by updateLoggedIn
+      // setLoggedIn(false);
+      axios.post<string, {data: any}>(
+        'http://localhost:8080/logout', "",
+        { headers: { 'Content-Type': "application/json" }, withCredentials: true }).then(
           (res) => {
             alert(res.data);
+            doFrontLogout();
           })
         .catch((err) => {
           console.log({ err });
           alert("Error: " + err.response);
         });
     }
-
     console.log("PAGE HANDLED: " + x);
+  };
+
+  let doFrontLogout = () => {
+    setLoggedIn(false);
+    setUser({
+      username: "",
+      firstName: "",
+      lastName: "",
+      email: ""
+    });
+    setUsername("");
+    console.log("Changed loggedIn from true to false.");
   };
 
 
@@ -80,7 +103,8 @@ const Controller2 = (props: any) => {
     loggedIn={loggedIn}
     setLoggedIn={setLoggedIn}
     page={page}
-    getLoggedInUser={getLoggedInUser}
+    user={user}
+    updateLoggedIn={updateLoggedIn}
   />;
 
   return (

@@ -27,15 +27,14 @@ const Login = (props: any) => {
 
     let jsonToSend = JSON.stringify(toSend);
 
-    axios.post<string, {data: {successful: boolean, message: string}}>(
+    axios.post<string, { data: { successful: boolean, message: string } }>(
       'http://localhost:8080/login',
       jsonToSend,
-      { headers: { 'Content-Type': "application/json" } }).then(
+      { headers: { 'Content-Type': "application/json" }, withCredentials: true }).then(
         (res) => {
           alert(res.data.message);
           if (res.data.successful) {
-            props.setLoggedIn(true);
-            props.nextPageHandler("Home");
+            props.updateLoggedIn();
             history.push("");
           }
         })
@@ -44,6 +43,7 @@ const Login = (props: any) => {
         alert("Error: " + err.response);
       });
   }
+
 
   return (<Container className="form-container custom fade-in">
     <div className="d-flex justify-content-center align-items-center h-50">

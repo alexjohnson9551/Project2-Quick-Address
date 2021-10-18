@@ -53,7 +53,8 @@ const ManagePages2 = (props: any) => {
             nextPageHandler={props.nextPageHandler}
             loggedIn={loggedIn}
             setLoggedIn={setLoggedIn}
-            getLoggedInUser={props.getLoggedInUser} />
+            user={props.user}
+            updateLoggedIn={props.updateLoggedIn} />
         </Route>
       </Switch>
     </div>
