@@ -8,6 +8,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import org.hibernate.annotations.Cache;
@@ -34,11 +37,20 @@ public class Location implements Serializable{
 	@Column(name="id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	
+	@Column(name="userID")
+	private int userID;
 
 	@Column(name="Title", length=100)
 	private String title;
 	
-	@OneToOne
-	private Prelocation prelocation;
+	@Column(name="Address", length=100)
+	private String address;
+
+	@Column(name="Lat")
+	private Double lat;
+	
+	@Column(name="Lng")
+	private Double lng;
 
 }

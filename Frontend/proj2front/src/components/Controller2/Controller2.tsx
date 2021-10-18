@@ -20,19 +20,24 @@ import { useHistory } from 'react-router'
 import createHistory from 'history/createBrowserHistory'
 import axios from 'axios'
 import User from '../../models/user'
+import { set, unset } from '../../slices/user.slice'
+import { useAppDispatch, useAppSelector } from '../../hooks';
 
 const Controller2 = (props: any) => {
   const history = useHistory()
 
+  const dispatch = useAppDispatch();
+  const userState = useAppSelector((state => state.user));
+
   const [page, setPage] = useState('Login')
   const [loggedIn, setLoggedIn] = useState(false)
   const [username, setUsername] = useState('')
-  const [user, setUser] = useState({
-    username: '',
-    firstName: '',
-    lastName: '',
-    email: '',
-  })
+  // const [user, setUser] = useState({
+  //   username: '',
+  //   firstName: '',
+  //   lastName: '',
+  //   email: '',
+  // })
 
   let updateLoggedIn = () => { 
     axios.post<string, {data: any}>(
@@ -44,7 +49,7 @@ const Controller2 = (props: any) => {
         if(!loggedIn) {
           // since updates will rerender (and call this function again), only updates if login is new
           setLoggedIn(true);
-          setUser(res.data);
+          dispatch(set(res.data));
           setUsername(res.data.username);
           console.log("Changed loggedIn from false to true.");
         }
@@ -83,12 +88,7 @@ const Controller2 = (props: any) => {
 
   let doFrontLogout = () => {
     setLoggedIn(false);
-    setUser({
-      username: "",
-      firstName: "",
-      lastName: "",
-      email: ""
-    });
+    dispatch(unset());
     setUsername("");
     console.log("Changed loggedIn from true to false.");
   };
@@ -101,7 +101,6 @@ const Controller2 = (props: any) => {
     loggedIn={loggedIn}
     setLoggedIn={setLoggedIn}
     page={page}
-    user={user}
     updateLoggedIn={updateLoggedIn}
   />;
 

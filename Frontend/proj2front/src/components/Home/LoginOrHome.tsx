@@ -4,16 +4,13 @@ import { useEffect } from 'react';
 
 const LoginOrHome = (props: any) => {
 
-    useEffect(() => {
-        props.updateLoggedIn();
-    }, []);
+   
 
     let loh = props.loggedIn ?
         <Home
             username={props.username}
             nextPageHandler={props.nextPageHandler}
             updateLoggedIn={props.updateLoggedIn}
-            user={props.user}
         />
         :
         <Login

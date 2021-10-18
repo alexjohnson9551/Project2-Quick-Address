@@ -39,10 +39,10 @@ const AddressFromCode = () => {
         address = await getAddress(localCode)
 
         console.log('NEW ADDRESS:' + 'lat' + address)
-        console.log(address.prelocation.lat)
+        console.log(address.lat)
         setLocation({
-          lat: address.prelocation.lat,
-          lng: address.prelocation.lng,
+          lat: address.lat,
+          lng: address.lng,
         })
       } catch (error) {
         console.log(error)
