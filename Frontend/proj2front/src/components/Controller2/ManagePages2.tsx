@@ -55,7 +55,7 @@ const ManagePages2 = (props: any) => {
               nextPageHandler={props.nextPageHandler}
               loggedIn={loggedIn}
               setLoggedIn={setLoggedIn}
-              getLoggedInUser={props.getLoggedInUser}
+              updateLoggedIn={props.updateLoggedIn}
             />
           </Route>
         </Switch>
@@ -64,38 +64,4 @@ const ManagePages2 = (props: any) => {
   )
 }
 
-<<<<<<< HEAD
-  return (<BrowserRouter>
-    {Nav}
-    <div>
-      <Switch>
-        <Route path="/Map">
-          <div className="main-wrapper">
-            <MyGoogleMap />
-          </div>
-        </Route>
-        <Route path="/Registration">
-          <RegPage nextPageHandler={props.nextPageHandler} />
-        </Route>
-        <Route path="/View">
-          <AddressFromCode />
-        </Route>
-        <Route path="/">
-          <LoginOrHome 
-            username={username}
-            setUsername={setUsername}
-            nextPageHandler={props.nextPageHandler}
-            loggedIn={loggedIn}
-            setLoggedIn={setLoggedIn}
-            user={props.user}
-            updateLoggedIn={props.updateLoggedIn} />
-        </Route>
-      </Switch>
-    </div>
-  </BrowserRouter>);
-};
-
 export default ManagePages2;
-=======
-export default ManagePages2
->>>>>>> main
