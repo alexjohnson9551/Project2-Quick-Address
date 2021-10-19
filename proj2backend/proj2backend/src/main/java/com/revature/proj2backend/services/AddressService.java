@@ -7,21 +7,14 @@ import org.springframework.stereotype.Service;
 
 import com.revature.proj2backend.model.entities.Location;
 import com.revature.proj2backend.repositories.AddressRepository;
-import com.revature.proj2backend.repositories.PrelocationRepository;
 
 @Service
 public class AddressService {
 	@Autowired
 	private AddressRepository addressRepository;
 	
-	@Autowired
-	private PrelocationRepository preRepository;
-	
-	public int addNewAddress(Location add) {
-		add.setId(-1);
-		preRepository.save(add.getPrelocation());
-		add = addressRepository.save(add);
-		return add.getId();
+	public Location addNewAddress(Location add) {
+		return addressRepository.save(add);
 	}
 
 	public Location getAddress(Integer id) {
@@ -30,5 +23,12 @@ public class AddressService {
 			return address.get();
 		}
 		return null;
+	}
+	
+	public void updateTitle(Location loc) {
+		Optional<Location> address = addressRepository.findById(loc.getId());
+		if(address.isPresent()) {
+			addressRepository.save(loc);
+		}
 	}
 }

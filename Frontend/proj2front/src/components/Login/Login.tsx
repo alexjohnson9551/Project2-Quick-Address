@@ -35,14 +35,13 @@ const Login = (props: any) => {
       .post<string, { data: { successful: boolean; message: string } }>(
         'http://localhost:8080/login',
         jsonToSend,
-        { headers: { 'Content-Type': 'application/json' } },
+        { headers: { 'Content-Type': 'application/json' }, withCredentials: true}
       )
       .then((res) => {
         alert(res.data.message)
         if (res.data.successful) {
-          props.setLoggedIn(true)
-          props.nextPageHandler('Home')
-          history.push('')
+          props.updateLoggedIn();
+          history.push("");
         }
       })
       .catch((err) => {

@@ -1,9 +1,9 @@
-import { PreLocation } from "./prelocation";
-
 export default interface Location
 {
     id: number | null
-    userid: number,
-    title: string,
-    prelocation: PreLocation
+    userID: number | null,
+    title: string | null,
+    address: string,
+    lat: number,
+    lng: number
 }

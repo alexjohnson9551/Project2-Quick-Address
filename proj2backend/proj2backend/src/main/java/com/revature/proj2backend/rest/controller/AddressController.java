@@ -31,8 +31,13 @@ public class AddressController {
 	}
 	
 	@PostMapping(path = "/addaddress")
-	public ResponseEntity<Integer> addaddress(@RequestBody Location add) {
-		int a = addressService.addNewAddress(add);
-		return ResponseEntity.ok(a);
+	public ResponseEntity<Location> addaddress(@RequestBody Location add) {
+		return ResponseEntity.ok(addressService.addNewAddress(add));
+	}
+	
+	@PostMapping(path = "/updatetitle")
+	public ResponseEntity<String> updatetitle(@RequestBody Location loc) {
+		addressService.updateTitle(loc);
+		return ResponseEntity.ok().build();
 	}
 }

@@ -8,7 +8,6 @@ const Navigation2 = (props: any) => {
 
 
   const navButtons = props.NavButtons;
-  console.log(navButtons);
   const navButtonComps = navButtons.map((button: {dest: string, title: string, add: string}) =>
     <Nav.Link as={Link} to={button.add} onClick={() => props.nextPageHandler(button.dest)}>{button.title}</Nav.Link>
   );
