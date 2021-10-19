@@ -6,3 +6,8 @@ export const getAddress = async (id: string | number): Promise<Address> => {
 
     return address;
 }
+
+export const deleteAddress = async (id: string | number |null): Promise<number> => {
+    const { data: returned } = await addressClient.delete<number>(`/${id}`);
+    return returned;
+}
