@@ -23,10 +23,19 @@ const HomeTable = () => {
   let updateTitle = (loc: Location, title: string) => {
     
     // set title ERROR WITH THIS
-    loc.title = title;
+    // loc.title = title;
+    //Create new object instead
+    let loc2: Location = {
+      id: loc.id,
+      title: title,
+      userID: loc.userID,
+      address: loc.address,
+      lat: loc.lat,
+      lng: loc.lng
+    };
     
     // update title in db
-    let jsonToSend = JSON.stringify(loc);
+    let jsonToSend = JSON.stringify(loc2);
     axios.post<string, { data: any }>(
         'http://localhost:8080/updatetitle',
         jsonToSend,
@@ -36,22 +45,9 @@ const HomeTable = () => {
         console.log({ err })
         alert('Error: ' + err.response)
       })
-    
-    
-    
-
-    // let loc2 = {
-    //   id: loc.id,
-    //   title: title,
-    //   userid: loc.userid,
-    //   address: loc.address,
-    //   lat: loc.lat,
-    //   lng: loc.lng
-    // };
-    
 
     // update title in store
-    dispatch(update(loc));
+    dispatch(update(loc2));
   }
 
   return (
@@ -66,4 +62,3 @@ const HomeTable = () => {
 };
 
 export default HomeTable;
-
