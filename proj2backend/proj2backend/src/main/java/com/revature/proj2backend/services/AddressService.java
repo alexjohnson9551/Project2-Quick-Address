@@ -31,4 +31,11 @@ public class AddressService {
 			addressRepository.save(loc);
 		}
 	}
+
+	public void deleteLocation(Integer id ){
+		Optional<Location> address = addressRepository.findById(id);
+		if(address.isPresent()) {
+			addressRepository.deleteById(id);
+		}
+	}
 }
