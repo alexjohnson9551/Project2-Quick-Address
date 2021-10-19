@@ -34,6 +34,9 @@ public class Address implements Serializable{
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 	
+	@Column(name="Uid")
+	private Integer Uid;
+	
 	@Column(name="Address", length=100)
 	private String address;
 	
