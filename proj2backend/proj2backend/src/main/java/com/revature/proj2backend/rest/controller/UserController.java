@@ -19,21 +19,24 @@ import com.revature.proj2backend.helpers.SuccFailMessage;
 import com.revature.proj2backend.helpers.SuccFailMessage.SuccFailMessageBuilder;
 import com.revature.proj2backend.model.entities.UnPw;
 import com.revature.proj2backend.model.entities.Users;
-import com.revature.proj2backend.registration.UserService;
+import com.revature.proj2backend.services.UserService;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "http://localhost:3000", allowCredentials="true")
+
 public class UserController {
 	
 	@Autowired
 	private UserService userService;
 	
-	@Autowired
-	private HttpServletRequest request;
+//	@Autowired
+//	private HttpServletRequest request;
+	
+//	@Autowired
+//	private HttpSession session;
 
 	@PostMapping(path = "/login")
-	@ResponseBody
-	public SuccFailMessage doLogin(@RequestBody UnPw up) {
+	public SuccFailMessage doLogin(@RequestBody UnPw up, HttpServletRequest request) {
 		Optional<Users> u0 = userService.findUserByUsername(up.getUsername());
 		SuccFailMessageBuilder sfmb = SuccFailMessage.builder();
 		if (u0.isEmpty()) {
@@ -47,35 +50,39 @@ public class UserController {
 			} else {
 				HttpSession session = request.getSession();
 				session.setAttribute("loggedInUser", u);
+				session.setAttribute("loggedIn", true);
 				sfmb.successful(true);
 				sfmb.message("Login successful.");
 			}
 		}
+		System.out.println("Did login.");
 		return sfmb.build();
 	}
 	
 	@PostMapping(path = "/logout")
-	public ResponseEntity<String> doLogout() {
+	public ResponseEntity<String> doLogout(HttpServletRequest request) {
 		request.getSession().invalidate();
+		System.out.println("Did logout.");
 		return ResponseEntity.ok("Logged out.");
 	}
 	
-	@GetMapping(path = "/checksession")
-	public ResponseEntity<Boolean> checksession() {
-		Users u = (Users) request.getSession().getAttribute("loggedInUser");
-		if(u == null) {
-			return ResponseEntity.status(401).build();
-		} else {
-			return ResponseEntity.ok(true);
-		}
-	}
+//	@PostMapping(path = "/checksession")
+//	public ResponseEntity<Boolean> checksession(HttpServletRequest request) {
+//		Users u = (Users) request.getSession().getAttribute("loggedInUser");
+//		if(u == null) {
+//			return ResponseEntity.status(401).build();
+//		} else {
+//			return ResponseEntity.ok(true);
+//		}
+//	}
 	
-	@GetMapping(path = "/getloggedinuser")
+	@PostMapping(path = "/getloggedinuser")
 	public ResponseEntity<Users> getLoggedInUser(HttpServletRequest request) {
-		
-		System.out.println(request.getSession().toString());
-		
-		Users u = (Users) request.getSession().getAttribute("loggedInUser");
+		System.out.println("Checking for logged in user.");
+		if(request.getSession(false) == null) {
+			return ResponseEntity.status(401).build();
+		}
+		Users u = (Users) request.getSession(false).getAttribute("loggedInUser");
 		if(u == null) {
 			return ResponseEntity.status(401).build();
 		} else {

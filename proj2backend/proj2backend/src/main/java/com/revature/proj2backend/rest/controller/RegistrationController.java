@@ -1,4 +1,4 @@
-package com.revature.proj2backend.registration;
+package com.revature.proj2backend.rest.controller;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.proj2backend.helpers.SuccFailMessage;
 import com.revature.proj2backend.model.entities.Users;
+import com.revature.proj2backend.services.UserService;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")

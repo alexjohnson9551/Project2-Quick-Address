@@ -1,4 +1,4 @@
-package com.revature.proj2backend.registration;
+package com.revature.proj2backend.repositories;
 
 import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
