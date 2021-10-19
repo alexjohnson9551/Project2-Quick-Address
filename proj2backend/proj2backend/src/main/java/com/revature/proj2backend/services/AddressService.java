@@ -24,4 +24,11 @@ public class AddressService {
 		}
 		return null;
 	}
+	
+	public void updateTitle(Location loc) {
+		Optional<Location> address = addressRepository.findById(loc.getId());
+		if(address.isPresent()) {
+			addressRepository.save(loc);
+		}
+	}
 }

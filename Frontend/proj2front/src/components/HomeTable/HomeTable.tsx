@@ -1,11 +1,14 @@
 /* eslint-disable @typescript-eslint/no-useless-constructor */
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
 import { render } from 'react-dom';
 // import styles from './HomeTable.module.scss';
 import TableEntry from './TableEntry';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { remove, update } from '../../slices/location.slice';
 import Location from '../../models/location';
+import axios from 'axios';
+import { convertToObject } from 'typescript';
+import { propTypes } from 'qrcode.react';
 
 const HomeTable = () => {
 
@@ -18,8 +21,24 @@ const HomeTable = () => {
   };
 
   let updateTitle = (loc: Location, title: string) => {
-    // set title
+    
+    // set title ERROR WITH THIS
     loc.title = title;
+    
+    // update title in db
+    let jsonToSend = JSON.stringify(loc);
+    axios.post<string, { data: any }>(
+        'http://localhost:8080/updatetitle',
+        jsonToSend,
+        { headers: { 'Content-Type': 'application/json' } },
+      )
+      .catch((err) => {
+        console.log({ err })
+        alert('Error: ' + err.response)
+      })
+    
+    
+    
 
     // let loc2 = {
     //   id: loc.id,
@@ -29,7 +48,7 @@ const HomeTable = () => {
     //   lat: loc.lat,
     //   lng: loc.lng
     // };
-    // update title in db
+    
 
     // update title in store
     dispatch(update(loc));
