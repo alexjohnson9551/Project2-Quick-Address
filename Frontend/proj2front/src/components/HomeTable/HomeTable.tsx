@@ -47,7 +47,7 @@ const HomeTable = () => {
       })
 
     // update title in store
-    dispatch(update(loc));
+    dispatch(update(loc2));
   }
 
   return (
