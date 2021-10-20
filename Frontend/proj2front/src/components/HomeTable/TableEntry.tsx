@@ -44,7 +44,12 @@ const TableEntry = ({loc, deleteLocation, updateTitle}: {
               </Col>
               <Col>
                 <Row>
-                  <Button variant="primary" size="sm" className="entrybutton">
+                  <Button 
+                  variant="primary" 
+                  size="sm" 
+                  className="entrybutton"
+                  onClick={() => {navigator.clipboard.writeText("http://localhost:3000/View/"+loc.id)}}
+                  >
                     Copy Link
                   </Button>
                 </Row>
