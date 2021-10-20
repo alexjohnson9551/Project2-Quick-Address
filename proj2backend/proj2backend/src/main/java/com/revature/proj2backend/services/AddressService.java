@@ -1,5 +1,6 @@
 package com.revature.proj2backend.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,5 +31,25 @@ public class AddressService {
 		if(address.isPresent()) {
 			addressRepository.save(loc);
 		}
+	}
+
+	public void deleteLocation(Integer id ){
+		Optional<Location> address = addressRepository.findById(id);
+		if(address.isPresent()) {
+			addressRepository.deleteById(id);
+		}
+	}
+	public List<Location> getAllAddress() {
+		
+		return addressRepository.findAll();
+	}
+	
+	
+	public List<Location> findById(Integer id) {
+		Optional<List<Location>> tempList = addressRepository.findByUserID(id);
+		if(tempList.isPresent()) 
+			return tempList.get();
+
+		return null;
 	}
 }

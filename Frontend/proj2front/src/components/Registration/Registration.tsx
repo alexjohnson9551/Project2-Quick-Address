@@ -7,41 +7,13 @@ import { Link, useHistory } from 'react-router-dom';
 
 const RegPage = (props: any) => {
   const history = useHistory();
-
-  //const propsClick = props.onclick;
-  //const nextPage = props.nextPage;
+  
   const [userFirstname, setUserFirstname] = useState("");
   const [userLastname, setUserLastname] = useState("");
   const [userName, setUserName] = useState("");
   const [userPass, setUserPass] = useState("");
   const [userEmail, setUserEmail] = useState("");
   const nextPageHandler = props.nextPageHandler;
-
-  //Deprecated as of now...
-  let firstnameChangeHandler = (e: any) => {
-    setUserFirstname(e.target.value);
-    console.log(userFirstname);
-  }
-
-  let lastnameChangeHandler = (e: any) => {
-    setUserLastname(e.target.value);
-    console.log(userLastname);
-  }
-
-  let passChangeHandler = (e: any) => {
-    setUserPass(e.target.value);
-    console.log(userPass);
-  }
-
-  let userNameChangeHandler = (e: any) => {
-    setUserName(e.target.value);
-    console.log(userName);
-  }
-
-  let emailChangeHandler = (e: any) => {
-    setUserEmail(e.target.value);
-    console.log(userEmail);
-  }
 
   function sendToDB(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -77,22 +49,18 @@ const RegPage = (props: any) => {
       'http://localhost:8080/register',
       json,
 
-      { headers: { 'Content-Type': "application/json" } }).then(  //Do I need withCredentials since this is a registration page
+      { headers: { 'Content-Type': "application/json" } }).then(
         res => {
           alert(res.data.message);
           if(res.data.successful) {
-            props.nextPageHandler("Login");
-            history.push("Login");
+            props.nextPageHandler("");
+            history.push("");
         }
       })
       .catch((err) => {
         console.log({ err });
         alert("Error: " + err.response);
       });
-
-    //Something to do with routing...
-    //props.history.push('/map');
-
   }
 
   return (

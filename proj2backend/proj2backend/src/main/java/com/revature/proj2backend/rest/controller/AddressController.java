@@ -1,9 +1,15 @@
 package com.revature.proj2backend.rest.controller;
 
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,7 +21,7 @@ import com.revature.proj2backend.model.entities.Location;
 import com.revature.proj2backend.services.AddressService;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "http://localhost:3000", allowCredentials="true")
 public class AddressController {
 	
 	@Autowired
@@ -40,4 +46,21 @@ public class AddressController {
 		addressService.updateTitle(loc);
 		return ResponseEntity.ok().build();
 	}
+	
+	
+	@DeleteMapping(path="/address/{id}")
+	public ResponseEntity<String> deleteadd(@PathVariable Integer id) {
+		addressService.deleteLocation(id);
+		return ResponseEntity.ok("1");
+	}
+	
+	@GetMapping(path="/address/")
+	public ResponseEntity<List<Location>> getAllAddress(HttpServletRequest request){
+		HttpSession session = request.getSession();
+		List<Location> address = addressService.findById((Integer) session.getAttribute("userID"));
+		
+		System.out.println("Returning: " + (Integer) session.getAttribute("userID"));
+		return ResponseEntity.ok(address);
+	}
+
 }
