@@ -46,21 +46,17 @@ const Controller2 = (props: any) => {
       "",
       { headers: { 'Content-Type': "application/json" }, withCredentials: true}).then(
       async (res) => { 
-        // alert(JSON.stringify(res.data));
         if(!loggedIn) {
           // since updates will rerender (and call this function again), only updates if login is new
           setLoggedIn(true);
           dispatch(set(res.data));
           setUsername(res.data.username);
-
           let loc = await getAllAddress()
           dispatch(addAll(loc))
-          console.log("Changed loggedIn from false to true.");
         }
       }
     ).catch((err) => {
       if (err.response !== undefined && err.response.status == 401) {
-        console.log("caught 401");
         if(loggedIn) {
           doFrontLogout();
         }
@@ -79,7 +75,6 @@ const Controller2 = (props: any) => {
         'http://localhost:8080/logout', "",
         { headers: { 'Content-Type': "application/json" }, withCredentials: true }).then(
           (res) => {
-            alert(res.data);
             doFrontLogout();
           })
         .catch((err) => {
