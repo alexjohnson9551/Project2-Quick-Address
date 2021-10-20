@@ -43,5 +43,13 @@ public class AddressService {
 		
 		return addressRepository.findAll();
 	}
+	
+	
+	public List<Location> findById(Integer id) {
+		Optional<List<Location>> tempList = addressRepository.findByUserID(id);
+		if(tempList.isPresent()) 
+			return tempList.get();
 
+		return null;
+	}
 }

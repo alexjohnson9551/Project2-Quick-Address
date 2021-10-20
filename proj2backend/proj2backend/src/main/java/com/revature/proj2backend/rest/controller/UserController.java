@@ -49,6 +49,7 @@ public class UserController {
 				sfmb.message("Incorrect password!");
 			} else {
 				HttpSession session = request.getSession();
+				session.setAttribute("userID", u.getUserID());
 				session.setAttribute("loggedInUser", u);
 				session.setAttribute("loggedIn", true);
 				sfmb.successful(true);

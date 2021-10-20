@@ -2,6 +2,9 @@ package com.revature.proj2backend.rest.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +21,7 @@ import com.revature.proj2backend.model.entities.Location;
 import com.revature.proj2backend.services.AddressService;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "http://localhost:3000", allowCredentials="true")
 public class AddressController {
 	
 	@Autowired
@@ -52,9 +55,11 @@ public class AddressController {
 	}
 	
 	@GetMapping(path="/address/")
-	public ResponseEntity<List<Location>> getAllAddress(){
-		List<Location> address = addressService.getAllAddress();
-		System.out.println("Returning: " + address.toString());
+	public ResponseEntity<List<Location>> getAllAddress(HttpServletRequest request){
+		HttpSession session = request.getSession();
+		List<Location> address = addressService.findById((Integer) session.getAttribute("userID"));
+		
+		System.out.println("Returning: " + (Integer) session.getAttribute("userID"));
 		return ResponseEntity.ok(address);
 	}
 

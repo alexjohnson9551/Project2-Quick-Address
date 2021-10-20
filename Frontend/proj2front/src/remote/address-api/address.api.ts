@@ -18,3 +18,4 @@ export const getAllAddress = async (): Promise<Address[]> => {
     const { data: address } = await addressClient.get<Address[]>(`/`);
 
     return address;
+}
