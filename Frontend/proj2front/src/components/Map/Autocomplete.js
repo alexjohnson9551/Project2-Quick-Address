@@ -3,15 +3,6 @@ import { Form } from 'react-bootstrap';
 import styled from 'styled-components';
 import './MapStyle.css';
 
-// const Wrapper = styled.div`
-//   position: relative;
-//   align-items: center;
-//   justify-content: center;
-//   width: 100%;
-//   padding: 10px;
-//   text-align:center;
-// `;
-
 class AutoComplete extends Component {
     constructor(props) {
         super(props);
