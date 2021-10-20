@@ -1,5 +1,6 @@
 package com.revature.proj2backend.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,4 +39,9 @@ public class AddressService {
 			addressRepository.deleteById(id);
 		}
 	}
+	public List<Location> getAllAddress() {
+		
+		return addressRepository.findAll();
+	}
+
 }

@@ -1,5 +1,7 @@
 package com.revature.proj2backend.rest.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
@@ -48,4 +50,12 @@ public class AddressController {
 		addressService.deleteLocation(id);
 		return ResponseEntity.ok("1");
 	}
+	
+	@GetMapping(path="/address/")
+	public ResponseEntity<List<Location>> getAllAddress(){
+		List<Location> address = addressService.getAllAddress();
+		System.out.println("Returning: " + address.toString());
+		return ResponseEntity.ok(address);
+	}
+
 }
