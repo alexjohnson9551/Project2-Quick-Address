@@ -7,7 +7,7 @@ const LoggedInNav2 = (props: any) => {
     {
       dest: 'Decode',
       title: 'View Address from Code',
-      add: '/View/3',
+      add: '/View',
     },
     { dest: 'Logout', title: 'Logout', add: '/' },
   ]
@@ -21,7 +21,7 @@ const LoggedInNav2 = (props: any) => {
 
 const LoggedOutNav2 = (props: any) => {
   let loggedOutNavButtons = [
-    { dest: 'Decode', title: 'View Address from Code', add: '/View/3' },
+    { dest: 'Decode', title: 'View Address from Code', add: '/View' },
     { dest: 'Registration', title: 'Sign Up', add: '/Registration' },
     { dest: 'Login', title: 'Login', add: '/' },
   ]

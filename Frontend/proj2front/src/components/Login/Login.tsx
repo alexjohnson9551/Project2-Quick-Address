@@ -46,7 +46,7 @@ const Login = (props: any) => {
       })
       .catch((err) => {
         console.log({ err })
-        alert('Error: ' + err.response)
+        alert("There was a problem logging in.");
       })
   }
 

@@ -22,7 +22,7 @@ const Home = (props: any) => {
     loc.id = 0;
     loc.userID = userState[0].userID;
 
-    alert("Sending user id = " + loc.userID);
+    // alert("Sending user id = " + loc.userID);
 
     let jsonToSend = JSON.stringify(loc);
     axios
