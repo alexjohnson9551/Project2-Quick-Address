@@ -22,9 +22,14 @@ const locationSlice = createSlice({
         addAll: (state, action: PayloadAction<Location[]>) => {
             state.push(...action.payload);
         },
+        clear: (state) => {
+            while(state.length >= 1){
+                state.pop();
+            }
+        },
 
     }
 });
 
-export const { add, remove, update ,addAll} = locationSlice.actions;
+export const { add, remove, update, addAll, clear} = locationSlice.actions;
 export default locationSlice.reducer;

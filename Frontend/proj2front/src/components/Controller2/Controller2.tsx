@@ -23,7 +23,7 @@ import User from '../../models/user'
 import { set, unset } from '../../slices/user.slice'
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { getAllAddress } from '../../remote/address-api/address.api'
-import { addAll } from '../../slices/location.slice'
+import { addAll, clear } from '../../slices/location.slice'
 const Controller2 = (props: any) => {
   const history = useHistory()
 
@@ -93,6 +93,7 @@ const Controller2 = (props: any) => {
   let doFrontLogout = () => {
     setLoggedIn(false);
     dispatch(unset());
+    dispatch(clear());
     setUsername("");
     console.log("Changed loggedIn from true to false.");
   };
