@@ -33,7 +33,6 @@ const HomeTable = () => {
       lat: loc.lat,
       lng: loc.lng
     };
-    
     // update title in db
     let jsonToSend = JSON.stringify(loc2);
     axios.post<string, { data: any }>(

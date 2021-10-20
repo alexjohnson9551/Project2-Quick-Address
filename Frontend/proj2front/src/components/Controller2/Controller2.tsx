@@ -55,7 +55,7 @@ const Controller2 = (props: any) => {
         }
       }
     ).catch((err) => {
-      if (err.response.status == 401) {
+      if (err.response !== undefined && err.response.status == 401) {
         console.log("caught 401");
         if(loggedIn) {
           doFrontLogout();
