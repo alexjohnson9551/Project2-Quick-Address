@@ -7,5 +7,12 @@
 
 .column2 {
     float: left;
-    width: 50%;
+    margin-left: 25px;
+}
+
+@media screen and (max-width: 600px){
+    
+    .column2
+    {margin-left: 0px;}
+    
 }

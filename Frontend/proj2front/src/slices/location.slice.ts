@@ -18,9 +18,18 @@ const locationSlice = createSlice({
         update: (state, action: PayloadAction<Location>) => {
             let i = state.findIndex((loc => loc.id === action.payload.id));
             state[i] = action.payload;
-        }
+        },
+        addAll: (state, action: PayloadAction<Location[]>) => {
+            state.push(...action.payload);
+        },
+        clear: (state) => {
+            while(state.length >= 1){
+                state.pop();
+            }
+        },
+
     }
 });
 
-export const { add, remove, update } = locationSlice.actions;
+export const { add, remove, update, addAll, clear} = locationSlice.actions;
 export default locationSlice.reducer;

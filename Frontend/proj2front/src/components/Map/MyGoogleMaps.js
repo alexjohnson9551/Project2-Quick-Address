@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
 
 import GoogleMapReact from 'google-map-react';
-import { Button, Card, Col, Form, Row } from "react-bootstrap";
+import { Button, Card, Col, Form, InputGroup, Row } from "react-bootstrap";
 
 import styled from 'styled-components';
 
 import AutoComplete from './Autocomplete';
 import Marker from './Marker';
-
-
 
 const Wrapper = styled.main`
   width: 100%;
@@ -136,14 +134,10 @@ class MyGoogleMap extends Component {
         return (
             <Wrapper>
                 {mapApiLoaded && (
-                    <Row className="align-items-center"> 
-                        <Col>
+                    <InputGroup>
                             <AutoComplete map={mapInstance} mapApi={mapApi} addplace={this.addPlace} />
-                        </Col>
-                        <Col xs={3} >
-                            <Button variant="success" onClick={() => this.applesauce()}>Add Location</Button>
-                        </Col>
-                    </Row>
+                            <Button className="btnStyle" variant="success" onClick={() => this.applesauce()}>Add Location</Button>   
+                    </InputGroup>
                 )}
                 <GoogleMapReact
                     center={this.state.center}

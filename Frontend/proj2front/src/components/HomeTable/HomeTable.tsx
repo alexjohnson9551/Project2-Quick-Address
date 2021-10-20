@@ -9,6 +9,7 @@ import Location from '../../models/location';
 import axios from 'axios';
 import { convertToObject } from 'typescript';
 import { propTypes } from 'qrcode.react';
+import {deleteAddress} from '../../remote/address-api/address.api'
 
 const HomeTable = () => {
 
@@ -16,7 +17,7 @@ const HomeTable = () => {
   const locationState = useAppSelector((state => state.location));
 
   let deleteLocation = (loc: Location) => {
-    console.log("Trying to delete: " + loc.address);
+    deleteAddress(loc.id)
     dispatch(remove(loc));
   };
 

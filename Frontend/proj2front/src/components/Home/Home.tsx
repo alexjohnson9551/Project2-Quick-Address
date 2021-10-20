@@ -2,9 +2,9 @@ import React from 'react'
 import { Button } from 'react-bootstrap'
 import NavbarToggle from 'react-bootstrap/esm/NavbarToggle'
 import { useHistory } from 'react-router'
-import HomeTable from '../HomeTable/HomeTable.lazy'
+import HomeTable from '../HomeTable/HomeTable'
 import MyGoogleMap from '../Map/MyGoogleMaps'
-import Navigation from '../Navigation/Navigation'
+import Navigation from '../Navigation/Navigation2'
 import './homeStyle.css'
 import { useAppDispatch, useAppSelector } from '../../hooks'
 import { add } from '../../slices/location.slice'
@@ -50,10 +50,10 @@ const Home = (props: any) => {
     <br />
     <div className="container">
       <div className="row">
-        <div className="col column1 main-wrapper">
+        <div className="col-md-6 column1 main-wrapper">
           <MyGoogleMap addNewLocation={addNewLocation}/>
         </div>
-        <div className="col">
+        <div className="col-md-5 column2">
           <HomeTable />
         </div>
       </div>

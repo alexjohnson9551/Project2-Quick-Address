@@ -22,7 +22,8 @@ import axios from 'axios'
 import User from '../../models/user'
 import { set, unset } from '../../slices/user.slice'
 import { useAppDispatch, useAppSelector } from '../../hooks';
-
+import { getAllAddress } from '../../remote/address-api/address.api'
+import { addAll, clear } from '../../slices/location.slice'
 const Controller2 = (props: any) => {
   const history = useHistory()
 
@@ -44,13 +45,16 @@ const Controller2 = (props: any) => {
       'http://localhost:8080/getloggedinuser',
       "",
       { headers: { 'Content-Type': "application/json" }, withCredentials: true}).then(
-      (res) => { 
+      async (res) => { 
         // alert(JSON.stringify(res.data));
         if(!loggedIn) {
           // since updates will rerender (and call this function again), only updates if login is new
           setLoggedIn(true);
           dispatch(set(res.data));
           setUsername(res.data.username);
+
+          let loc = await getAllAddress()
+          dispatch(addAll(loc))
           console.log("Changed loggedIn from false to true.");
         }
       }
@@ -89,6 +93,7 @@ const Controller2 = (props: any) => {
   let doFrontLogout = () => {
     setLoggedIn(false);
     dispatch(unset());
+    dispatch(clear());
     setUsername("");
     console.log("Changed loggedIn from true to false.");
   };
