@@ -3,12 +3,13 @@ import './TableEntryStyle.css'
 import Location from '../../models/location'
 import { useState } from 'react'
 
-const TableEntry = (props: {
+const TableEntry = ({loc, deleteLocation, updateTitle}: {
   loc: Location
   deleteLocation: any
   updateTitle: any
 }) => {
-  const [title, setTitle] = useState('')
+  const [title, setTitle] = useState(loc.title)
+  let tempValue: string = "" + title
 
   return (
     <div>
@@ -18,13 +19,13 @@ const TableEntry = (props: {
             <Form.Control
               type="text"
               placeholder="Custom Title"
-              value={title}
+              value={tempValue}
               onChange={(e) => setTitle(e.target.value)}
             ></Form.Control>
             <Button
               variant="outline-primary"
               className="entrybutton"
-              onClick={() => props.updateTitle(props.loc, title)}
+              onClick={() => updateTitle(loc, title)}
             >
               Save
             </Button>
@@ -37,7 +38,7 @@ const TableEntry = (props: {
                 <Form.Control
                   as="textarea"
                   rows={2}
-                  placeholder={props.loc.address}
+                  placeholder={loc.address}
                   readOnly
                 ></Form.Control>
               </Col>
@@ -52,7 +53,7 @@ const TableEntry = (props: {
                     variant="outline-danger"
                     size="sm"
                     className="entrybutton"
-                    onClick={() => props.deleteLocation(props.loc)}
+                    onClick={() => deleteLocation(loc)}
                   >
                     Delete
                   </Button>

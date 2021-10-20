@@ -4,7 +4,6 @@ import Navigation2 from './Navigation2'
 const LoggedInNav2 = (props: any) => {
   let loggedInNavButtons = [
     { dest: 'Home', title: 'Home', add: '/' },
-    { dest: 'Map', title: 'Map Test', add: '/Map' },
     {
       dest: 'Decode',
       title: 'View Address from Code',
