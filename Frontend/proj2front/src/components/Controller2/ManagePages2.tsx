@@ -1,16 +1,7 @@
 // electric boogaloo
 
-import React, { useEffect, useState } from 'react'
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-  withRouter,
-  BrowserRouter,
-} from 'react-router-dom'
-import Home from '../Home/Home'
-import Login from '../Login/Login'
+import React, { useEffect } from 'react'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import MyGoogleMap from '../Map/MyGoogleMaps'
 import AddressFromCode from '../AddressFromCode/AddressFromCode'
 import { LoggedInNav2, LoggedOutNav2 } from '../Navigation/NavSetup2'
@@ -27,8 +18,8 @@ const ManagePages2 = (props: any) => {
   let toDisplay = null
 
   useEffect(() => {
-    props.updateLoggedIn();
-  }, []);
+    props.updateLoggedIn()
+  }, [])
 
   let Nav = loggedIn ? (
     <LoggedInNav2 nextPageHandler={props.nextPageHandler} />
@@ -37,7 +28,7 @@ const ManagePages2 = (props: any) => {
   )
 
   return (
-    <BrowserRouter>
+    <Router>
       {Nav}
       <div>
         <Switch>
@@ -64,8 +55,8 @@ const ManagePages2 = (props: any) => {
           </Route>
         </Switch>
       </div>
-    </BrowserRouter>
+    </Router>
   )
 }
 
-export default ManagePages2;
+export default ManagePages2

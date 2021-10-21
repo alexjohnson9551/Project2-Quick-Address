@@ -1,10 +1,10 @@
 import axios from "axios";
 
-const addressClient = axios.create( {
-  baseURL: "http://localhost:8080/address",
+const userClient = axios.create( {
+  baseURL: "http://localhost:8080/user",
   headers: {
     "Content-Type": 'application/json',
   }, withCredentials: true
 } );
 
-export default addressClient;
+export default userClient;

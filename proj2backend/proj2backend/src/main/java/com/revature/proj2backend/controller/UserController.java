@@ -1,4 +1,4 @@
-package com.revature.proj2backend.rest.controller;
+package com.revature.proj2backend.controller;
 
 import java.util.Optional;
 

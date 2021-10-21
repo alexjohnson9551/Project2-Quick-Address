@@ -4,12 +4,12 @@ import userReducer from './slices/user.slice';
 
 
 
-export const store = configureStore({
+export const store = configureStore( {
     reducer: {
         location: locationReducer,
         user: userReducer
     }
-});
+} );
 
 export type AppDispatch = typeof store.dispatch;
 export type RootState = ReturnType<typeof store.getState>;

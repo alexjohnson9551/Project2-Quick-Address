@@ -38,7 +38,7 @@ const Login = (props: any) => {
         { headers: { 'Content-Type': 'application/json' }, withCredentials: true}
       )
       .then((res) => {
-        alert(res.data.message)
+        //alert(res.data.message)
         if (res.data.successful) {
           props.updateLoggedIn();
           history.push("");
