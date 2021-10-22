@@ -17,6 +17,7 @@ const TableEntry = ({loc, deleteLocation, updateTitle}: {
           <InputGroup>
             <Form.Control
               type="text"
+              placeholder={"Set Custom Title"}
               value={title}
               onChange={(e) => setTitle(e.target.value)}
             ></Form.Control>
