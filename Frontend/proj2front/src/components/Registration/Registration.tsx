@@ -1,15 +1,15 @@
 
 import React, { useState } from 'react';
 import axios from 'axios';
-import { Button, Col, Row } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 import './RegistrationStyle.css'
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
-const RegPage = (props: any) => {
+const Registration = (props: any) => {
   const history = useHistory();
 
-  const [userFirstname, setUserFirstname] = useState("");
-  const [userLastname, setUserLastname] = useState("");
+  const [userFirstName, setUserFirstName] = useState("");
+  const [userLastName, setUserLastName] = useState("");
   const [userName, setUserName] = useState("");
   const [userPass, setUserPass] = useState("");
   const [userEmail, setUserEmail] = useState("");
@@ -18,14 +18,14 @@ const RegPage = (props: any) => {
   function sendToDB(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     let toSend = {
-      firstName: userFirstname,
-      lastName: userLastname,
+      firstName: userFirstName,
+      lastName: userLastName,
       username: userName,
       password: userPass,
       email: userEmail
     };
 
-    if (userFirstname === '' || userLastname === '' || userName === '' || userPass === '' || userEmail === '') {
+    if (userFirstName === '' || userLastName === '' || userName === '' || userPass === '' || userEmail === '') {
       alert("Please fill out all parts of the form!");
       return;
     }
@@ -66,8 +66,7 @@ const RegPage = (props: any) => {
   return (
     <div className="container custom fade-in">
       <div className="d-flex justify-content-center align-items-center h-50">
-
-        <div className="card text-black" id="regcard">
+        <div className="card text-black" id="reg-card">
           <div className="card-body">
             <div className="justify-content-center">
               <p className="text-center h1">Sign up</p>
@@ -76,36 +75,63 @@ const RegPage = (props: any) => {
 
                 <div className="inputStyle">
                   <label>First Name</label>
-                  <input type="text" id="" className="test" value={userFirstname} onChange={(e: any) => { setUserFirstname(e.target.value) }} />
-
+                  <input 
+                    type="text" 
+                    id="" 
+                    className="test" 
+                    value={userFirstName} 
+                    onChange={(e: any) => { setUserFirstName(e.target.value) }} />
                 </div>
 
                 <div className="inputStyle">
                   <label>Last Name</label>
-                  <input type="text" id="" className="test" value={userLastname} onChange={(e: any) => { setUserLastname(e.target.value) }} />
-
+                  <input 
+                    type="text" 
+                    id="" 
+                    className="test" 
+                    value={userLastName} 
+                    onChange={(e: any) => { setUserLastName(e.target.value) }} />
                 </div>
 
                 <div className="inputStyle">
                   <label className="">Username</label>
-                  <input type="text" id="" className="test" value={userName} onChange={(e: any) => { setUserName(e.target.value) }} />
-
+                  <input 
+                    type="text" 
+                    id="" 
+                    className="test" 
+                    value={userName} 
+                    onChange={(e: any) => { setUserName(e.target.value) }} />
                 </div>
 
                 <div className="inputStyle">
                   <label className="">Password</label>
-                  <input type="password" id="" className="test" value={userPass} onChange={(e: any) => { setUserPass(e.target.value) }} />
-
+                  <input 
+                    type="password" 
+                    id="" 
+                    className="test" 
+                    value={userPass} 
+                    onChange={(e: any) => { setUserPass(e.target.value) }} />
                 </div>
 
                 <div className="inputStyle">
                   <label className="">Email</label>
-                  <input type="email" id="" className="test" value={userEmail} onChange={(e: any) => { setUserEmail(e.target.value) }} />
+                  <input 
+                    type="email" 
+                    id="" 
+                    className="test" 
+                    value={userEmail} 
+                    onChange={(e: any) => { setUserEmail(e.target.value) }} />
                 </div>
 
                 <div className="d-flex justify-content-center buttons">
-                  <Button className="butt-pads" variant="outline-secondary" onClick={() => { nextPageHandler("Login"); history.push("/") }}>Back to Login</Button>
-                  <Button className="butt-pads" variant="outline-primary" type="submit">Create Account</Button>
+                  <Button 
+                  className="butt-pads" 
+                  variant="outline-secondary" 
+                  onClick={() => { nextPageHandler("Login"); history.push("/") }}>Back to Login</Button>
+                  <Button 
+                  className="butt-pads" 
+                  variant="outline-primary" 
+                  type="submit">Create Account</Button>
                 </div>
 
               </form>
@@ -118,4 +144,4 @@ const RegPage = (props: any) => {
   )
 }
 
-export default RegPage;
+export default Registration;

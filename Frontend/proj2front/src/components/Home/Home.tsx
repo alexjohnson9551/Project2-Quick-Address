@@ -1,22 +1,15 @@
 import React, { useCallback, useState } from 'react'
-import { Button } from 'react-bootstrap'
-import NavbarToggle from 'react-bootstrap/esm/NavbarToggle'
-import { useHistory } from 'react-router'
 import HomeTable from '../HomeTable/HomeTable'
 import MyGoogleMap from '../Map/MyGoogleMaps'
-import Navigation from '../Navigation/Navigation2'
 import './homeStyle.css'
-import { useAppDispatch, useAppSelector } from '../../hooks'
-import { add } from '../../slices/location.slice'
-import axios from 'axios'
+import { useAppSelector } from '../../hooks'
 import Location from '../../models/location'
-import { idText } from 'typescript'
 import QRForCode from '../AddressFromCode/QRForCode'
+import { insertLocationService } from '../../services/location.service'
 
-const Home = (props: any) => {
+const Home = () => {
 
   const [qr, setQR] = useState(""+0)
-  const dispatch = useAppDispatch();
   const userState = useAppSelector((state => state.user));
   let toDisplay = <div></div>
   
@@ -31,27 +24,7 @@ const Home = (props: any) => {
     loc.id = 0;
     loc.userID = userState[0].userID;
 
-    // alert("Sending user id = " + loc.userID);
-
-    let jsonToSend = JSON.stringify(loc);
-    axios
-      .post<string, { data: any }>(
-        'http://localhost:8080/addaddress',
-        jsonToSend,
-        { headers: { 'Content-Type': 'application/json' } },
-      )
-      .then((res) => {
-        loc.id = res.data.id;
-        loc.userID = res.data.userID;
-
-        console.log("Received: " + JSON.stringify(res.data));
-
-        dispatch(add(loc))
-      })
-      .catch((err) => {
-        console.log({ err })
-        alert('Error: ' + err.response)
-      })
+    insertLocationService(loc);
   }
 
   if(qr!=="0"){

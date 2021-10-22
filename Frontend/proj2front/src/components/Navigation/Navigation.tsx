@@ -1,8 +1,6 @@
 import React from 'react';
 import { Container, Nav, Navbar } from 'react-bootstrap';
-import { Link, NavLink } from 'react-router-dom';
-import styles from './Navigation.module.scss';
-// import 'bootstrap/js/dist/collapse.js';
+import { Link } from 'react-router-dom';
 
 const Navigation2 = (props: any) => {
 

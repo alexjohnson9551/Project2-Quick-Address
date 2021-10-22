@@ -7,7 +7,7 @@ const QRForCode = ({id, qrHandler}:{qrHandler:(qrId: string) => void,id:string|n
   return (
     <>
     <div className="qr-formatting">
-      <QRCode  size={400} onClick={()=>qrHandler(""+0)} value={"http://localhost:8080/View/"+id+""} />
+      <QRCode size={400} onClick={()=>qrHandler(""+0)} value={"http://localhost:8080/View/"+id+""} />
     </div>
   </>
   )

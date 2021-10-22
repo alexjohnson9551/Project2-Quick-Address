@@ -1,7 +1,7 @@
 import { Button, Card, Col, Form, InputGroup, Row } from 'react-bootstrap'
 import './TableEntryStyle.css'
 import Location from '../../models/location'
-import { useAppDispatch, useAppSelector } from '../../hooks';
+import { useState } from 'react'
 
 const TableEntry = ({loc, deleteLocation, updateTitle, qrHandler}: {
   loc: Location
@@ -9,6 +9,8 @@ const TableEntry = ({loc, deleteLocation, updateTitle, qrHandler}: {
   updateTitle: any
   qrHandler:(qrImage: string) => void
 }) => {
+  const [title, setTitle] = useState(loc.title)
+  let tempValue: string = "" + title
 
   return (
     <div>
@@ -17,14 +19,14 @@ const TableEntry = ({loc, deleteLocation, updateTitle, qrHandler}: {
           <InputGroup>
             <Form.Control
               type="text"
-              placeholder={"Set Custom Title"}
-              value={"" + loc.title}
-              onChange={(e) => updateTitle(loc, e.target.value, false)}
+              placeholder="Custom Title"
+              value={tempValue}
+              onChange={(e) => setTitle(e.target.value)}
             ></Form.Control>
             <Button
               variant="outline-primary"
               className="entrybutton"
-              onClick={() => updateTitle(loc, loc.title, true)}
+              onClick={() => updateTitle(loc, title)}
             >
               Save
             </Button>

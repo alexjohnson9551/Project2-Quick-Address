@@ -1,7 +1,7 @@
 import React from 'react'
-import Navigation2 from './Navigation2'
+import Navigation2 from './Navigation'
 
-const LoggedInNav2 = (props: any) => {
+const LoggedInNav = (props: any) => {
   let loggedInNavButtons = [
     { dest: 'Home', title: 'Home', add: '/' },
     {
@@ -19,7 +19,7 @@ const LoggedInNav2 = (props: any) => {
   )
 }
 
-const LoggedOutNav2 = (props: any) => {
+const LoggedOutNav = (props: any) => {
   let loggedOutNavButtons = [
     { dest: 'Decode', title: 'View Address from Code', add: '/View' },
     { dest: 'Registration', title: 'Sign Up', add: '/Registration' },
@@ -33,8 +33,8 @@ const LoggedOutNav2 = (props: any) => {
   )
 }
 
-const navSetup2 = () => {
+const navSetup = () => {
   return <div></div>
 }
-export default navSetup2
-export { LoggedInNav2, LoggedOutNav2 }
+export default navSetup
+export { LoggedInNav, LoggedOutNav }

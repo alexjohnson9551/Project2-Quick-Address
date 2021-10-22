@@ -18,9 +18,9 @@ const Wrapper = styled.div`
     cursor: grab;
 `;
 
-const Marker = ({ text, onClick }) => (
+const Marker = ({ text, onClick }:any) => (
     <Wrapper
-        alt={text}
+        title={text}
         onClick={onClick}
     />
 );

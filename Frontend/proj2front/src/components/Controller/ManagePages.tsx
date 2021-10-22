@@ -1,43 +1,35 @@
 // electric boogaloo
 
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import {
   BrowserRouter as Router,
   Switch,
-  Route,
-  Link,
-  withRouter,
-  BrowserRouter,
+  Route
 } from 'react-router-dom'
-import Home from '../Home/Home'
-import Login from '../Login/Login'
 import MyGoogleMap from '../Map/MyGoogleMaps'
 import AddressFromCode from '../AddressFromCode/AddressFromCode'
-import { LoggedInNav2, LoggedOutNav2 } from '../Navigation/NavSetup2'
+import { LoggedInNav, LoggedOutNav } from '../Navigation/NavSetup'
 import RegPage from '../Registration/Registration'
 import LoginOrHome from '../Home/LoginOrHome'
 
-const ManagePages2 = (props: any) => {
+const ManagePages = (props: any) => {
   let username: string = props.username
   let setUsername = props.setUsername
   let loggedIn: boolean = props.loggedIn
   let setLoggedIn = props.setLoggedIn
-  let page = props.page
-
-  let toDisplay = null
 
   useEffect(() => {
     props.updateLoggedIn();
-  }, []);
+  }, [props]);
 
   let Nav = loggedIn ? (
-    <LoggedInNav2 nextPageHandler={props.nextPageHandler} />
+    <LoggedInNav nextPageHandler={props.nextPageHandler} />
   ) : (
-    <LoggedOutNav2 nextPageHandler={props.nextPageHandler} />
+    <LoggedOutNav nextPageHandler={props.nextPageHandler} />
   )
 
   return (
-    <BrowserRouter>
+    <Router>
       {Nav}
       <div>
         <Switch>
@@ -64,8 +56,8 @@ const ManagePages2 = (props: any) => {
           </Route>
         </Switch>
       </div>
-    </BrowserRouter>
+    </Router>
   )
 }
 
-export default ManagePages2;
+export default ManagePages;

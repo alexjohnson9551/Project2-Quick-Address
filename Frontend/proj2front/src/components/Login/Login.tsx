@@ -2,7 +2,7 @@ import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import Container from 'react-bootstrap/Container'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import { Dispatch, FormEvent, SetStateAction, useState } from 'react'
+import {FormEvent, useState } from 'react'
 import '../Registration/RegistrationStyle.css'
 import { useHistory } from 'react-router'
 import axios from 'axios'
@@ -38,7 +38,6 @@ const Login = (props: any) => {
         { headers: { 'Content-Type': 'application/json' }, withCredentials: true}
       )
       .then((res) => {
-        alert(res.data.message)
         if (res.data.successful) {
           props.updateLoggedIn();
           history.push("");
@@ -53,11 +52,10 @@ const Login = (props: any) => {
   return (
     <Container className="form-container custom fade-in">
       <div className="d-flex justify-content-center align-items-center h-50">
-        <div className="card text-black" id="logincard">
+        <div className="card text-black" id="login-card">
           <div className="card-body">
             <div className="justify-content-center">
               <p className="text-center h1">Welcome</p>
-
               <Form onSubmit={(e) => tryLogin(e)}>
                 <Form.Group controlId="username">
                   <Form.Label>Username</Form.Label>

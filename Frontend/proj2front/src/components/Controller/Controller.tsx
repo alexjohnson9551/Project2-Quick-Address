@@ -1,44 +1,22 @@
 // electric boogaloo
 
-import React, { useCallback, useState } from 'react'
-import styles from './Controller2.module.scss'
+import React, { useState } from 'react'
 import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
   withRouter,
 } from 'react-router-dom'
-import Home from '../Home/Home'
-import Login from '../Login/Login'
-import MyGoogleMap from '../Map/MyGoogleMaps'
-import Registration from '../Registration/Registration'
-import AddressFromCode from '../AddressFromCode/AddressFromCode'
-import { LoggedInNav2, LoggedOutNav2 } from '../Navigation/NavSetup2'
-import ManagePages2 from './ManagePages2'
-import { useHistory } from 'react-router'
-import createHistory from 'history/createBrowserHistory'
+import ManagePages from './ManagePages'
 import axios from 'axios'
-import User from '../../models/user'
 import { set, unset } from '../../slices/user.slice'
-import { useAppDispatch, useAppSelector } from '../../hooks';
-import { getAllAddress } from '../../remote/address-api/address.api'
+import { useAppDispatch } from '../../hooks';
+import { getAllLocation } from '../../remote/location-api/location.api'
 import { addAll, clear } from '../../slices/location.slice'
 const Controller2 = (props: any) => {
-  const history = useHistory()
 
   const dispatch = useAppDispatch();
-  const userState = useAppSelector((state => state.user));
 
-  const [page, setPage] = useState('Login')
+  const [page,] = useState('Login')
   const [loggedIn, setLoggedIn] = useState(false)
   const [username, setUsername] = useState('')
-  // const [user, setUser] = useState({
-  //   username: '',
-  //   firstName: '',
-  //   lastName: '',
-  //   email: '',
-  // })
 
   let updateLoggedIn = () => { 
     axios.post<string, {data: any}>(
@@ -51,12 +29,12 @@ const Controller2 = (props: any) => {
           setLoggedIn(true);
           dispatch(set(res.data));
           setUsername(res.data.username);
-          let loc = await getAllAddress()
+          let loc = await getAllLocation()
           dispatch(addAll(loc))
         }
       }
     ).catch((err) => {
-      if (err.response !== undefined && err.response.status == 401) {
+      if (err.response !== undefined && err.response.status === 401) {
         if(loggedIn) {
           doFrontLogout();
         }
@@ -68,9 +46,7 @@ const Controller2 = (props: any) => {
 
   let nextPageHandler = (x: string) => {
     // history.push(x);
-    if (x == "Logout") {
-      // this is now handled by updateLoggedIn
-      // setLoggedIn(false);
+    if (x === "Logout") {
       axios.post<string, {data: any}>(
         'http://localhost:8080/logout', "",
         { headers: { 'Content-Type': "application/json" }, withCredentials: true }).then(
@@ -94,7 +70,7 @@ const Controller2 = (props: any) => {
   };
 
 
-  let toDisplay = <ManagePages2
+  let toDisplay = <ManagePages
     nextPageHandler={nextPageHandler}
     username={username}
     setUsername={setUsername}

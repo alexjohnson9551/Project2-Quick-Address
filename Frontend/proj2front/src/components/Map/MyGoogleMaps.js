@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
-
 import GoogleMapReact from 'google-map-react';
-import { Button, Card, Col, Form, InputGroup, Row } from "react-bootstrap";
-
+import { Button, InputGroup } from "react-bootstrap";
 import styled from 'styled-components';
-
 import AutoComplete from './Autocomplete';
 import Marker from './Marker';
 
@@ -20,7 +17,7 @@ class MyGoogleMap extends Component {
         mapApi: null,
         geoCoder: null,
         places: [],
-        center: [],
+        center: [0, 0],
         zoom: 17,
         address: '',
         draggable: true,
@@ -28,10 +25,9 @@ class MyGoogleMap extends Component {
         lng: null
     };
 
-    componentWillMount() {
+    componentDidMount() {
         this.setCurrentLocation();
     }
-
 
     onMarkerInteraction = (childKey, childProps, mouse) => {
         if (this.props.allowInteraction) {
@@ -58,7 +54,6 @@ class MyGoogleMap extends Component {
             center: center,
             zoom: zoom,
         });
-
     }
 
     _onClick = (value) => {
@@ -76,7 +71,6 @@ class MyGoogleMap extends Component {
             mapInstance: map,
             mapApi: maps,
         });
-
         this._generateAddress();
     };
 
@@ -90,7 +84,6 @@ class MyGoogleMap extends Component {
         } else {
             alert("add place called...? dunno what this is");
         }
-
         this._generateAddress()
     };
 
@@ -98,10 +91,8 @@ class MyGoogleMap extends Component {
         const {
             mapApi
         } = this.state;
-
         if (this.props.allowInteraction) {
-            const geocoder = new mapApi.Geocoder;
-
+            const geocoder = new mapApi.Geocoder();
             geocoder.geocode({ 'location': { lat: this.state.lat, lng: this.state.lng } }, (results, status) => {
                 // console.log(results);
                 // console.log(status);
@@ -156,7 +147,7 @@ class MyGoogleMap extends Component {
 
     render() {
         const {
-            places, mapApiLoaded, mapInstance, mapApi,
+            mapApiLoaded, mapInstance, mapApi,
         } = this.state;
 
         let submitBar = this.props.allowInteraction ? <InputGroup>
@@ -191,8 +182,6 @@ class MyGoogleMap extends Component {
                         lat={this.state.lat}
                         lng={this.state.lng}
                     />
-
-
                 </GoogleMapReact>
 
                 <div className="info-wrapper">
@@ -200,9 +189,7 @@ class MyGoogleMap extends Component {
                     <div className="map-details">Zoom: <span>{this.state.zoom}</span></div>
                     <div className="map-details">Address: <span>{this.state.address}</span></div>
                 </div>
-
-
-            </Wrapper >
+            </Wrapper>
         );
     }
 }

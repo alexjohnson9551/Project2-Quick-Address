@@ -1,16 +1,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import axios from 'axios'
 import React, { FormEvent, useEffect, useState } from 'react'
 import { Button, Container, Form, InputGroup } from 'react-bootstrap'
-import { getAddress } from '../../remote/address-api/address.api'
-import MapContainer from '../Map/ShowMap'
-import Location from './../../models/location'
-import QRForCode from './QRForCode'
 import './AddressFromCodeStyle.css'
 import { useHistory } from 'react-router-dom'
 import MyGoogleMap from '../Map/MyGoogleMaps'
-
-
+import { getLocation } from '../../remote/location-api/location.api'
 
 const AddressFromCode = () => {
   const [location, setLocation] = useState({ lat: 0, lng: 0, address: "", title: "", message: "Enter Code to Find Location Below or Enter a Valid URL in the Address Bar" })
@@ -62,8 +56,6 @@ const AddressFromCode = () => {
         {inputForm}
       </div>
       <div className="main-wrapper">{map}</div>
-
-      {/* <MapContainer lat={location.lat} lng={location.lng}></MapContainer> */}
     </div>
   </>)
 
@@ -81,8 +73,8 @@ const AddressFromCode = () => {
 
   let searchForLocation = async (codeToSend: string) => {
     try {
-      let loc = await getAddress(codeToSend)
-      console.log('NEW ADDRESS:' + 'lat' + loc)
+      let loc = await getLocation(codeToSend)
+      console.log('NEW ADDRESS: lat' + loc)
       console.log(loc.lat)
       let title = loc.title == null ? "" : loc.title
       setLocation({
@@ -95,7 +87,7 @@ const AddressFromCode = () => {
       setCode("");
     } catch (error: any) {
       console.log(error)
-      if (error.response !== undefined && error.response.status == 404) {
+      if (error.response !== undefined && error.response.status === 404) {
         setLocation({
           lat: 0,
           lng: 0,

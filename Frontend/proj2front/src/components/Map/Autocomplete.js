@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Form } from 'react-bootstrap';
-import styled from 'styled-components';
 import './MapStyle.css';
 
 class AutoComplete extends Component {
@@ -48,16 +47,17 @@ class AutoComplete extends Component {
     }
 
     render() {
-        return (
-            <Form.Control
-                className="search-input address-search"
-                ref={(ref) => {
+        return (<
+            Form.Control className="search-input address-search"
+            ref={
+                (ref) => {
                     this.searchInput = ref;
-                }}
-                type="text"
-                onFocus={this.clearSearchBox}
-                placeholder="Enter a location"
-            />
+                }
+            }
+            type="text"
+            onFocus={this.clearSearchBox}
+            placeholder="Enter a location" /
+        >
         );
     }
 }
