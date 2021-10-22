@@ -18,7 +18,7 @@ const HomeTable = () => {
 
   let deleteLocation = (loc: Location) => {
     deleteAddress(loc.id)
-    dispatch(remove(loc));
+    dispatch(remove(loc))
   };
 
   let updateTitle = (loc: Location, title: string) => {
@@ -52,8 +52,8 @@ const HomeTable = () => {
 
   return (
     <div>
-      {locationState.map(loc => (
-        <TableEntry loc={loc} deleteLocation={deleteLocation} updateTitle={updateTitle} />
+      {locationState.map((loc, index) => (
+        <TableEntry key={index} loc={loc} deleteLocation={deleteLocation} updateTitle={updateTitle}/>
       ))}
     </div>
   );

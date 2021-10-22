@@ -51,7 +51,7 @@ const Home = (props: any) => {
     <div className="container">
       <div className="row">
         <div className="col-md-6 column1 main-wrapper">
-          <MyGoogleMap addNewLocation={addNewLocation}/>
+          <MyGoogleMap addNewLocation={addNewLocation} allowInteraction={true}/>
         </div>
         <div className="col-md-5 column2">
           <HomeTable />

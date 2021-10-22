@@ -34,11 +34,19 @@ class MyGoogleMap extends Component {
 
 
     onMarkerInteraction = (childKey, childProps, mouse) => {
-        this.setState({
-            draggable: false,
-            lat: mouse.lat,
-            lng: mouse.lng
-        });
+        if (this.props.allowInteraction) {
+            this.setState({
+                draggable: false,
+                lat: mouse.lat,
+                lng: mouse.lng
+            });
+        } else {
+            this.setState({
+                draggable: false,
+                lat: this.props.presetLocation.lat,
+                lng: this.props.presetLocation.lng
+            });
+        }
     }
     onMarkerInteractionMouseUp = (childKey, childProps, mouse) => {
         this.setState({ draggable: true });
@@ -54,10 +62,12 @@ class MyGoogleMap extends Component {
     }
 
     _onClick = (value) => {
-        this.setState({
-            lat: value.lat,
-            lng: value.lng
-        });
+        if (this.props.allowInteraction) {
+            this.setState({
+                lat: value.lat,
+                lng: value.lng
+            });
+        }
     }
 
     apiHasLoaded = (map, maps) => {
@@ -71,11 +81,16 @@ class MyGoogleMap extends Component {
     };
 
     addPlace = (place) => {
-        this.setState({
-            places: [place],
-            lat: place.geometry.location.lat(),
-            lng: place.geometry.location.lng()
-        });
+        if (this.props.allowInteraction) {
+            this.setState({
+                places: [place],
+                lat: place.geometry.location.lat(),
+                lng: place.geometry.location.lng()
+            });
+        } else {
+            alert("add place called...? dunno what this is");
+        }
+
         this._generateAddress()
     };
 
@@ -84,34 +99,48 @@ class MyGoogleMap extends Component {
             mapApi
         } = this.state;
 
-        const geocoder = new mapApi.Geocoder;
+        if (this.props.allowInteraction) {
+            const geocoder = new mapApi.Geocoder;
 
-        geocoder.geocode({ 'location': { lat: this.state.lat, lng: this.state.lng } }, (results, status) => {
-            // console.log(results);
-            // console.log(status);
-            if (status === 'OK') {
-                if (results[0]) {
-                    this.zoom = 17;
-                    this.setState({ address: results[0].formatted_address });
+            geocoder.geocode({ 'location': { lat: this.state.lat, lng: this.state.lng } }, (results, status) => {
+                // console.log(results);
+                // console.log(status);
+                if (status === 'OK') {
+                    if (results[0]) {
+                        this.zoom = 17;
+                        this.setState({ address: results[0].formatted_address });
+                    } else {
+                        window.alert('No results found');
+                    }
                 } else {
-                    window.alert('No results found');
+                    window.alert('Geocoder failed due to: ' + status);
                 }
-            } else {
-                window.alert('Geocoder failed due to: ' + status);
-            }
-
-        });
+            });
+        } else {
+            this.setState({
+                lat: this.props.presetLocation.lat,
+                lng: this.props.presetLocation.lng,
+                center: [this.props.presetLocation.lat, this.props.presetLocation.lng],
+                address: this.props.presetLocation.address
+            });
+        }
     }
 
     // Get Current Location Coordinates
     setCurrentLocation() {
-        if ('geolocation' in navigator) {
+        if ('geolocation' in navigator && this.props.allowInteraction) {
             navigator.geolocation.getCurrentPosition((position) => {
                 this.setState({
                     center: [position.coords.latitude, position.coords.longitude],
                     lat: position.coords.latitude,
                     lng: position.coords.longitude
                 });
+            });
+        } else {
+            this.setState({
+                center: [this.props.presetLocation.lat, this.props.presetLocation.lng],
+                lat: this.props.presetLocation.lat,
+                lng: this.props.presetLocation.lng
             });
         }
     }
@@ -130,14 +159,15 @@ class MyGoogleMap extends Component {
             places, mapApiLoaded, mapInstance, mapApi,
         } = this.state;
 
+        let submitBar = this.props.allowInteraction ? <InputGroup>
+            <AutoComplete map={mapInstance} mapApi={mapApi} addplace={this.addPlace} />
+            <Button className="btnStyle" variant="success" onClick={() => this.sendLocation()}>Add Location</Button>
+        </InputGroup> : <></>
 
         return (
             <Wrapper>
                 {mapApiLoaded && (
-                    <InputGroup>
-                            <AutoComplete map={mapInstance} mapApi={mapApi} addplace={this.addPlace} />
-                            <Button className="btnStyle" variant="success" onClick={() => this.sendLocation()}>Add Location</Button>   
-                    </InputGroup>
+                    submitBar
                 )}
                 <GoogleMapReact
                     center={this.state.center}
@@ -156,7 +186,6 @@ class MyGoogleMap extends Component {
                     yesIWantToUseGoogleMapApiInternals
                     onGoogleApiLoaded={({ map, maps }) => this.apiHasLoaded(map, maps)}
                 >
-
                     <Marker
                         text={this.state.address}
                         lat={this.state.lat}

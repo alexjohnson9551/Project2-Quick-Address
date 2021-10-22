@@ -1,50 +1,60 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import axios from 'axios'
-import React, { useEffect, useState } from 'react'
-import { Button, Form, InputGroup } from 'react-bootstrap'
+import React, { FormEvent, useEffect, useState } from 'react'
+import { Button, Container, Form, InputGroup, Row } from 'react-bootstrap'
 import { getAddress } from '../../remote/address-api/address.api'
 import MapContainer from '../Map/ShowMap'
 import Location from './../../models/location'
 import QRForCode from './QRForCode'
 import './AddressFromCodeStyle.css'
 import { useHistory } from 'react-router-dom'
+import MyGoogleMap from '../Map/MyGoogleMaps'
 
 
 
 const AddressFromCode = () => {
   const [location, setLocation] = useState({ lat: 0, lng: 0, address: "", title: "", message: "Enter Code to Find Location Below or Enter a Valid URL in the Address Bar" })
   const [code, setCode] = useState("")
+  const [submitted, setSubmitted] = useState(false);
   let windowPath = window.location.pathname
 
   const history = useHistory()
 
-  let inputForm = (<InputGroup className="code-search-form justify-content-center">
-    <Form.Control
-      type="text"
-      placeholder="Enter Code to Find Location"
-      value={code}
-      onChange={(e) => setCode(e.target.value)}
-    ></Form.Control>
-    <Button
-      variant="success"
-      className="entrybutton"
-      onClick={() => searchFromForm()}
-    >
-      Search
-    </Button>
-  </InputGroup>)
+  let inputForm = (
+    <Container style={{display: 'flex', justifyContent: 'center'}}>
+        <Form onSubmit={(e) => searchFromForm(e)}>
+          <InputGroup className="code-search-form">
+            <Form.Control
+              type="text"
+              placeholder="Enter Code to Find Location"
+              value={code}
+              onChange={(e) => setCode(e.target.value)}
+            ></Form.Control>
+            <Button
+              variant="success"
+              className="entrybutton"
+              type="submit"
+            >
+              Search
+            </Button>
+          </InputGroup>
+        </Form>
+    </Container>
+  )
 
+  let getUrlCode = () => {
+    return windowPath.substring(
+      windowPath.lastIndexOf('/') + 1,
+      windowPath.length,
+    )
+  };
 
-  // foundType 0 means no search yet, no code in URL
-  // foundType 1 means successful search
-  // foundType 2 means unsuccessful search
+  let map = (<MyGoogleMap allowInteraction={false} presetLocation={location}></MyGoogleMap>);
+
   let toDisplay = (<>
     <div className="container">
       <h2>
         {location.title}
-      </h2>
-      <h2>
-        {location.address}
       </h2>
       <div className="row justify-content-center">
         {location.message}
@@ -52,12 +62,17 @@ const AddressFromCode = () => {
       <div className="row justify-content-center">
         {inputForm}
       </div>
-      <MapContainer lat={location.lat} lng={location.lng}></MapContainer>
+      <div className="main-wrapper">{map}</div>
+
+      {/* <MapContainer lat={location.lat} lng={location.lng}></MapContainer> */}
     </div>
   </>)
 
-  let searchFromForm = () => {
-    history.push("/View/" + code)
+  let searchFromForm = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    history.push("/View/" + code);
+    window.location.reload();
+    setSubmitted(code !== "");
     searchForLocation(code);
   }
 
@@ -90,10 +105,7 @@ const AddressFromCode = () => {
   }
 
   useEffect(() => {
-    let urlCode = windowPath.substring(
-      windowPath.lastIndexOf('/') + 1,
-      windowPath.length,
-    )
+    let urlCode = getUrlCode();
     searchForLocation(urlCode)
   }, [])
 
