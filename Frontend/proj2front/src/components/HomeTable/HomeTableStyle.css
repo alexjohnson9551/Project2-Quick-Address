@@ -1,0 +1,4 @@
+.entry-table {
+    max-height: 650px;
+    overflow-y: auto;
+}
