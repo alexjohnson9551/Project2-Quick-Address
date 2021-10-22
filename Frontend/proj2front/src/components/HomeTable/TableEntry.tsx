@@ -9,8 +9,7 @@ const TableEntry = ({loc, deleteLocation, updateTitle, qrHandler}: {
   updateTitle: any
   qrHandler:(qrImage: string) => void
 }) => {
-  const [title, setTitle] = useState(loc.title)
-  let tempValue: string = "" + title
+  const [title, setTitle] = useState("" + loc.title)
 
   return (
     <div>
@@ -19,8 +18,8 @@ const TableEntry = ({loc, deleteLocation, updateTitle, qrHandler}: {
           <InputGroup>
             <Form.Control
               type="text"
-              placeholder="Custom Title"
-              value={tempValue}
+              placeholder={"Set Custom Title"}
+              value={title}
               onChange={(e) => setTitle(e.target.value)}
             ></Form.Control>
             <Button

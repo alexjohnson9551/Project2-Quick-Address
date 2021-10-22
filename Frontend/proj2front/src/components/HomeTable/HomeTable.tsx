@@ -18,7 +18,7 @@ const HomeTable = ({qrHandler}:{qrHandler:(qrId: string) => void}) => {
 
   let deleteLocation = (loc: Location) => {
     deleteAddress(loc.id)
-    dispatch(remove(loc));
+    dispatch(remove(loc))
   };
 
   let updateTitle = (loc: Location, title: string) => {
@@ -52,8 +52,9 @@ const HomeTable = ({qrHandler}:{qrHandler:(qrId: string) => void}) => {
 
   return (
     <div>
-      {locationState.map(loc => (
+      {locationState.map(loc, index => (
         <TableEntry 
+        key={index} 
         loc={loc}
         deleteLocation={deleteLocation}
         updateTitle={updateTitle}
