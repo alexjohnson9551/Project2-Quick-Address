@@ -116,7 +116,7 @@ class MyGoogleMap extends Component {
         }
     }
 
-    applesauce() {
+    sendLocation() {
         let loc = {
             address: this.state.address,
             lat: this.state.lat,
@@ -136,7 +136,7 @@ class MyGoogleMap extends Component {
                 {mapApiLoaded && (
                     <InputGroup>
                             <AutoComplete map={mapInstance} mapApi={mapApi} addplace={this.addPlace} />
-                            <Button className="btnStyle" variant="success" onClick={() => this.applesauce()}>Add Location</Button>   
+                            <Button className="btnStyle" variant="success" onClick={() => this.sendLocation()}>Add Location</Button>   
                     </InputGroup>
                 )}
                 <GoogleMapReact

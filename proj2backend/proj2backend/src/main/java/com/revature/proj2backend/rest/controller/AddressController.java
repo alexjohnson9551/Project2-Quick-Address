@@ -32,6 +32,9 @@ public class AddressController {
 	public ResponseEntity<Location> getAddress(@PathVariable Integer id){
 		System.out.println("I am called.");
 		Location address = addressService.getAddress(id);
+		if(address == null) {
+			return ResponseEntity.status(404).build();
+		}
 		System.out.println("Returning: " + address.toString());
 		return ResponseEntity.ok(address);
 	}

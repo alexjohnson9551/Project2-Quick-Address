@@ -1,13 +1,13 @@
 
 import React, { useState } from 'react';
 import axios from 'axios';
-import { Button } from 'react-bootstrap';
+import { Button, Col, Row } from 'react-bootstrap';
 import './RegistrationStyle.css'
 import { Link, useHistory } from 'react-router-dom';
 
 const RegPage = (props: any) => {
   const history = useHistory();
-  
+
   const [userFirstname, setUserFirstname] = useState("");
   const [userLastname, setUserLastname] = useState("");
   const [userName, setUserName] = useState("");
@@ -45,18 +45,18 @@ const RegPage = (props: any) => {
 
     console.log("POST WITH AXIOS! Sending: " + json);
 
-    axios.post<string, {data: {successful: boolean, message: string}}>(
+    axios.post<string, { data: { successful: boolean, message: string } }>(
       'http://localhost:8080/register',
       json,
 
       { headers: { 'Content-Type': "application/json" } }).then(
         res => {
           alert(res.data.message);
-          if(res.data.successful) {
+          if (res.data.successful) {
             props.nextPageHandler("");
             history.push("");
-        }
-      })
+          }
+        })
       .catch((err) => {
         console.log({ err });
         alert("Error: " + err.response);
@@ -104,8 +104,8 @@ const RegPage = (props: any) => {
                 </div>
 
                 <div className="d-flex justify-content-center buttons">
-                  <Button onClick={() => { nextPageHandler("Login"); history.push("/") }}>Back to Login</Button>
-                  <Button className="btnStyle" type="submit">Create Account</Button>
+                  <Button className="butt-pads" variant="outline-secondary" onClick={() => { nextPageHandler("Login"); history.push("/") }}>Back to Login</Button>
+                  <Button className="butt-pads" variant="outline-primary" type="submit">Create Account</Button>
                 </div>
 
               </form>
