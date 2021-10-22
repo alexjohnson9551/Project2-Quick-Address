@@ -1,8 +1,10 @@
 .column1 {
     height: 80vh;
     border-style: solid;
+    border-width: 1px;
+    border-radius: 4px;
     padding-bottom: 200px;
-    ;
+    margin-top: 3px;
 }
 
 .column2 {
