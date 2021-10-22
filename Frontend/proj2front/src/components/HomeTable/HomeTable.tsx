@@ -21,8 +21,11 @@ const HomeTable = () => {
     dispatch(remove(loc))
   };
 
-  let updateTitle = (loc: Location, title: string) => {
-    
+  let updateLocationInStore = (loc: Location, title: string) => {
+    dispatch(update(loc));
+  }
+
+  let updateTitle = (loc: Location, title: string, toDB: boolean) => {
     // set title ERROR WITH THIS
     // loc.title = title;
     //Create new object instead
@@ -35,17 +38,18 @@ const HomeTable = () => {
       lng: loc.lng
     };
     // update title in db
-    let jsonToSend = JSON.stringify(loc2);
-    axios.post<string, { data: any }>(
-        'http://localhost:8080/updatetitle',
-        jsonToSend,
-        { headers: { 'Content-Type': 'application/json' } },
-      )
-      .catch((err) => {
-        console.log({ err })
-        alert('Error: ' + err.response)
-      })
-
+    if(toDB) {
+      let jsonToSend = JSON.stringify(loc2);
+      axios.post<string, { data: any }>(
+          'http://localhost:8080/updatetitle',
+          jsonToSend,
+          { headers: { 'Content-Type': 'application/json' } },
+        )
+        .catch((err) => {
+          console.log({ err })
+          alert('Error: ' + err.response)
+        })
+    }
     // update title in store
     dispatch(update(loc2));
   }

@@ -69,9 +69,14 @@ const AddressFromCode = () => {
 
   let searchFromForm = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    history.push("/View/" + code);
-    window.location.reload();
-    searchForLocation(code);
+    if(code !== "") {
+      history.push("/View/" + code);
+      window.location.reload();
+      searchForLocation(code);
+    } else {
+      history.push("/View");
+      window.location.reload();
+    }
   }
 
   let searchForLocation = async (codeToSend: string) => {
