@@ -1,9 +1,22 @@
 .entrybutton {
     margin-bottom: 1px;
-    margin-top: 1px;
+    margin-top: 0px;
+    margin-left: 10px;
+    margin-right: 5px;
+}
+
+.qrbutton {
+    height: 62px;
 }
 
 .entrycard {
     margin-bottom: 3px;
     margin-top: 3px;
+}
+
+.tryme {
+    padding-left: 2px;
+    padding-right: 2px;
+    padding-top: 0;
+    padding-bottom: 0;
 }

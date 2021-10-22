@@ -4,6 +4,7 @@ import TableEntry from './TableEntry';
 import { useAppSelector } from '../../hooks';
 import Location from '../../models/location';
 import { deleteLocationService, updateLocationService } from '../../services/location.service';
+import './HomeTableStyle.css'
 
 const HomeTable = ({qrHandler}:{qrHandler:(qrId: string) => void}) => {
 
@@ -22,7 +23,7 @@ const HomeTable = ({qrHandler}:{qrHandler:(qrId: string) => void}) => {
   }
 
   return (
-    <div>
+    <div className="entry-table">
       {locationState.map((loc, index) => (
         <TableEntry 
         key={index} 
