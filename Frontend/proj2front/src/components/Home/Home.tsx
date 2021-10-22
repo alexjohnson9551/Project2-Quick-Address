@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useCallback, useState } from 'react'
 import { Button } from 'react-bootstrap'
 import NavbarToggle from 'react-bootstrap/esm/NavbarToggle'
 import { useHistory } from 'react-router'
@@ -11,11 +11,20 @@ import { add } from '../../slices/location.slice'
 import axios from 'axios'
 import Location from '../../models/location'
 import { idText } from 'typescript'
+import QRForCode from '../AddressFromCode/QRForCode'
 
 const Home = (props: any) => {
 
+  const [qr, setQR] = useState(""+0)
   const dispatch = useAppDispatch();
   const userState = useAppSelector((state => state.user));
+  let toDisplay = <div></div>
+  
+  let qrHandler = useCallback((qrId:string) => {
+    console.log("IN QR CODE!"+qrId+"")
+    console.log("QRCODE")
+    setQR(qrId)
+  }, [])
 
   const addNewLocation = (loc: Location) => {
     loc.title = "";
@@ -45,7 +54,10 @@ const Home = (props: any) => {
       })
   }
 
-  return (<div>
+  if(qr!=="0"){
+    toDisplay = <div className="qr-whole-page"><QRForCode id={qr} qrHandler={qrHandler} />QR</div>
+  }else{
+    toDisplay =  <div>
     <h1>Welcome {userState[0].username}</h1>
     <br />
     <div className="container">
@@ -54,11 +66,14 @@ const Home = (props: any) => {
           <MyGoogleMap addNewLocation={addNewLocation}/>
         </div>
         <div className="col-md-5 column2">
-          <HomeTable />
+          <HomeTable qrHandler={qrHandler}/>
         </div>
       </div>
     </div>
   </div>
+  }
+
+  return ( <div>{toDisplay}</div>
   )
 }
 

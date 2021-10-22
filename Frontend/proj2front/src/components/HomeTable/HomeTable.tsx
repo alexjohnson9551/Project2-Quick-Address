@@ -11,7 +11,7 @@ import { convertToObject } from 'typescript';
 import { propTypes } from 'qrcode.react';
 import {deleteAddress} from '../../remote/address-api/address.api'
 
-const HomeTable = () => {
+const HomeTable = ({qrHandler}:{qrHandler:(qrId: string) => void}) => {
 
   const dispatch = useAppDispatch();
   const locationState = useAppSelector((state => state.location));
@@ -53,7 +53,12 @@ const HomeTable = () => {
   return (
     <div>
       {locationState.map(loc => (
-        <TableEntry loc={loc} deleteLocation={deleteLocation} updateTitle={updateTitle} />
+        <TableEntry 
+        loc={loc}
+        deleteLocation={deleteLocation}
+        updateTitle={updateTitle}
+        qrHandler={qrHandler}
+        />
       ))}
     </div>
   );
