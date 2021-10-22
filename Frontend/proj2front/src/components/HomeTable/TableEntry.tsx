@@ -3,10 +3,11 @@ import './TableEntryStyle.css'
 import Location from '../../models/location'
 import { useAppDispatch, useAppSelector } from '../../hooks';
 
-const TableEntry = ({loc, deleteLocation, updateTitle}: {
+const TableEntry = ({loc, deleteLocation, updateTitle, qrHandler}: {
   loc: Location
   deleteLocation: any
   updateTitle: any
+  qrHandler:(qrImage: string) => void
 }) => {
 
   return (
@@ -42,8 +43,12 @@ const TableEntry = ({loc, deleteLocation, updateTitle}: {
               </Col>
               <Col>
                 <Row>
-                  <Button variant="primary" size="sm" className="entrybutton">
-                    Copy Link
+                  <Button 
+                  variant="primary" 
+                  size="sm" 
+                  className="entrybutton"
+                  onClick={() => {navigator.clipboard.writeText("http://localhost:3000/View/"+loc.id)}}
+                  > Copy Link
                   </Button>
                 </Row>
                 <Row>
@@ -52,8 +57,14 @@ const TableEntry = ({loc, deleteLocation, updateTitle}: {
                     size="sm"
                     className="entrybutton"
                     onClick={() => deleteLocation(loc)}
-                  >
-                    Delete
+                  >Delete
+                  </Button>
+                  <Button
+                  variant="outline-entry"
+                  size="sm"
+                  className="entrybutton"
+                  onClick={() => qrHandler(""+loc.id)}
+                  >QR Code
                   </Button>
                 </Row>
               </Col>
