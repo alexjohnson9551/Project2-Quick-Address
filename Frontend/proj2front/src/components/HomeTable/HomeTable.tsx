@@ -11,18 +11,21 @@ import { convertToObject } from 'typescript';
 import { propTypes } from 'qrcode.react';
 import {deleteAddress} from '../../remote/address-api/address.api'
 
-const HomeTable = () => {
+const HomeTable = ({qrHandler}:{qrHandler:(qrId: string) => void}) => {
 
   const dispatch = useAppDispatch();
   const locationState = useAppSelector((state => state.location));
 
   let deleteLocation = (loc: Location) => {
     deleteAddress(loc.id)
-    dispatch(remove(loc));
+    dispatch(remove(loc))
   };
 
-  let updateTitle = (loc: Location, title: string) => {
-    
+  let updateLocationInStore = (loc: Location, title: string) => {
+    dispatch(update(loc));
+  }
+
+  let updateTitle = (loc: Location, title: string, toDB: boolean) => {
     // set title ERROR WITH THIS
     // loc.title = title;
     //Create new object instead
@@ -35,25 +38,32 @@ const HomeTable = () => {
       lng: loc.lng
     };
     // update title in db
-    let jsonToSend = JSON.stringify(loc2);
-    axios.post<string, { data: any }>(
-        'http://localhost:8080/updatetitle',
-        jsonToSend,
-        { headers: { 'Content-Type': 'application/json' } },
-      )
-      .catch((err) => {
-        console.log({ err })
-        alert('Error: ' + err.response)
-      })
-
+    if(toDB) {
+      let jsonToSend = JSON.stringify(loc2);
+      axios.post<string, { data: any }>(
+          'http://localhost:8080/updatetitle',
+          jsonToSend,
+          { headers: { 'Content-Type': 'application/json' } },
+        )
+        .catch((err) => {
+          console.log({ err })
+          alert('Error: ' + err.response)
+        })
+    }
     // update title in store
     dispatch(update(loc2));
   }
 
   return (
     <div>
-      {locationState.map(loc => (
-        <TableEntry loc={loc} deleteLocation={deleteLocation} updateTitle={updateTitle} />
+      {locationState.map(loc, index => (
+        <TableEntry 
+        key={index} 
+        loc={loc}
+        deleteLocation={deleteLocation}
+        updateTitle={updateTitle}
+        qrHandler={qrHandler}
+        />
       ))}
     </div>
   );
