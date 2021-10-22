@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import axios from 'axios'
 import React, { FormEvent, useEffect, useState } from 'react'
-import { Button, Container, Form, InputGroup, Row } from 'react-bootstrap'
+import { Button, Container, Form, InputGroup } from 'react-bootstrap'
 import { getAddress } from '../../remote/address-api/address.api'
 import MapContainer from '../Map/ShowMap'
 import Location from './../../models/location'
@@ -15,7 +15,6 @@ import MyGoogleMap from '../Map/MyGoogleMaps'
 const AddressFromCode = () => {
   const [location, setLocation] = useState({ lat: 0, lng: 0, address: "", title: "", message: "Enter Code to Find Location Below or Enter a Valid URL in the Address Bar" })
   const [code, setCode] = useState("")
-  const [submitted, setSubmitted] = useState(false);
   let windowPath = window.location.pathname
 
   const history = useHistory()
@@ -72,7 +71,6 @@ const AddressFromCode = () => {
     e.preventDefault();
     history.push("/View/" + code);
     window.location.reload();
-    setSubmitted(code !== "");
     searchForLocation(code);
   }
 
