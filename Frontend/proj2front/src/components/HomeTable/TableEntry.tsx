@@ -8,8 +8,7 @@ const TableEntry = ({loc, deleteLocation, updateTitle}: {
   deleteLocation: any
   updateTitle: any
 }) => {
-  const [title, setTitle] = useState(loc.title)
-  let tempValue: string = "" + title
+  const [title, setTitle] = useState("" + loc.title)
 
   return (
     <div>
@@ -18,8 +17,7 @@ const TableEntry = ({loc, deleteLocation, updateTitle}: {
           <InputGroup>
             <Form.Control
               type="text"
-              placeholder="Custom Title"
-              value={tempValue}
+              value={title}
               onChange={(e) => setTitle(e.target.value)}
             ></Form.Control>
             <Button
