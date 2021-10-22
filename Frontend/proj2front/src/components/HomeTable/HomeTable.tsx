@@ -10,6 +10,7 @@ import axios from 'axios';
 import { convertToObject } from 'typescript';
 import { propTypes } from 'qrcode.react';
 import {deleteAddress} from '../../remote/address-api/address.api'
+import './HomeTableStyle.css'
 
 const HomeTable = ({qrHandler}:{qrHandler:(qrId: string) => void}) => {
 
@@ -55,8 +56,8 @@ const HomeTable = ({qrHandler}:{qrHandler:(qrId: string) => void}) => {
   }
 
   return (
-    <div>
-      {locationState.map(loc, index => (
+    <div className="entry-table">
+      {locationState.map((loc, index) => (
         <TableEntry 
         key={index} 
         loc={loc}
