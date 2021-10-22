@@ -8,8 +8,8 @@ const Navigation2 = (props: any) => {
 
 
   const navButtons = props.NavButtons;
-  const navButtonComps = navButtons.map((button: {dest: string, title: string, add: string}) =>
-    <Nav.Link as={Link} to={button.add} onClick={() => props.nextPageHandler(button.dest)}>{button.title}</Nav.Link>
+  const navButtonComps = navButtons.map((button: {dest: string, title: string, add: string}, index: any) =>
+    <Nav.Link key={index} as={Link} to={button.add} onClick={() => props.nextPageHandler(button.dest)}>{button.title}</Nav.Link>
   );
 
   return (<Navbar sticky="top" bg="light" variant="light" expand="lg">

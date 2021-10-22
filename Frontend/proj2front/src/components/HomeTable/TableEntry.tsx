@@ -1,14 +1,13 @@
 import { Button, Card, Col, Form, InputGroup, Row } from 'react-bootstrap'
 import './TableEntryStyle.css'
 import Location from '../../models/location'
-import { useState } from 'react'
+import { useAppDispatch, useAppSelector } from '../../hooks';
 
 const TableEntry = ({loc, deleteLocation, updateTitle}: {
   loc: Location
   deleteLocation: any
   updateTitle: any
 }) => {
-  const [title, setTitle] = useState("" + loc.title)
 
   return (
     <div>
@@ -18,13 +17,13 @@ const TableEntry = ({loc, deleteLocation, updateTitle}: {
             <Form.Control
               type="text"
               placeholder={"Set Custom Title"}
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
+              value={"" + loc.title}
+              onChange={(e) => updateTitle(loc, e.target.value, false)}
             ></Form.Control>
             <Button
               variant="outline-primary"
               className="entrybutton"
-              onClick={() => updateTitle(loc, title)}
+              onClick={() => updateTitle(loc, loc.title, true)}
             >
               Save
             </Button>
