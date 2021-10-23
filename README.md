@@ -33,7 +33,7 @@ The Location Sharing Webapp allows users to easily store and share locations wit
 1) Clone the repository using the provided gitlab clone command: `git clone https://github.com/alexjohnson9551/Project2New.git`
 2) Stop any services running on ports 3000, 8080, or 3306.
 3) Install Node.js and run "npm start" in a command terminal in the same folder as the frontend.
-4) Install MySQL Workbench and create a tablespace with name hb1 on port 3306 with username "sa" and password "password".
+4) Install MySQL Workbench and create a tablespace with name hb1 on port 3306 with username "root" and password "password".
 5) Import the backend into Eclipse EE as a Maven Project.
 6) Install dependancies using Maven and run the project as a Spring Boot App.
 7) Navigate to http://localhost:3000.
