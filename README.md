@@ -1,8 +1,8 @@
-# Project 2 - Location Sharing Webapp
+# Project 2 - Quick Address
 
 ## Project Description
 
-The Location Sharing Webapp allows users to easily store and share locations with one another. Registered users can search any address through a built-in google maps API, and save the location with a custom title. They can then generate a link and associated QR code that can be used to display this address. Any user, whether or not they are logged in, can use one of these links to retrieve an address and see the location displayed on google maps.
+Quick Address allows users to easily store and share locations with one another. Registered users can search any address through a built-in google maps API, and save the location with a custom title. They can then generate a link and associated QR code that can be used to display this address. Any user, whether or not they are logged in, can use one of these links to retrieve an address and see the location displayed on google maps.
 
 ## Technologies Used
 
@@ -33,7 +33,7 @@ The Location Sharing Webapp allows users to easily store and share locations wit
 1) Clone the repository using the provided gitlab clone command: `git clone https://github.com/alexjohnson9551/Project2New.git`
 2) Stop any services running on ports 3000, 8080, or 3306.
 3) Install Node.js and run "npm start" in a command terminal in the same folder as the frontend.
-4) Install MySQL Workbench and create a tablespace with name hb1 on port 3306 with username "sa" and password "password".
+4) Install MySQL Workbench and create a tablespace with name hb1 on port 3306 with username "root" and password "password".
 5) Import the backend into Eclipse EE as a Maven Project.
 6) Install dependancies using Maven and run the project as a Spring Boot App.
 7) Navigate to http://localhost:3000.
