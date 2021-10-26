@@ -58,7 +58,7 @@ const Home = (props: any) => {
     toDisplay = <div className="qr-whole-page"><QRForCode id={qr} qrHandler={qrHandler} /></div>
   }else{
     toDisplay =  <div>
-    <h1>Welcome {userState[0].username}</h1>
+    <h1 className="h1Style">Welcome {userState[0].firstName} {userState[0].lastName}</h1>
     <br />
     <div className="container">
       <div className="row">
